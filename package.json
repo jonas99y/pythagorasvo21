@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Die lit-ischtii Siite wos je heds gits",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "firebase": "^3.9.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
