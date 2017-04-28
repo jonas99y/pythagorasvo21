@@ -5,11 +5,11 @@
 /tmp
 /out-tsc
 
-#functions
-/functions/node_modules
-
 # dependencies
 /node_modules
+
+#functions
+/functions/node_modules
 
 # IDEs and editors
 /.idea
@@ -30,7 +30,7 @@
 # misc
 /.sass-cache
 /connect.lock
-/coverage/*
+/coverage
 /libpeerconnection.log
 npm-debug.log
 testem.log
