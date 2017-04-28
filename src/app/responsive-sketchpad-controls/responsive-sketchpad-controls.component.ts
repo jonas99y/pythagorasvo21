@@ -12,6 +12,7 @@ export class ResponsiveSketchpadControlsComponent implements OnInit {
   @Output() lineColorUpdated = new EventEmitter<string>();
   @Output() lineSizeUpdated = new EventEmitter<number>();
   @Output() unDo= new EventEmitter();
+  @Output() clear = new EventEmitter();
 
   //Fields
   private _lineColor: string ;
@@ -37,6 +38,11 @@ export class ResponsiveSketchpadControlsComponent implements OnInit {
   {
     console.log("undo clicked");
     this.unDo.emit();
+  }
+
+  clearClicked()
+  {
+    this.clear.emit();
   }
 
   constructor() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, HostListener, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 import { Stroke } from './stroke';
 import { Path } from './path';
 import { Coord } from './coord';
@@ -8,25 +8,35 @@ import { Coord } from './coord';
   styleUrls: ['./responsive-sketchpad.component.scss']
 })
 export class ResponsiveSketchpadComponent implements OnInit {
-  
+
   private activePath: Path;
   private paths: Array<Path> = new Array<Path>();
   private isDrawing: Boolean = false;
   private lineColor: string;
   private lineSize: number;
 
-  public canvas: HTMLCanvasElement;
+
   private mouseup = new EventEmitter<MouseEvent>();
   private mousemove = new EventEmitter<MouseEvent>();
   private mousedown = new EventEmitter<MouseEvent>();
   private mouseleave = new EventEmitter<MouseEvent>();
 
+  public canvasWidth: number;
+
   private touchMove = new EventEmitter<TouchEvent>();
   private touchEnd = new EventEmitter<TouchEvent>();
   private touchStart = new EventEmitter<TouchEvent>();
   private touchCancle = new EventEmitter<TouchEvent>();
+
+  public canvas: HTMLCanvasElement;
+
+  @ViewChild('drawingCanvas') public refCanvas: ElementRef;
+
   constructor() {
+
   }
+
+
 
   @HostListener('mouseup', ['$event'])
   onMouseup(event: MouseEvent) { this.mouseup.emit(event); }
@@ -55,6 +65,10 @@ export class ResponsiveSketchpadComponent implements OnInit {
 
   ngOnInit() {
 
+
+    this.canvas = this.refCanvas.nativeElement;
+
+    console.log(this.canvas);
     this.mouseup.subscribe({
       next: event => { this.StopDrawingPath(); }
     });
@@ -91,18 +105,27 @@ export class ResponsiveSketchpadComponent implements OnInit {
       next: event => { this.StartDrawingPath(); }
     });
 
-    let el = document.getElementById('sketchpad') as HTMLCanvasElement;
-    // Create a canvas element
-    this.canvas = document.createElement('canvas');
-    this.canvas.setAttribute('width', '300px');
-    this.canvas.setAttribute('height', '300px');
-    this.canvas.style.width = '300px';
-    this.canvas.style.height = '300px';
-    el.appendChild(this.canvas);
+
+    let width: number = window.innerWidth
+      || document.documentElement.clientWidth
+      || document.body.clientWidth;
+    width -= 20;
+    if (width > 800)
+      width = 800;
+    this.canvasWidth = width;
+    // const widthString: string = String(width);
+
+    // this.canvas.setAttribute('width', String(this.canvasWidth));
+    // this.canvas.setAttribute('height', String(this.canvasWidth));
+    //  this.canvas.style.width = String(this.canvasWidth);
+    //  this.canvas.style.height = String(this.canvasWidth);
 
   }
 
-
+  public Clear(canvas: HTMLCanvasElement) {
+    this.paths = new Array<Path>();
+    this.DrawPathsToCanvas(this.paths, this.canvas);
+  }
 
 
   public UnDo() {
@@ -129,7 +152,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
   }
 
   private DrawTo(xy: Coord) {
-    console.log("Draw..")
+    // console.log("Draw..")
     this.activePath.Strokes.push(new Stroke(xy));
     this.DrawPathsToCanvas(this.paths, this.canvas);
   }
@@ -178,6 +201,8 @@ export class ResponsiveSketchpadComponent implements OnInit {
     });
   }
 
+
+
   private absoluteToRelativeCordinates(xy: [number, number], canvas: HTMLCanvasElement): [number, number] {
     const x: number = xy[0] / canvas.width;
     const y: number = xy[1] / canvas.height;
@@ -207,15 +232,16 @@ export class ResponsiveSketchpadComponent implements OnInit {
    */
   private getMousePosition(event: MouseEvent): Coord {
 
-
+    console.log(event); 
     const y: number = event.pageY;
     const x: number = event.pageX;
     return this.getInCanvasCoords(new Coord(x, y), this.canvas);
   }
 
   private getInCanvasCoords(coords: Coord, canvas: HTMLCanvasElement): Coord {
-    let rect = this.canvas.getBoundingClientRect();
-    return new Coord(coords.x - rect.left, coords.y - rect.top);
+    
+    // return new Coord(coords.x - rect.left, coords.y - rect.top);
+    return new Coord(coords.x - this.canvas.offsetLeft, coords.y - this.canvas.offsetTop);
   }
 
 

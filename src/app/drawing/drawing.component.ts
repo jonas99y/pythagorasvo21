@@ -11,12 +11,7 @@ export class DrawingComponent implements OnInit {
 
   @ViewChild('sketchpad') sketchpad: ResponsiveSketchpadComponent;
 
-  public lineColor: string;
-  public lineSize: number;
-
   public imageName: string;
-
-  // private pad: Sketchpad;
   private image: string;
   private ref: firebase.storage.Reference;
 
@@ -25,19 +20,7 @@ export class DrawingComponent implements OnInit {
 
   }
 
-  handleColorUpdated(event) {
-    this.lineColor = event;
-  }
-  handleSizeUpdated(event) {
-    this.lineSize = event;
-  }
-  handleUnDo(event) {
-
-  }
-
   ngOnInit() {
-    // var Sketchpad = responsiveSketchpad;
-    // this.pad.setLineColor('#4CAF50');
   }
   clicked($event) {
     this.saveCanvasToFirebase(this.sketchpad.canvas, 'images/' + this.imageName);
