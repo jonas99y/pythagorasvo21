@@ -1,1 +1,22 @@
-<router-outlet></router-outlet>
+<nav class="nav">
+  <div class="container">
+    <div class="nav-left">
+      <ul class="nav navbar-nav" routerLinkActive="active">
+        <a class="nav-item">
+          <img src="../assets/images/pythagoras.svg" alt="pythagoras logo" >
+        </a>
+        <li class="nav-item"><a class="nav-link" routerLink="home">Zeichne</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="about">Platzhalter 1</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="courses">Platzhalter 2</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="home">Logout</a>
+      </li>
+    </div>
+  </div>
+</nav>
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
