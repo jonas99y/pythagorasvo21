@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+// 1. Import the initial variables
+@import '../node_modules/bulma/sass/utilities/initial-variables';
+
+// 2. Set your own initial variables
+// Update blue
+$blue: #72d0eb;
+// Add pink
+$pink: #111111;
+// Add a serif family
+$family-serif: 'Roboto', sans-serif;
+
+// 3. Set the derived variables
+// Use the new pink as the primary color
+$primary: $pink;
+// Use the existing orange as the danger color
+$danger: $orange;
+// Use the new serif family
+$family-primary: $family-serif;
+// 4. Import the rest of Bulma
+@import "../node_modules/bulma/bulma";
