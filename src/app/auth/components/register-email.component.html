@@ -1,9 +1,9 @@
 <div class="form-container">
-  <a routerLink="/login" id="goback">Zum Login</a>
+  <a routerLink="/login" id="goback">Zum Login</a><br/>
 
-  <h2>E-Mail registrierä</h2>
+  <h1>E-Mail registrierä</h1>
 
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+  <span class="error" *ngIf="error" >{{ error }}</span>
 
   <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
 
