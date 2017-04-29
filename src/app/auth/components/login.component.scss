@@ -1,0 +1,61 @@
+button {
+  padding:1.2em;
+  width:300px;
+  cursor:pointer;
+  margin-bottom:15px;
+  font-size:1.3em;
+}
+
+#lock {
+  width:40%;
+  margin: 1.5em auto 4em auto;
+  display:block;
+}
+
+#facebook {
+  background:#4B7598 url('../../../assets/images/facebook.svg') no-repeat 14px 6px;
+  background-size: 47px;
+  color:#fff;
+}
+
+#github {
+  background: #24292e url('../../../assets/images/github.svg') no-repeat 15px;
+  background-size: 45px;
+  color:rgba(255,255,255,0.75);
+}
+
+#google {
+  border: 1px solid #95989A;
+  background: #fff  url('../../../assets/images/google.svg') no-repeat 25px;
+  background-size: 25px;
+}
+
+#email {
+  background: #ECECEC  url('../../../assets/images/email.svg') no-repeat 25px;
+  background-size: 25px;
+}
+
+@media (max-width: 600px) {
+  #page {
+    padding:1em;
+  }
+  #toolbar {
+    width:90%;
+    margin-left: -45%;
+  }
+  #facebook {
+    background-color:#4B7598;
+  }
+
+  #github {
+    background:#24292e;
+  }
+
+  #google {
+    background: #fff;
+  }
+
+  #email {
+    background: #ECECEC;
+  }
+}

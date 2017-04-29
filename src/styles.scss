@@ -19,3 +19,13 @@ $danger: $orange;
 $family-primary: $family-serif;
 // 4. Import the rest of Bulma
 @import "../node_modules/bulma/bulma";
+
+.form-container {
+  background:white;
+  padding:3.5em;
+  width:500px;
+  position:fixed;
+  left:50%;
+  margin-left:-250px;
+}
+
