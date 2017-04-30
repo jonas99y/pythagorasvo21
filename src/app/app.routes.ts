@@ -1,9 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {RegisterEmailComponent} from './auth/components/register-email.component';
-import {AuthGuard} from './auth/services/auth-guard.service';
-import {LoginComponent} from './auth/components/login.component';
-import {LoginEmailComponent} from './auth/components/login-email.component';
+import {RegisterEmailComponent, LoginEmailComponent, LoginComponent, AuthGuard} from './auth/';
 import {DrawingComponent} from './drawing/drawing.component';
 
 export const router: Routes = [

@@ -5,11 +5,9 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { DrawingModule } from './drawing/drawing.module';
-import { RegisterEmailComponent } from './auth/components/register-email.component';
 import { AuthGuard } from './auth/services/auth-guard.service';
-import { LoginEmailComponent } from './auth/components/login-email.component';
-import { LoginComponent } from './auth/components/login.component';
 import { routes } from './app.routes';
+import {AuthModule} from './auth/auth.module';
 
 
 export const firebaseConfig = {
@@ -23,14 +21,13 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RegisterEmailComponent,
-    LoginEmailComponent,
-    LoginComponent],
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    AuthModule,
     DrawingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routes
