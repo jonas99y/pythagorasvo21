@@ -15,6 +15,9 @@ export class ResponsiveSketchpadComponent implements OnInit {
   private lineColor: string;
   private lineSize: number;
 
+  private distanceTop: number;
+  private distanceLeft: number;
+
 
   private mouseup = new EventEmitter<MouseEvent>();
   private mousemove = new EventEmitter<MouseEvent>();
@@ -67,6 +70,10 @@ export class ResponsiveSketchpadComponent implements OnInit {
 
 
     this.canvas = this.refCanvas.nativeElement;
+
+    window.scrollTo(0, 0);
+    this.distanceTop = this.canvas.getBoundingClientRect().top;
+    this.distanceLeft = this.canvas.getBoundingClientRect().left;
 
     // console.log(this.canvas);
     this.mouseup.subscribe({
@@ -239,10 +246,9 @@ export class ResponsiveSketchpadComponent implements OnInit {
   }
 
   private getInCanvasCoords(coords: Coord, canvas: HTMLCanvasElement): Coord {
-    let x = coords.x-this.canvas.getBoundingClientRect().left-document.body.scrollLeft;
-    let y = coords.y-this.canvas.getBoundingClientRect().top-document.body.scrollTop;
-
-    return new Coord(x,y);
+    let x = coords.x - this.distanceLeft;
+    let y = coords.y - this.distanceTop ;
+    return new Coord(x, y);
   }
 
 
