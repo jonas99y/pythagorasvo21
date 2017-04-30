@@ -68,7 +68,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
 
     this.canvas = this.refCanvas.nativeElement;
 
-    console.log(this.canvas);
+    // console.log(this.canvas);
     this.mouseup.subscribe({
       next: event => { this.StopDrawingPath(); }
     });
@@ -77,7 +77,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
     });
     this.mousemove.subscribe({
       next: event => {
-        console.log("mousemove");
+        // console.log("mousemove");
         if (this.isDrawing) {
           this.DrawTo(this.getMousePosition(event));
         }
@@ -95,7 +95,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
     });
     this.touchMove.subscribe({
       next: event => {
-        console.log("touchmove");
+        // console.log("touchmove");
         if (this.isDrawing) {
           this.DrawTo(this.getTouchPosition(event));
         }
@@ -129,7 +129,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
 
 
   public UnDo() {
-    console.log("undo");
+    // console.log("undo");
     this.paths.splice(-1, 1);
     this.DrawPathsToCanvas(this.paths, this.canvas);
   }
@@ -143,7 +143,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
   }
 
   private StartDrawingPath() {
-    console.log("Start Drawing")
+    // console.log("Start Drawing")
     this.isDrawing = true;
 
     this.activePath = new Path(this.lineSize, this.lineColor);
@@ -158,7 +158,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
   }
 
   private StopDrawingPath() {
-    console.log(this.paths);
+    // console.log(this.paths);
     this.isDrawing = false;
   }
 
@@ -191,7 +191,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
       });
 
       // draw the actual path to the canvas
-      console.log(path.lineColor);
+      // console.log(path.lineColor);
       canvasContext.strokeStyle = path.lineColor;
       canvasContext.lineWidth = path.lineWidth;
 
@@ -232,16 +232,17 @@ export class ResponsiveSketchpadComponent implements OnInit {
    */
   private getMousePosition(event: MouseEvent): Coord {
 
-    console.log(event); 
+    // console.log(event); 
     const y: number = event.pageY;
     const x: number = event.pageX;
     return this.getInCanvasCoords(new Coord(x, y), this.canvas);
   }
 
   private getInCanvasCoords(coords: Coord, canvas: HTMLCanvasElement): Coord {
-    
-    // return new Coord(coords.x - rect.left, coords.y - rect.top);
-    return new Coord(coords.x - this.canvas.offsetLeft, coords.y - this.canvas.offsetTop);
+    let x = coords.x-this.canvas.getBoundingClientRect().left-document.body.scrollLeft;
+    let y = coords.y-this.canvas.getBoundingClientRect().top-document.body.scrollTop;
+
+    return new Coord(x,y);
   }
 
 

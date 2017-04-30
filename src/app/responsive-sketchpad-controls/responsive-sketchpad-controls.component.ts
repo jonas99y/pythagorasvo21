@@ -35,7 +35,7 @@ export class ResponsiveSketchpadControlsComponent implements OnInit {
   }
 
   unDoClicked() {
-    console.log("undo clicked");
+    // console.log("undo clicked");
     this.unDo.emit();
   }
 

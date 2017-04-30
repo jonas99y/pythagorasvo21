@@ -30,8 +30,7 @@ export const firebaseConfig = {
     ResponsiveSketchpadControlsComponent,
     RegisterEmailComponent,
     LoginEmailComponent,
-    LoginComponent
-  ],
+    LoginComponent  ],
   imports: [
     BrowserModule,
     FormsModule,
