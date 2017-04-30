@@ -61,7 +61,7 @@ export class Sketchpad {
 
         // Public functions
         // this.redraw = redraw;
-        console.log(this);
+        // console.log(this);
     }
 
 
@@ -105,14 +105,14 @@ export class Sketchpad {
 
     private testMethod(canvas)
     {
-        console.log(this);
-        console.log(canvas);
+        // console.log(this);
+        // console.log(canvas);
     }
 
     // On mouse down, create a new stroke with a start location
     public startLine(e) {
         
-        console.log("StartLine");
+        // console.log("StartLine");
         e.preventDefault();
         this.testMethod(this);
         
@@ -140,7 +140,7 @@ export class Sketchpad {
     }
 
     public drawLine(e) {
-        console.log("drawLine");
+        // console.log("drawLine");
         if (!this.sketching) {
             return
         }
@@ -162,7 +162,7 @@ export class Sketchpad {
         }
 
     public endLine(e) {
-        console.log("endLine");
+        // console.log("endLine");
         
         if (!this.sketching) {
             return
