@@ -5,7 +5,7 @@ language: node_js
 node_js:
 - '7'
 script:
-  - ng build --prod
+  - npm build
 matrix:
   fast_finish: true
 cache:
