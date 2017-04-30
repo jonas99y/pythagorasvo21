@@ -1,9 +1,16 @@
-language: node_js
-node_js:
-- '7'
 branches:
   only:
   - master
+language: node_js
+node_js:
+- '7'
+script:
+  - npm build
+matrix:
+  fast_finish: true
+cache:
+  directories:
+    - node_modules
 deploy:
   provider: firebase
   token:
