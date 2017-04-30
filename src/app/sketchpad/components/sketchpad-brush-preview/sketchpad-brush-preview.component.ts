@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-sketchpad-brush-preview',
@@ -7,9 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SketchpadBrushPreviewComponent implements OnInit {
 
+  private _color: string;
+  private _size: number;
+
+
+  @ViewChild('brushPreviewCanvas') canvas: HTMLCanvasElement;
+
+  @Input('size') set size(size: number) {
+    this._size = size;
+    this.drawPreviewBursh();
+  }
+
+  @Input('color') set color(color: string) {
+    this._color = color;
+    this.drawPreviewBursh();
+  }
+
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  drawPreviewBursh() {
+    
+  }
 }

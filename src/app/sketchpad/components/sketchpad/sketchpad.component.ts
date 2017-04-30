@@ -12,8 +12,8 @@ export class SketchpadComponent implements OnInit {
   private activePath: Path;
   private paths: Array<Path> = new Array<Path>();
   private isDrawing: Boolean = false;
-  private lineColor: string;
-  private lineSize: number;
+  public lineColor: string;
+  public lineSize: number;
 
   private distanceTop: number;
   private distanceLeft: number;
