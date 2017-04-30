@@ -1,9 +1,22 @@
-language: node_js
-node_js:
-- '7'
+sudo: required
+dist: trusty
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 branches:
   only:
   - master
+language: node_js
+node_js:
+- '7'
+matrix:
+  fast_finish: true
+cache:
+  directories:
+    - node_modules
 deploy:
   provider: firebase
   token:
