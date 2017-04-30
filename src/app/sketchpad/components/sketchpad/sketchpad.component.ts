@@ -1,13 +1,13 @@
 import { Component, OnInit, HostListener, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
-import { Stroke } from './stroke';
-import { Path } from './path';
-import { Coord } from './coord';
+import { Stroke } from './model/stroke';
+import { Path } from './model/path';
+import { Coord } from './model/coord';
 @Component({
-  selector: 'app-responsive-sketchpad',
-  templateUrl: './responsive-sketchpad.component.html',
-  styleUrls: ['./responsive-sketchpad.component.scss']
+  selector: 'app-sketchpad',
+  templateUrl: './sketchpad.component.html',
+  styleUrls: ['./sketchpad.component.scss']
 })
-export class ResponsiveSketchpadComponent implements OnInit {
+export class SketchpadComponent implements OnInit {
 
   private activePath: Path;
   private paths: Array<Path> = new Array<Path>();
@@ -247,7 +247,7 @@ export class ResponsiveSketchpadComponent implements OnInit {
 
   private getInCanvasCoords(coords: Coord, canvas: HTMLCanvasElement): Coord {
     let x = coords.x - this.distanceLeft;
-    let y = coords.y - this.distanceTop ;
+    let y = coords.y - this.distanceTop;
     return new Coord(x, y);
   }
 

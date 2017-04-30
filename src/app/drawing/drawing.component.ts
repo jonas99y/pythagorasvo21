@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-// import { Sketchpad } from 'responsive-sketchpad';
-import { ResponsiveSketchpadComponent } from '../responsive-sketchpad/responsive-sketchpad.component';
+import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
 import { AngularFire, FirebaseRef } from 'angularfire2';
+
 @Component({
   selector: 'app-drawing',
   templateUrl: './drawing.component.html',
@@ -9,7 +9,7 @@ import { AngularFire, FirebaseRef } from 'angularfire2';
 })
 export class DrawingComponent implements OnInit {
 
-  @ViewChild('sketchpad') sketchpad: ResponsiveSketchpadComponent;
+  @ViewChild('sketchpad') sketchpad: SketchpadComponent;
 
   public imageName: string;
   private image: string;

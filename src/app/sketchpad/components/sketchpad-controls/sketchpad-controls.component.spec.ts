@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResponsiveSketchpadControlsComponent } from './responsive-sketchpad-controls.component';
+import { ResponsiveSketchpadControlsComponent } from './sketchpad-controls.component';
 
 describe('ResponsiveSketchpadControlsComponent', () => {
   let component: ResponsiveSketchpadControlsComponent;

@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-responsive-sketchpad-controls',
-  templateUrl: './responsive-sketchpad-controls.component.html',
-  styleUrls: ['./responsive-sketchpad-controls.component.scss']
+  selector: 'app-sketchpad-controls',
+  templateUrl: './sketchpad-controls.component.html',
+  styleUrls: ['./sketchpad-controls.component.scss']
 })
-export class ResponsiveSketchpadControlsComponent implements OnInit {
+export class SketchpadControlsComponent implements OnInit {
 
   public colors: Array<string> = new Array<string>("red", "blue", "green", "yellow", "black", "white");
 

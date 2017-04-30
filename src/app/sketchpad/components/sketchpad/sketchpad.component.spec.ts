@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResponsiveSketchpadComponent } from './responsive-sketchpad.component';
+import { SketchpadComponent } from './sketchpad.component';
 
 describe('ResponsiveSketchpadComponent', () => {
-  let component: ResponsiveSketchpadComponent;
-  let fixture: ComponentFixture<ResponsiveSketchpadComponent>;
+  let component: SketchpadComponent;
+  let fixture: ComponentFixture<SketchpadComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResponsiveSketchpadComponent ]
+      declarations: [ SketchpadComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResponsiveSketchpadComponent);
+    fixture = TestBed.createComponent(SketchpadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

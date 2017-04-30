@@ -2,9 +2,9 @@
     <button (click)="clicked($event)">Upload Image</button>
     <input [(ngModel)]="imageName"/>
 
-    <app-responsive-sketchpad #sketchpad>
-    </app-responsive-sketchpad>
-    <app-responsive-sketchpad-controls (lineColorUpdated)="sketchpad.SetLineColor($event)" (lineSizeUpdated)="sketchpad.SetLineSize($event)" (unDo)="sketchpad.UnDo()" (clear)="sketchpad.Clear()">
-    </app-responsive-sketchpad-controls>
+    <app-sketchpad #sketchpad>
+    </app-sketchpad>
+    <app-sketchpad-controls (lineColorUpdated)="sketchpad.SetLineColor($event)" (lineSizeUpdated)="sketchpad.SetLineSize($event)" (unDo)="sketchpad.UnDo()" (clear)="sketchpad.Clear()">
+    </app-sketchpad-controls>
     <a>Test</a>
 </div>
