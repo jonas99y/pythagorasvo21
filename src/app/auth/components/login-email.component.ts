@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class LoginEmailComponent implements OnInit {
 
-  state = '';
   error: any;
+  email: string;
+  password: string;
 
   constructor(public af: AngularFire, private router: Router) {
     this.af.auth.subscribe(auth => {
@@ -23,8 +24,8 @@ export class LoginEmailComponent implements OnInit {
     if (formData.valid) {
       console.log(formData.value);
       this.af.auth.login({
-          email: formData.value.email,
-          password: formData.value.password
+          email: this.email,
+          password: this.password
         },
         {
           provider: AuthProviders.Password,
