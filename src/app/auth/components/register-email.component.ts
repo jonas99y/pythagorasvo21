@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 })
 export class RegisterEmailComponent implements OnInit {
 
-  state = '';
   error: any;
+  email: string;
+  password: string;
 
   constructor(public af: AngularFire, private router: Router) {  }
 
@@ -18,8 +19,8 @@ export class RegisterEmailComponent implements OnInit {
     if (formData.valid) {
       console.log(formData.value);
       this.af.auth.createUser({
-        email: formData.value.email,
-        password: formData.value.password
+        email: this.email,
+        password: this.password
       }).then(
         (success) => {
           this.router.navigate(['/drawing']);
