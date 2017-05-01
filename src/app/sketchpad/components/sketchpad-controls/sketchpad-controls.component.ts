@@ -40,7 +40,11 @@ export class SketchpadControlsComponent implements OnInit {
   }
 
   clearClicked() {
-    this.clear.emit();
+    var start = new Date().getTime();
+    var result = confirm("Wetsch das würkli lösche?");
+    if (result == true || new Date().getTime() < start + 200)
+      this.clear.emit();
+
   }
 
   constructor() {
@@ -53,13 +57,13 @@ export class SketchpadControlsComponent implements OnInit {
   }
   decreasePenSize() {
     this.lineSize -= 2;
-    if(this.lineSize<2)
-    this.lineSize=2;
+    if (this.lineSize < 2)
+      this.lineSize = 2;
   }
   increasePenSize() {
     this.lineSize += 2;
-    if(this.lineSize>100)
-        this.lineSize=100;
+    if (this.lineSize > 100)
+      this.lineSize = 100;
   }
   ngOnInit() {
 
