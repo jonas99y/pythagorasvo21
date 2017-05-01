@@ -1,22 +1,16 @@
-<nav class="nav">
-  <div class="container">
-    <div class="nav-left">
-      <ul class="nav navbar-nav" routerLinkActive="active">
-        <a class="nav-item">
-          <img src="../assets/images/pythagoras.svg" alt="pythagoras logo" >
-        </a>
-        <li class="nav-item"><a class="nav-link" routerLink="home">Zeichne</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="about">Galerie</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="courses">Platzhalter 2</a></li>
-      </ul>
-    </div>
-    <div class="nav-right">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="home">Logout</a>
-      </li>
-    </div>
-  </div>
-</nav>
 <main class="container">
   <router-outlet></router-outlet>
 </main>
+<nav class="container">
+    <div class="columns ">
+      <div class="column is-one-third">
+        <a class="" [routerLink]="['/drawing']" [routerLinkActive]="['active']">Zeichne</a>
+      </div>
+      <div class="column is-one-third">
+        <a class="" [routerLink]="['/gallery']" [routerLinkActive]="['active']">Galerie</a>
+      </div>
+      <div class="column is-one-third">
+        <a class="" [routerLink]="['/profile']" [routerLinkActive]="['active']">Profil</a>
+      </div>
+    </div>
+</nav>
