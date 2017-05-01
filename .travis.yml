@@ -4,6 +4,8 @@ branches:
 language: node_js
 node_js:
 - '7'
+install:
+  - npm install firebase-tools
 script:
 - ng build --prod --aot
 matrix:
@@ -11,9 +13,5 @@ matrix:
 cache:
   directories:
   - node_modules
-
-before_deploy:
-  - npm install firebase-tools
-
 after_success:
   - firebase deploy --token "$FIREBASE_DEPLOY_TOKEN" --non-interactive --only hosting
