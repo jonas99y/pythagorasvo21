@@ -11,8 +11,9 @@ matrix:
 cache:
   directories:
   - node_modules
-deploy:
-  provider: firebase
-  skip_cleanup: true
-  token:
-    secure: $FIREBASE_DEPLOY_TOKEN
+
+before_deploy:
+  - npm install firebase-tools
+
+after_success:
+  - firebase deploy --token "$FIREBASE_DEPLOY_TOKEN" --non-interactive --only hosting
