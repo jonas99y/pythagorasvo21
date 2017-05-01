@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-sketchpad-brush-preview',
@@ -9,9 +9,10 @@ export class SketchpadBrushPreviewComponent implements OnInit {
 
   private _color: string;
   private _size: number;
+  private canvas: HTMLCanvasElement;
 
 
-  @ViewChild('brushPreviewCanvas') canvas: HTMLCanvasElement;
+  @ViewChild('brushPreviewCanvas') refCanvas: ElementRef;
 
   @Input('size') set size(size: number) {
     this._size = size;
@@ -27,9 +28,25 @@ export class SketchpadBrushPreviewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.canvas = this.refCanvas.nativeElement;
+    this.drawPreviewBursh();
   }
 
   drawPreviewBursh() {
-    
+    if (this.canvas === undefined)
+    { return; }
+    const centerX = this.canvas.width / 2;
+    const centerY = this.canvas.height / 2;
+    const radius = this._size / 2;
+    const context: CanvasRenderingContext2D = this.canvas.getContext('2d');
+
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    context.fillStyle = this._color;
+    context.fill();
+    context.lineWidth = 5;
+    context.strokeStyle = this._color;
+    context.stroke();
   }
 }
