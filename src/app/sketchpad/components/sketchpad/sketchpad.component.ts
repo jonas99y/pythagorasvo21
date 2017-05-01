@@ -193,7 +193,10 @@ export class SketchpadComponent implements OnInit {
         // draw form last point to current point
         canvasContext.lineTo(x, y);
         // move to current point
-        canvasContext.moveTo(x, y);
+        setTimeout(x=>{
+          canvasContext.moveTo(x, y);
+        },200);
+        
 
       });
 
