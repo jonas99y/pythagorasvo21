@@ -26,11 +26,10 @@ export class DrawingComponent implements OnInit {
     this.saveCanvasToFirebase(this.sketchpad.canvas, 'images/' + this.imageName);
 
   }
-  saveCanvasToFirebase(canvas: HTMLCanvasElement, path: string) {
-    let ref = this.ref;
+  saveCanvasToFirebase(canvas: HTMLCanvasElement, path: string){
     canvas.toBlob(function (blob) {
       const image = new Image();
-      ref.child(path).put(blob);
+      this.ref.child(path).put(blob);
     });
   }
 }

@@ -33,8 +33,9 @@ export class SketchpadBrushPreviewComponent implements OnInit {
   }
 
   drawPreviewBursh() {
-    if (this.canvas === undefined)
-    { return; }
+    if (this.canvas === undefined) {
+      return;
+    }
     const centerX = this.canvas.width / 2;
     const centerY = this.canvas.height / 2;
     const radius = this._size / 2;
