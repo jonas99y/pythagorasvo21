@@ -113,19 +113,13 @@ export class SketchpadComponent implements OnInit {
     });
 
 
-    let width: number = window.innerWidth
-      || document.documentElement.clientWidth
-      || document.body.clientWidth;
-    width -= 20;
-    if (width > 800)
-      width = 800;
-    this.canvasWidth = width;
-    // const widthString: string = String(width);
-
-    // this.canvas.setAttribute('width', String(this.canvasWidth));
-    // this.canvas.setAttribute('height', String(this.canvasWidth));
-    //  this.canvas.style.width = String(this.canvasWidth);
-    //  this.canvas.style.height = String(this.canvasWidth);
+    // let width: number = window.innerWidth
+    //   || document.documentElement.clientWidth
+    //   || document.body.clientWidth;
+    // width -= 20;
+    // if (width > 800)
+    //   width = 800;
+    this.canvasWidth = this.canvas.clientWidth;
 
   }
 
@@ -171,10 +165,8 @@ export class SketchpadComponent implements OnInit {
 
   private DrawPathsToCanvas(paths: Array<Path>, canvas: HTMLCanvasElement) {
     const canvasContext: CanvasRenderingContext2D = canvas.getContext('2d');
-    const canvasHeight: number = this.canvas.height;
-    const canvasWidth: number = this.canvas.width;
-
-
+    const canvasHeight: number = this.canvas.clientHeight;
+    const canvasWidth: number = this.canvas.clientWidth;
     canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
     this.paths.forEach(path => {
