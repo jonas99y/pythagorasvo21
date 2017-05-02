@@ -1,31 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
-// 1. Import the initial variables
+
 @import '../node_modules/bulma/sass/utilities/initial-variables';
-
-// 2. Set your own initial variables
-// Update blue
+$bottomNavHeigth:50px;
+$topNavHeitght:30px;
 $blue: #72d0eb;
-// Add pink
 $pink: #111111;
-// Add a serif family
-$family-serif: 'Roboto', sans-serif;
-
-// 3. Set the derived variables
-// Use the new pink as the primary color
-$primary: $pink;
-// Use the existing orange as the danger color
+$background: #F2F2F2;
+$family-serif: 'Roboto',
+sans-serif;
+$primary: #00D1B2;
 $danger: $orange;
-// Use the new serif family
 $family-primary: $family-serif;
-// 4. Import the rest of Bulma
 @import "../node_modules/bulma/bulma";
-
-.form-container {
-  background:white;
-  padding:3.5em;
-  width:500px;
-  position:fixed;
-  left:50%;
-  margin-left:-250px;
+// .form-container {
+//     background: white;
+//     padding: 3.5em;
+//     width: 500px;
+//     position: fixed;
+//     left: 50%;
+//     margin-left: -250px;
+// }
+#content {
+    background: $primary;
 }
 
+#inner-content {
+    top: $topNavHeitght;
+    bottom: $bottomNavHeigth;
+    background: $background;
+    margin: 10px;
+}
+
+#bottom-nav {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: $bottomNavHeigth;
+    width: 100%;
+    background: $primary;
+}
+
+#top-nav {
+    background: $primary;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: $topNavHeitght;
+    z-index: 100;
+}
+
+#menu-demo {
+    color: white;
+}
+
+.nav-Menu-Item {
+    color: $primary;
+}
+
+#bottom-nav-columns {
+    height: 100%;
+}
+
+.bottom-nav-column-div {
+    background: white;
+}
