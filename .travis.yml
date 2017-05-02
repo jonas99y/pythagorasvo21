@@ -4,15 +4,14 @@ branches:
 language: node_js
 node_js:
 - '7'
+install:
+  - npm install firebase-tools
 script:
-  - ng build --prod
+- ng build --prod --aot
 matrix:
   fast_finish: true
 cache:
   directories:
-    - node_modules
-deploy:
-  provider: firebase
-  token:
-    secure: fzo/Fv+clanUdyadtqJHcppW6HqQqeb4NrLSojlfLCndtZAZjyistCzGS5v0tgF8YvUSxuXwqUVnkNQ33qyOc3boJ5pIEAEm7lzAjb8gHIJdG89/MUKzdqXMFhq4x6JC4VyAMQzl0SYDqgv76d15gGH1Dt+kyjBKZaClJs37dU7nPbjCnrBg7LUupx7pFm7Gehn2R7c7+e52C9IIU5abH2LYesE/QJMysLDt1uuH8/I2lcMluaWdnQOVIceX2VfnGwj/SFu1fD2RZS/jx22COnMe2G/QN+7e+LmSzN0zfFxVe5zlgU0Q7j7a42/D2KVtn4ZCG7T+hDBiFwkXiZ7uT45+cUB7jqYfbGnH+Wyg/2yJchxXfb2jCvy0wVstvXz/G00P4LFRJgMOBx4KER2rRB5W978Cb8goWRcCqE3PXRRZMR7dqffpTLsVLo8aHkCzYUP34A7K1n/DX4wdtEmAgV8XLrqEPReYUW01bzlGznV9FBgT1FBOpeYYK9oVWyi+/X0OBxjCUGvoSrvpGfdHwBIL3I8ps/IOFfxZMBmpapjKqOUApH7UChxoBzuFx4IcS6ERAsE6IouCntIYumqNu+H/6662I3Ru4pP24KyBlbrX6hFdU3GNqTlEoyVCtRSWVFio1qZazgEhUtq8pTqYSYNSLFdt0Oi2GWGswIZnJgI=
-
+  - node_modules
+after_success:
+  - firebase deploy --token "$FIREBASE_DEPLOY_TOKEN" --non-interactive --only hosting

@@ -4,7 +4,6 @@
 /dist
 /tmp
 /out-tsc
-/generatedIcons
 
 # dependencies
 /node_modules
@@ -37,6 +36,7 @@
 npm-debug.log
 testem.log
 /typings
+faviconCreationLog.json
 
 # e2e
 /e2e/*.js
