@@ -11,6 +11,7 @@
 
 #functions
 /functions/node_modules
+/functions/index.js
 
 # IDEs and editors
 /.idea
