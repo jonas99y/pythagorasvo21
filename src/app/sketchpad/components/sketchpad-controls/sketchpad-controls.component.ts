@@ -7,24 +7,16 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SketchpadControlsComponent implements OnInit {
 
-  public colors: Array<string> = new Array<string>("red", "blue", "green", "yellow", "black", "white");
 
-  @Output() lineColorUpdated = new EventEmitter<string>();
   @Output() lineSizeUpdated = new EventEmitter<number>();
   @Output() unDo = new EventEmitter();
   @Output() clear = new EventEmitter();
 
   // Fields
-  private _lineColor: string;
   private _lineSize: number;
   // Properties
-  get lineColor(): string {
-    return this._lineColor;
-  }
-  set lineColor(value: string) {
-    this._lineColor = value;
-    this.lineColorUpdated.emit(this.lineColor);
-  }
+
+
 
   get lineSize(): number {
     return this._lineSize;
@@ -48,13 +40,8 @@ export class SketchpadControlsComponent implements OnInit {
   }
 
   constructor() {
-    this.colors.forEach(color => {
+  }
 
-    })
-  }
-  setColor(color: string) {
-    this.lineColor = color;
-  }
   decreasePenSize() {
     this.lineSize -= 2;
     if (this.lineSize < 2)
@@ -69,7 +56,7 @@ export class SketchpadControlsComponent implements OnInit {
 
     //set default;
     this.lineSize = 5;
-    this.lineColor = "black";
+
   }
 
 }

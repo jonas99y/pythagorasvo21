@@ -1,7 +1,22 @@
-#drawing-canvas {
-    border: {
-        style: solid;
-    }
-    width: 80vw;
-    height: 80vw;
+$sideLength: 100%;
+.drawing-canvas {
+    height: $sideLength;
+    width: $sideLength;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+#main-canvas {
+    z-index: 5;
+}
+
+#top-canvas {
+    z-index: 6;
+}
+
+#canvas-wrapper {
+    position: relative;
+    height: $sideLength;
+    width: $sideLength;
 }
