@@ -9,6 +9,165 @@ import { Coord } from './model/coord';
 })
 export class SketchpadComponent implements OnInit {
 
+  @ViewChild('mainCanvas') public mainCanvasRef: ElementRef;
+  @ViewChild('topCanvas') public topCanvasRef: ElementRef;
+
+  private mainCanvas: HTMLCanvasElement;
+  private topCanvas: HTMLCanvasElement;
+
+  private mainCanvasContext: CanvasRenderingContext2D;
+  private topCanvasContext: CanvasRenderingContext2D;
+
+  private lineWidth: number;
+  private lineColor: string;
+
+  private paths: Array<Path>;
+  /**** Properties ****/
+  public get canvas(): HTMLCanvasElement {
+    return this.topCanvas;
+  }
+  /**** InputEvents ****/
+  private mouseup = new EventEmitter<MouseEvent>();
+  private mousemove = new EventEmitter<MouseEvent>();
+  private mousedown = new EventEmitter<MouseEvent>();
+  private mouseleave = new EventEmitter<MouseEvent>();
+  private touchMove = new EventEmitter<TouchEvent>();
+  private touchEnd = new EventEmitter<TouchEvent>();
+  private touchStart = new EventEmitter<TouchEvent>();
+  private touchCancle = new EventEmitter<TouchEvent>();
+
+  @HostListener('mouseup', ['$event'])
+  onMouseup(event: MouseEvent) { this.mouseup.emit(event); }
+
+  @HostListener('mouseleave', ['$event'])
+  onMouseLeave(event: MouseEvent) { this.mouseleave.emit(event); }
+
+  @HostListener('mousedown', ['$event'])
+  onmousedown(event: MouseEvent) { this.mousedown.emit(event); }
+
+  @HostListener('mousemove', ['$event'])
+  onmousemove(event: MouseEvent) { this.mousemove.emit(event); }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) { event.preventDefault(); this.touchEnd.emit(event); }
+
+  @HostListener('touchcancle', ['$event'])
+  onTouchCancle(event: TouchEvent) { event.preventDefault(); this.touchCancle.emit(event); }
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) { event.preventDefault(); this.touchStart.emit(event); }
+
+  @HostListener('touchmove', ['$event'])
+  onTouchMove(event: TouchEvent) { event.preventDefault(); this.touchMove.emit(event); }
+
+
+  ngOnInit(): void {
+
+
+    this.mouseup.subscribe({
+      next: event => { }
+    });
+    this.mouseleave.subscribe({
+      next: event => { }
+    });
+    this.mousemove.subscribe({
+      next: event => { }
+    });
+    this.mousedown.subscribe({
+      next: event => { }
+    });
+
+    this.touchEnd.subscribe({
+      next: event => { }
+    });
+    this.touchCancle.subscribe({
+      next: event => { }
+    });
+    this.touchMove.subscribe({
+      next: event => { }
+    });
+    this.touchStart.subscribe({
+      next: event => { }
+    });
+
+
+
+  }
+
+
+  constructor() {
+
+  }
+
+
+
+  /**** Public Functions ****/
+  public SetLineColor(lineColor: string) {
+    this.lineColor = lineColor;
+  }
+
+  public SetLineSize(lineSize: number) {
+    this.lineWidth = lineSize;
+  }
+
+  /**** Private Functions ****/
+  private DrawPathToCanvas(canvasContext: CanvasRenderingContext2D, path: Path) {
+    canvasContext.beginPath();
+    // start at first point of path
+    if (path.Strokes.length === 0) {
+      return;
+    }
+    canvasContext.moveTo(path.Strokes[0].coord.x, path.Strokes[0].coord.y);
+    path.Strokes.forEach(stroke => {
+      // draw form last point to current point
+      canvasContext.lineTo(stroke.coord.x, stroke.coord.y);
+      // move to current point
+      canvasContext.moveTo(stroke.coord.x, stroke.coord.y);
+    });
+  }
+
+  private GetAbsolutePathArray(paths: Array<Path>, xFactor: number, yFactor: number): Array<Path> {
+    const newPaths: Array<Path> = new Array<Path>();
+    paths.forEach(path => {
+      newPaths.push(this.GetAbsolutePath(path, xFactor, yFactor));
+    });
+
+    return newPaths;
+  }
+  public GetAbsolutePath(path: Path, xFactor: number, yFactor: number): Path {
+    const newPath: Path = new Path(path.lineWidth, path.lineColor);
+    path.Strokes.forEach(stroke => {
+      newPath.Strokes.push(this.GetAbsoluteStroke(stroke, xFactor, yFactor));
+    });
+
+    return newPath;
+  }
+  public GetAbsoluteStroke(stroke:Stroke, xFactor: number, yFactor: number):Stroke {
+
+  }
+
+  private GetRelativePathArray(paths: Array<Path>, xDivider: number, yDivider: number): Array<Path> {
+    const newPaths: Array<Path> = new Array<Path>();
+    paths.forEach(path => {
+      newPaths.push(this.GetRelativePath(path, xDivider, yDivider));
+    });
+
+    return newPaths;
+  }
+  public GetRelativePath(path: Path, xDivider: number, yDivider: number): Path {
+
+  }
+  public GetRelativeStroke(stroke:Stroke, xDivider: number, yDivider: number):Stroke {
+    
+  }
+
+
+
+
+}
+
+
+/*
   private scalingFactor: number = 10000;
 
   private activePath: Path;
@@ -273,7 +432,7 @@ export class SketchpadComponent implements OnInit {
   /**
    * Return the x and y cordinates of a touch event
    * @param event
-   */
+   *//*
   private getTouchPosition(event: TouchEvent): Coord {
     const y: number = event.changedTouches[0].pageY;
     const x: number = event.changedTouches[0].pageX;
@@ -284,7 +443,7 @@ export class SketchpadComponent implements OnInit {
   /**
    * Return the x and y cordinates of a mouse event
    * @param event
-   */
+   *//*
   private getMousePosition(event: MouseEvent): Coord {
 
     // console.log(event);
@@ -305,5 +464,4 @@ export class SketchpadComponent implements OnInit {
     // return new Coord(x, y);
   }
 
-
-}
+**/
