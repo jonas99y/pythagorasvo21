@@ -93,7 +93,7 @@ export class SketchpadComponent implements OnInit {
       that.SetCanvasDistance();
       that.SetCanvasSize();
       that.RedrawCanvas(this.mainCanvasContext, this.GetAbsolutePathArray(this.pathsRelative, this.canvasWidth, this.canvasHeight));
-    }, 50);
+    }, 500);
   }
 
   ngOnInit(): void {
