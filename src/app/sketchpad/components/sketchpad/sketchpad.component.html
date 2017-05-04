@@ -1,4 +1,7 @@
-<div id="canvas-wrapper">
-    <canvas #topCanvas class="drawing-canvas" id="top-canvas"></canvas>
-    <canvas #mainCanvas class="drawing-canvas" id="main-canvas" (window:resize)="onResize($event)" [height]="canvasWidth" [width]="canvasWidth"></canvas>
+<div>
+    <a>This is sketchpad</a>
+    <div id="sketchpad">
+        <canvas #drawingCanvas id="drawing-canvas" [height]="canvasWidth"   [width]="canvasWidth" ></canvas>
+        <!--style="height:'{{canvasWidth}}';width:'{{canvasWidth}}'"-->
+    </div>
 </div>
