@@ -20,6 +20,13 @@ $family-primary: $family-serif;
 #content {
     background: $primary;
     height: 100%;
+    bottom: 0;
+}
+
+#sehr-fruedlichi-willkommensnachricht {
+    text-align: center;
+    vertical-align: center;
+    margin-top: 40vh;
 }
 
 #inner-content {
@@ -77,8 +84,7 @@ $family-primary: $family-serif;
 
 #bottom-nav-inner {
     text-align: center;
-    background: white;
-    // box-shadow: $defaultBoxShadow;
+    background: white; // box-shadow: $defaultBoxShadow;
 }
 
 
