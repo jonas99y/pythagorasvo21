@@ -1,7 +1,17 @@
-<div class="columns is-mobile">
+<div id="controls-wrapper">
 
-    <div class="sketchpadControl column is-1" (click)="increasePenSize()">+</div>
-    <div class="sketchpadControl column is-1" (click)="decreasePenSize()">-</div>
-    <div (click)="unDoClicked()" class="sketchpadControl column is-1">UnDo</div>
-    <div (click)="clearClicked()" class="sketchpadControl column is-1">🗑</div>
+    <div class="sketchpadControl hasShadow" (click)="increasePenSize()">
+        <div> <i class="fa fa-plus" aria-hidden="true"></i></div>
+
+    </div>
+    <div class="sketchpadControl hasShadow" (click)="decreasePenSize()">
+        <div><i class="fa fa-minus" aria-hidden="true"></i></div>
+
+    </div>
+    <div (click)="unDoClicked()" class="sketchpadControl hasShadow">
+        <div><i class="fa fa-undo" aria-hidden="true"></i></div>
+    </div>
+    <div (click)="clearClicked()" class="sketchpadControl hasShadow">
+        <div> <i class="fa fa-trash" aria-hidden="true"></i></div>
+    </div>
 </div>

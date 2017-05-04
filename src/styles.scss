@@ -5,6 +5,8 @@ $bottomNavHeigth:50px;
 $topNavHeight:30px;
 $blue: #72d0eb;
 $pink: #111111;
+$defaultBoxShadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
 $background: #F2F2F2;
 $family-serif: 'Roboto',
 sans-serif;
@@ -71,6 +73,7 @@ $family-primary: $family-serif;
     bottom: 0px;
     height: $bottomNavHeigth;
     width: 100vw;
+    z-index: 15;
     margin: {
         bottom: 15px;
     }
@@ -82,9 +85,9 @@ $family-primary: $family-serif;
 }
 
 #bottom-nav-inner {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     background: white;
+    // box-shadow: $defaultBoxShadow;
 }
 
 
@@ -128,4 +131,8 @@ $family-primary: $family-serif;
     height: 100%;
     width: 100%;
     text-decoration: none;
+}
+
+.hasShadow {
+    box-shadow: $defaultBoxShadow;
 }

@@ -1,26 +1,26 @@
 <main class="container">
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </main>
-<nav class="columns is-mobile" id="bottom-nav">
-  <div class="colmn is-1 spacer-div"></div>
-  <div class="column is-10" id="bottom-nav-inner">
-    <div class=" columns is-mobile " id="bottom-nav-columns ">
-      <div class="bottom-nav-column-div column has-text-centered " [routerLinkActive]="['active']">
-        <a [routerLink]="['/drawing']" class="fill-div"  >
-          <i class="fa fa-pencil nav-Menu-Item" aria-hidden="true "></i>
-        </a>
-      </div>
-      <div class="bottom-nav-column-div column column has-text-centered" [routerLinkActive]="['active']">
-        <a [routerLink]="['/gallery']" class="fill-div" >
-          <i class="fa fa-picture-o nav-Menu-Item" aria-hidden="true "></i>
-        </a>
-      </div>
-      <div class="bottom-nav-column-div column column has-text-centered " [routerLinkActive]="['active']">
-        <a [routerLink]="['/profile']" class="fill-div">
-          <i class="fa fa-user nav-Menu-Item" aria-hidden="true "></i>
-        </a>
-      </div>
+<nav class="columns is-mobile " id="bottom-nav">
+    <div class="colmn is-1 spacer-div"></div>
+    <div class="column is-10 hasShadow" id="bottom-nav-inner">
+        <div class=" columns is-mobile " id="bottom-nav-columns ">
+            <div class="bottom-nav-column-div column has-text-centered " [routerLinkActive]="['active']">
+                <a [routerLink]="['/drawing']" class="fill-div">
+                    <i class="fa fa-pencil nav-Menu-Item" aria-hidden="true "></i>
+                </a>
+            </div>
+            <div class="bottom-nav-column-div column column has-text-centered" [routerLinkActive]="['active']">
+                <a [routerLink]="['/gallery']" class="fill-div">
+                    <i class="fa fa-picture-o nav-Menu-Item" aria-hidden="true "></i>
+                </a>
+            </div>
+            <div class="bottom-nav-column-div column column has-text-centered " [routerLinkActive]="['active']">
+                <a [routerLink]="['/profile']" class="fill-div">
+                    <i class="fa fa-user nav-Menu-Item" aria-hidden="true "></i>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="column is-1 spacer-div"></div>
+    <div class="column is-1 spacer-div"></div>
 </nav>

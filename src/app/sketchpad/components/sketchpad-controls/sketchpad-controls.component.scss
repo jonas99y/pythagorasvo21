@@ -1,4 +1,25 @@
+$size:50px;
 .sketchpadControl {
-    height: 50px;
-    border: solid;
+    height: $size;
+    width: $size;
+    border-radius: 50%;
+    background: white;
+    margin: {
+        left: 5%;
+        right: 5%;
+    }
+}
+
+.sketchpadControl div {
+    text-align: center;
+}
+
+.sketchpadControl div i {
+    vertical-align: middle;
+    line-height: $size;
+}
+
+#controls-wrapper {
+    display: flex;
+    width: 100%;
 }
