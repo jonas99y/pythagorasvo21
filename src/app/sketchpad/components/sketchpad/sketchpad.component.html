@@ -1,4 +1,6 @@
 <div id="canvas-wrapper">
-    <canvas #topCanvas class="drawing-canvas" id="top-canvas"></canvas>
-    <canvas #mainCanvas class="drawing-canvas" id="main-canvas" (window:resize)="onResize($event)" [height]="canvasWidth" [width]="canvasWidth"></canvas>
+    <canvas #topCanvas class="drawing-canvas" id="top-canvas" [height]="canvasHeight" [width]="canvasWidth"></canvas>
+
+    <canvas #mainCanvas class="drawing-canvas" id="main-canvas" (window:resize)="onResize($event)" [height]="canvasHeight" [width]="canvasWidth"></canvas>
+
 </div>
