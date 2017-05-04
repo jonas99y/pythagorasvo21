@@ -16,20 +16,23 @@ export class DrawingComponent implements OnInit {
   private ref: firebase.storage.Reference;
 
   constructor(private af: AngularFire, @Inject(FirebaseRef) fb) {
+    console.log(fb);
     this.ref = fb.storage().ref();
+    console.log(this.ref);
 
   }
 
   ngOnInit() {
   }
+
   clicked($event) {
-    this.saveCanvasToFirebase(this.sketchpad.canvas, 'images/' + this.imageName);
+    this.saveCanvasToFirebase(this.sketchpad.canvas, 'images/' + this.imageName, this.ref);
 
   }
-  saveCanvasToFirebase(canvas: HTMLCanvasElement, path: string){
+  saveCanvasToFirebase(canvas: HTMLCanvasElement, path: string, ref: firebase.storage.Reference) {
     canvas.toBlob(function (blob) {
       const image = new Image();
-      this.ref.child(path).put(blob);
+      ref.child(path).put(blob);
     });
   }
 }
