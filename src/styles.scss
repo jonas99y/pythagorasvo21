@@ -4,7 +4,7 @@
 
 // 2. Set your own initial variables
 $bottomNavHeigth:50px;
-$topNavHeight:calc(1rem *1.5 + 20px); //Text height * scale + padding of top bar
+$topNavHeight:calc(1rem *1.5 + 20px); //Text height *
 $background: #F2F2F2;
 
 // Update blue
@@ -65,7 +65,6 @@ $family-primary: $family-serif;
 .bottom-nav-column-div:not(:last-of-type) {
   border-right: 1px rgba(132,125,224,0.27) solid;
 }
-
 
 #bottom-nav {
   position: fixed;

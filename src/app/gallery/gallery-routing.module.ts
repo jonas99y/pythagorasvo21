@@ -1,8 +1,8 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {TopicListComponent} from "./topic-list/topic-list.component";
-import {AuthGuard} from "../auth/services/auth-guard.service";
-import {TopicComponent} from "./topic/topic.component";
+import {TopicListComponent}     from "./topic-list/topic-list.component";
+import {AuthGuard}              from "../auth/services/auth-guard.service";
+import {TopicComponent}         from "./topic/topic.component";
 
 const galleryRoutes: Routes = [
   { path: 'gallery',  redirectTo: 'gallery/topics' },
