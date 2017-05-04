@@ -3,6 +3,8 @@
 @import '../node_modules/bulma/sass/utilities/initial-variables';
 
 // 2. Set your own initial variables
+$bottomNavHeigth:50px;
+$topNavHeight:30px;
 // Update blue
 $blue: #72d0eb;
 // Add pink
@@ -20,12 +22,101 @@ $family-primary: $family-serif;
 // 4. Import the rest of Bulma
 @import "../node_modules/bulma/bulma";
 
-.form-container {
-  background:white;
-  padding:3.5em;
-  width:500px;
-  position:fixed;
-  left:50%;
-  margin-left:-250px;
+#content {
+  background: $primary;
+  height: 100%;
 }
 
+#inner-content {
+  top: $topNavHeight;
+  bottom: $bottomNavHeigth;
+  background: $background;
+  margin: 10px;
+}
+
+#menu-demo {
+  color: white;
+}
+
+.nav-Menu-Item {
+  color: $primary;
+}
+
+.spacer-div {
+  width: 100%;
+}
+
+
+/*general*/
+
+.icon {
+  color: white;
+}
+
+
+/*bottom nav*/
+
+#bottom-nav-columns {
+  height: 100%;
+}
+
+.bottom-nav-column-div {
+  // background: white;
+}
+
+.active {
+  background: $background;
+}
+
+#bottom-nav {
+  position: fixed;
+  bottom: 0px;
+  height: $bottomNavHeigth;
+  width: 100vw;
+  margin: {
+    bottom: 15px;
+  }
+}
+
+#bottom-nav-inner {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  background: white;
+}
+
+
+/*top nav*/
+
+#top-nav {
+  background: $primary;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: auto;
+  z-index: 100;
+  text-align: center;
+  display: flex;
+  padding: 10px;
+}
+
+#top-title {
+  width: 60%;
+}
+
+#top-left {
+  width: 20%;
+  text-align: left;
+}
+
+#bottom-nav-columns {
+
+}
+
+.bottom-nav-column-div {
+  background: white;
+}
+#top-right {
+  width: 20%;
+  text-align: right;
+}

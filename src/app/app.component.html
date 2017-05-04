@@ -1,16 +1,26 @@
 <main class="container">
   <router-outlet></router-outlet>
 </main>
-<nav class="container">
-    <div class="columns ">
-      <div class="column is-one-third">
-        <a class="" [routerLink]="['/drawing']" [routerLinkActive]="['active']">Zeichne</a>
+<nav class="columns is-mobile" id="bottom-nav">
+  <div class="colmn is-1 spacer-div"></div>
+  <div class="column is-10" id="bottom-nav-inner">
+    <div class=" columns is-mobile " id="bottom-nav-columns ">
+      <div class="bottom-nav-column-div column has-text-centered " [routerLinkActive]="['active']">
+        <a [routerLink]="['/drawing']" [routerLinkActive]="['active']" >
+          <i class="fa fa-picture-o nav-Menu-Item " aria-hidden="true "></i>
+        </a>
       </div>
-      <div class="column is-one-third">
-        <a class="" [routerLink]="['/gallery']" [routerLinkActive]="['active']">Galerie</a>
+      <div class="bottom-nav-column-div column column has-text-centered" [routerLinkActive]="['active']">
+        <a [routerLink]="['/gallery']" [routerLinkActive]="['active']">
+          <i class="fa fa-pencil nav-Menu-Item " aria-hidden="true "></i>
+        </a>
       </div>
-      <div class="column is-one-third">
-        <a class="" [routerLink]="['/profile']" [routerLinkActive]="['active']">Profil</a>
+      <div class="bottom-nav-column-div column column has-text-centered " [routerLinkActive]="['active']">
+        <a [routerLink]="['/profile']">
+          <i class="fa fa-user nav-Menu-Item " aria-hidden="true "></i>
+        </a>
       </div>
     </div>
+  </div>
+  <div class="colmn is-1 spacer-div"></div>
 </nav>
