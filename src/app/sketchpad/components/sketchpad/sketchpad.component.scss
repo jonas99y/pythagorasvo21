@@ -1,6 +1,30 @@
-#drawing-canvas{
+$sideLength: 100%;
+.drawing-canvas {
+    height: $sideLength;
+    width: $sideLength;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+#main-canvas {
+    z-index: 5;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#top-canvas {
+    z-index: 6;
+}
+
+#canvas-wrapper {
+    position: relative;
+    height: $sideLength;
+    width: $sideLength;
+}
+
+#drawing-canvas {
     border: {
         style: solid;
     }
-        
 }
