@@ -5,6 +5,8 @@
 // 2. Set your own initial variables
 $bottomNavHeigth:50px;
 $topNavHeight:30px;
+$background: #F2F2F2;
+
 // Update blue
 $blue: #72d0eb;
 // Add pink
@@ -14,7 +16,7 @@ $family-serif: 'Roboto', sans-serif;
 
 // 3. Set the derived variables
 // Use the new pink as the primary color
-$primary: $pink;
+$primary: #0068AB;
 // Use the existing orange as the danger color
 $danger: $orange;
 // Use the new serif family
@@ -64,9 +66,6 @@ $family-primary: $family-serif;
   // background: white;
 }
 
-.active {
-  background: $background;
-}
 
 #bottom-nav {
   position: fixed;
@@ -75,6 +74,10 @@ $family-primary: $family-serif;
   width: 100vw;
   margin: {
     bottom: 15px;
+  }
+  .active {
+    background: $background;
+    border-bottom:5px $primary solid ;
   }
 }
 
