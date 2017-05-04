@@ -18,8 +18,6 @@ export class SketchpadComponent implements OnInit {
   private mainCanvasContext: CanvasRenderingContext2D;
   private topCanvasContext: CanvasRenderingContext2D;
 
-
-
   private pathsRelative: Array<Path> = new Array<Path>();
   private pathsAbsolute: Array<Path> = new Array<Path>();
   private activePathAbsolute: Path;
@@ -92,6 +90,7 @@ export class SketchpadComponent implements OnInit {
   onResize(event) {
     const that: this = this;
     setTimeout(x => {
+      that.SetCanvasDistance();
       that.SetCanvasSize();
       that.RedrawCanvas(this.mainCanvasContext, this.GetAbsolutePathArray(this.pathsRelative, this.canvasWidth, this.canvasHeight));
     }, 50);
@@ -172,7 +171,6 @@ export class SketchpadComponent implements OnInit {
   /**** Private Functions ****/
   private StartNewPath() {
     this.activePathAbsolute = new Path(this.lineWidth, this.lineColor);
-    console.log("Start new Path");
   }
 
   private AddPointToActivePath(coord: Coord) {
@@ -208,8 +206,9 @@ export class SketchpadComponent implements OnInit {
   }
 
   private SetCanvasDistance() {
-    this.distanceTop = this.canvas.getBoundingClientRect().top;
-    this.distanceLeft = this.canvas.getBoundingClientRect().left;
+    this.distanceTop = document.body.scrollTop + this.canvas.getBoundingClientRect().top;
+    this.distanceLeft = document.body.scrollLeft + this.canvas.getBoundingClientRect().left;
+
   }
 
 
