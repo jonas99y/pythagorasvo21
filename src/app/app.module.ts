@@ -32,6 +32,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AppRoutingModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthGuard]
 })
 export class AppModule { }
