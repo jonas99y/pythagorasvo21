@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SketchpadComponent } from './components/sketchpad/sketchpad.component';
 import { SketchpadControlsComponent } from './components/sketchpad-controls/sketchpad-controls.component';
 import { SketchpadBrushPreviewComponent } from './components/sketchpad-brush-preview/sketchpad-brush-preview.component';
-import { SketchpadColorselectionComponent} from './components/sketchpad-colorselection/sketchpad-colorselection.component';
+import { SketchpadColorselectionComponent } from './components/sketchpad-colorselection/sketchpad-colorselection.component';
+
 
 @NgModule({
     imports: [
@@ -13,7 +14,7 @@ import { SketchpadColorselectionComponent} from './components/sketchpad-colorsel
         SketchpadComponent,
         SketchpadBrushPreviewComponent,
         SketchpadControlsComponent,
-        SketchpadColorselectionComponent
+        SketchpadColorselectionComponent,
     ],
     exports: [
         SketchpadComponent,
