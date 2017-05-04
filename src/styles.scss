@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+// 1. Import the initial variables
 @import '../node_modules/bulma/sass/utilities/initial-variables';
 $bottomNavHeigth:50px;
-$topNavHeight:30px;
+$topNavHeight:calc(1rem *1.5 + 20px); //Text height *
+$background: #F2F2F2;
+// Update blue
 $blue: #72d0eb;
 $pink: #111111;
 $defaultBoxShadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -14,14 +17,6 @@ $primary: #0068AB;
 $danger: $orange;
 $family-primary: $family-serif;
 @import "../node_modules/bulma/bulma";
-// .form-container {
-//     background: white;
-//     padding: 3.5em;
-//     width: 500px;
-//     position: fixed;
-//     left: 50%;
-//     margin-left: -250px;
-// }
 #content {
     background: $primary;
     height: 100%;
@@ -62,10 +57,6 @@ $family-primary: $family-serif;
 
 .bottom-nav-column-div:not(:last-of-type) {
     border-right: 1px rgba(132, 125, 224, 0.27) solid;
-}
-
-.active {
-    background: $background;
 }
 
 #bottom-nav {
