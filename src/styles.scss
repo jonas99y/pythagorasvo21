@@ -3,7 +3,7 @@
 // 1. Import the initial variables
 @import '../node_modules/bulma/sass/utilities/initial-variables';
 $bottomNavHeigth:50px;
-$topNavHeight:calc(1rem *1.5 + 20px); //Text height *
+$topNavHeight:calc(1.5rem + 20px); //Text height + padding of top nav
 $background: #F2F2F2;
 // Update blue
 $blue: #72d0eb;
@@ -23,8 +23,8 @@ $family-primary: $family-serif;
 }
 
 #inner-content {
-    top: $topNavHeight;
-    bottom: $bottomNavHeigth;
+    padding-top: $topNavHeight;
+    padding-bottom: $bottomNavHeigth;
     background: $background;
     margin: 10px;
 }
