@@ -89,7 +89,13 @@ export class SketchpadComponent implements OnInit {
   @HostListener('touchmove', ['$event'])
   onTouchMove(event: TouchEvent) { event.preventDefault(); this.touchMove.emit(event); }
 
-  onResize(event) { this.SetCanvasSize(); }
+  onResize(event) {
+    const that: this = this;
+    setTimeout(x => {
+      that.SetCanvasSize();
+      that.RedrawCanvas(this.mainCanvasContext, this.GetAbsolutePathArray(this.pathsRelative, this.canvasWidth, this.canvasHeight));
+    }, 50);
+  }
 
   ngOnInit(): void {
 
