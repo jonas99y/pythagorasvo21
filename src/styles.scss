@@ -4,7 +4,7 @@
 
 // 2. Set your own initial variables
 $bottomNavHeigth:50px;
-$topNavHeight:30px;
+$topNavHeight:calc(1rem *1.5 + 20px); //Text height * scale + padding of top bar
 $background: #F2F2F2;
 
 // Update blue
@@ -30,7 +30,7 @@ $family-primary: $family-serif;
 }
 
 #inner-content {
-  top: $topNavHeight;
+  padding-top: $topNavHeight;
   bottom: $bottomNavHeigth;
   background: $background;
   margin: 10px;
