@@ -1,22 +1,26 @@
-<!--<nav class="nav">
-  <div class="container">
-    <div class="nav-left">
-      <ul class="nav navbar-nav" routerLinkActive="active">
-        <a class="nav-item">
-          <img src="../assets/images/pythagoras.svg" alt="pythagoras logo" >
-        </a>
-        <li class="nav-item"><a class="nav-link" routerLink="home">Zeichne</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="about">Galerie</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="courses">Platzhalter 2</a></li>
-      </ul>
-    </div>
-    <div class="nav-right">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="home">Logout</a>
-      </li>
-    </div>
-  </div>
-</nav>-->
 <main class="container">
   <router-outlet></router-outlet>
 </main>
+<nav class="columns is-mobile" id="bottom-nav">
+  <div class="colmn is-1 spacer-div"></div>
+  <div class="column is-10" id="bottom-nav-inner">
+    <div class=" columns is-mobile " id="bottom-nav-columns ">
+      <div class="bottom-nav-column-div column has-text-centered " [routerLinkActive]="['active']">
+        <a [routerLink]="['/drawing']"  >
+          <i class="fa fa-picture-o nav-Menu-Item" aria-hidden="true "></i>
+        </a>
+      </div>
+      <div class="bottom-nav-column-div column column has-text-centered" [routerLinkActive]="['active']">
+        <a [routerLink]="['/gallery']" >
+          <i class="fa fa-pencil nav-Menu-Item" aria-hidden="true "></i>
+        </a>
+      </div>
+      <div class="bottom-nav-column-div column column has-text-centered " [routerLinkActive]="['active']">
+        <a [routerLink]="['/profile']">
+          <i class="fa fa-user nav-Menu-Item" aria-hidden="true "></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="column is-1 spacer-div"></div>
+</nav>
