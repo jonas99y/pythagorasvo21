@@ -62,8 +62,8 @@ $family-primary: $family-serif;
   height: 100%;
 }
 
-.bottom-nav-column-div {
-  // background: white;
+.bottom-nav-column-div:not(:last-of-type) {
+  border-right: 1px rgba(132,125,224,0.27) solid;
 }
 
 
@@ -122,4 +122,10 @@ $family-primary: $family-serif;
 #top-right {
   width: 20%;
   text-align: right;
+}
+.fill-div{
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
 }
