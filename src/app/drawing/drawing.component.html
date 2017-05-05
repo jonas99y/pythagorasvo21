@@ -1,14 +1,13 @@
-<div>
-    <button (click)="clicked($event)">Upload Image</button>
-    <input [(ngModel)]="imageName" />
-
-    <div id="sketchpad-div">
-        <app-sketchpad #sketchpad id="sketchpad">
-        </app-sketchpad>
-        <app-sketchpad-colorselection id="color-selection" (lineColorUpdated)="sketchpad.SetLineColor($event)"></app-sketchpad-colorselection>
+<div id="drawing-wrapper">
+    <div id="sketchpad">
+    <app-sketchpad #sketchpad >
+    </app-sketchpad>
     </div>
+    <app-sketchpad-colorselection id="color-selection" (lineColorUpdated)="sketchpad.SetLineColor($event)"></app-sketchpad-colorselection>
     <app-sketchpad-controls (lineSizeUpdated)="sketchpad.SetLineSize($event)" (unDo)="sketchpad.UnDo()" (clear)="sketchpad.Clear()">
     </app-sketchpad-controls>
     <app-sketchpad-brush-preview [color]='sketchpad.lineColor' [size]='sketchpad.lineSize'>
     </app-sketchpad-brush-preview>
+    <button (click)="clicked($event)">Upload Image</button>
+    <input [(ngModel)]="imageName" />
 </div>

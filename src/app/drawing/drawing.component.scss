@@ -1,14 +1,17 @@
-#sketchpad-div {
-    display: flex;
-    width: 100%;
-    height: 100vw;
-}
 
 #sketchpad {
-    width: 80%;
-    height: 80%;
+    width: 50vh;
+    height: 50vh;
+    text-align: center;
+    margin:auto
+    
 }
 
 #color-selection {
     width: 20%
+}
+
+#drawing-wrapper{
+    width: 100%;
+
 }
