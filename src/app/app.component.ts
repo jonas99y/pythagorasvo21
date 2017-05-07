@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 export class AppComponent {
   constructor(private location: Location) { }
 
-  goback() {
+  goBack() {
     this.location.back();
   }
 
