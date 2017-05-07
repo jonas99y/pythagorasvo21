@@ -32,6 +32,7 @@ export class DrawingComponent implements OnInit {
   saveCanvasToFirebase(canvas: HTMLCanvasElement, path: string, ref: firebase.storage.Reference) {
     canvas.toBlob(function (blob) {
       const image = new Image();
+      console.log(canvas);
       ref.child(path).put(blob);
     });
   }

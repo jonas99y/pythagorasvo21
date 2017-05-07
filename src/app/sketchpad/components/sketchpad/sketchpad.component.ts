@@ -28,7 +28,7 @@ export class SketchpadComponent implements OnInit {
   private _isDrawing: boolean;
   /**** Properties ****/
   public get canvas(): HTMLCanvasElement {
-    return this.topCanvas;
+    return this.mainCanvas;
   }
 
   public canvasHeight: number;
