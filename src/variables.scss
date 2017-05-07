@@ -1,0 +1,15 @@
+/* Layout */
+$bottomNavHeigth:50px;
+$topNavHeight:calc(1.5rem + 20px); //Text height + padding of top nav
+
+/* Colors */
+$primary-color: #0068AB;
+$background-color: #F2F2F2;
+
+/* Typography */
+$family-serif: 'Roboto', sans-serif;
+$family-primary: $family-serif;
+
+/* Shadow */
+$defaultBoxShadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);

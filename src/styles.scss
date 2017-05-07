@@ -2,23 +2,20 @@
 
 // 1. Import the initial variables
 @import '../node_modules/bulma/sass/utilities/initial-variables';
-$bottomNavHeigth:50px;
-$topNavHeight:calc(1.5rem + 20px); //Text height + padding of top nav
-$background: #F2F2F2;
-// Update blue
-$blue: #72d0eb;
-$pink: #111111;
-$defaultBoxShadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-0 6px 20px 0 rgba(0, 0, 0, 0.19);
-$background: #F2F2F2;
-$family-serif: 'Roboto',
-sans-serif;
-$primary: #0068AB;
-$danger: $orange;
-$family-primary: $family-serif;
+@import './variables';
+
+$primary: $primary-color; // let bulma know which primary color we like to use
 @import "../node_modules/bulma/bulma";
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
 #content {
-    background: $primary;
+    background: $primary-color;
     height: 100%;
     bottom: 0;
 }
@@ -32,16 +29,13 @@ $family-primary: $family-serif;
 #inner-content {
     padding-top: $topNavHeight;
     padding-bottom: $bottomNavHeigth;
-    background: $background;
+    background: $background-color;
     margin: 10px;
-}
-
-#menu-demo {
-    color: white;
+    height: calc(100% - 10px);
 }
 
 .nav-Menu-Item {
-    color: $primary;
+    color: $primary-color;
 }
 
 .spacer-div {
@@ -53,74 +47,6 @@ $family-primary: $family-serif;
 
 .icon {
     color: white;
-}
-
-
-/*bottom nav*/
-
-#bottom-nav-columns {
-    height: 100%;
-}
-
-.bottom-nav-column-div:not(:last-of-type) {
-    border-right: 1px rgba(132, 125, 224, 0.27) solid;
-}
-
-#bottom-nav {
-    position: fixed;
-    bottom: 0px;
-    height: $bottomNavHeigth;
-    width: 100vw;
-    z-index: 15;
-    margin: {
-        bottom: 15px;
-    }
-}
-
-.active {
-    background: $background;
-    border-bottom: 5px $primary solid;
-}
-
-#bottom-nav-inner {
-    text-align: center;
-    background: white; // box-shadow: $defaultBoxShadow;
-}
-
-
-/*top nav*/
-
-#top-nav {
-    background: $primary;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: auto;
-    z-index: 100;
-    text-align: center;
-    display: flex;
-    padding: 10px;
-}
-
-#top-title {
-    width: 60%;
-}
-
-#top-left {
-    width: 20%;
-    text-align: left;
-}
-
-#bottom-nav-columns {}
-
-.bottom-nav-column-div {
-    background: white;
-}
-
-#top-right {
-    width: 20%;
-    text-align: right;
 }
 
 .fill-div {
