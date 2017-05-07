@@ -1,0 +1,65 @@
+@import '../variables';
+
+/*bottom navigation */
+
+#bottom-nav-columns {
+  height: 100%;
+}
+
+.bottom-nav-column-div:not(:last-of-type) {
+  border-right: 1px rgba(132, 125, 224, 0.27) solid;
+}
+
+#bottom-nav {
+  position: fixed;
+  bottom: 0;
+  height: $bottomNavHeigth;
+  width: 100vw;
+  z-index: 15;
+  margin: {
+    bottom: 15px;
+  }
+  .active {
+    background: $background-color;
+    border-bottom: 5px $primary-color solid;
+  }
+
+}
+
+#bottom-nav-inner {
+  text-align: center;
+  background: white; // box-shadow: $defaultBoxShadow;
+}
+
+/* Top navigation */
+#top-nav {
+  background: $primary-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 100;
+  text-align: center;
+  display: flex;
+  padding: 10px;
+}
+
+#top-title {
+  width: 60%;
+}
+
+#top-left {
+  width: 20%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bottom-nav-column-div {
+  background: white;
+}
+
+#top-right {
+  width: 20%;
+  text-align: right;
+}
