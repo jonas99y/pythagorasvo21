@@ -5,10 +5,9 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { DrawingModule } from './drawing/drawing.module';
-import { AuthGuard } from './auth/services/auth-guard.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { GalleryModule } from "./gallery/gallery.module";
+import { GalleryModule } from './gallery/gallery.module';
 
 
 export const firebaseConfig = {

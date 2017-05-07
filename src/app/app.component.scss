@@ -12,7 +12,7 @@
 
 #bottom-nav {
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   height: $bottomNavHeigth;
   width: 100vw;
   z-index: 15;
@@ -35,8 +35,8 @@
 #top-nav {
   background: $primary-color;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: auto;
   z-index: 100;
