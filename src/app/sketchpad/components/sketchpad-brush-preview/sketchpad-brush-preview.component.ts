@@ -38,16 +38,18 @@ export class SketchpadBrushPreviewComponent implements OnInit {
     }
     const centerX = this.canvas.width / 2;
     const centerY = this.canvas.height / 2;
-    const radius = this._size / 2;
     const context: CanvasRenderingContext2D = this.canvas.getContext('2d');
+    const canvasHeight: number = context.canvas.height;
+    const canvasWidth: number = context.canvas.width;
 
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    context.clearRect(0, 0, canvasWidth, canvasHeight);
     context.beginPath();
-    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    context.fillStyle = this._color;
-    context.fill();
-    context.lineWidth = 5;
+    context.moveTo(centerX,centerY);
+    context.lineTo(centerX,centerY);
+    context.lineWidth= this._size;
     context.strokeStyle = this._color;
+    context.lineCap = "round";
     context.stroke();
+
   }
 }

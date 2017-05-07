@@ -15,12 +15,12 @@ export class SketchpadControlsComponent implements OnInit {
   // Fields
   private _lineSize: number;
   // Properties
+  public PensSizes:Array<number> = [1,2,3,5,8,13,21,34,55,89];
 
 
-
-  public SetPenSize(size:Event)
+  public SetPenSizeIndex(size:Event)
   {
-    this.lineSize=(<any>size.srcElement).value;
+    this.lineSize=this.PensSizes[(<any>size.srcElement).value];
   }
 
   get lineSize(): number {

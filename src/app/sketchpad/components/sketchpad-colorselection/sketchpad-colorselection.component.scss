@@ -1,12 +1,12 @@
 #color-bar {
     width: auto;
     display: flex;
-    background: white;
-    padding: 10px;
+    padding: 0px;
 }
 
 .color-item {
     height: 30px;
     width: 30px;
     margin: 5px;
+    border: solid 1px grey;
 }

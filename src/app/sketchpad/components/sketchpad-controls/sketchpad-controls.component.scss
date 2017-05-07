@@ -22,6 +22,7 @@ $size:50px;
 #controls-wrapper {
     display: flex;
     width: 100%;
+
 }
 
 $primary:#0068AB;
@@ -30,8 +31,6 @@ $secundary:blue;
 input[type="range"]{
   -webkit-appearance:none;
   width:160px;
-  height:20px;
-  margin:10px 50px;
   background: linear-gradient(to right, $primary 0%, $primary 100%);
   background-size:150px 10px;
   background-position:center;
@@ -40,9 +39,7 @@ input[type="range"]{
   outline: none;
 }
 
-input[type="range"]:first-of-type{
-  margin-top:30px;
-}
+
 
 input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance:none;
@@ -65,3 +62,11 @@ input[type="range"]::-webkit-slider-thumb:after{
   background: #ff5b32;
   background: linear-gradient(to right, #f088fc 1%, #AC6CFF 70%);
 }
+
+.sketchpad-control-icon{
+    color: $primary;   
+    margin: 10px;
+        text-align: center;
+    vertical-align: middle;
+}
+
