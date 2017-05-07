@@ -1,13 +1,15 @@
 <div id="controls-wrapper">
 
-    <div class="sketchpadControl hasShadow" (click)="increasePenSize()">
+    <!--<div class="sketchpadControl hasShadow" (click)="increasePenSize()">
         <div> <i class="fa fa-plus" aria-hidden="true"></i></div>
 
     </div>
     <div class="sketchpadControl hasShadow" (click)="decreasePenSize()">
         <div><i class="fa fa-minus" aria-hidden="true"></i></div>
 
-    </div>
+    </div>-->
+
+    <input type="range" id="size-slider" value='{{lineSize}}' (input)="SetPenSize($event)"/>
     <div (click)="unDoClicked()" class="sketchpadControl hasShadow">
         <div><i class="fa fa-undo" aria-hidden="true"></i></div>
     </div>

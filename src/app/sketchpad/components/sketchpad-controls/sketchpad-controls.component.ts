@@ -18,11 +18,17 @@ export class SketchpadControlsComponent implements OnInit {
 
 
 
+  public SetPenSize(size:Event)
+  {
+    this.lineSize=(<any>size.srcElement).value;
+  }
+
   get lineSize(): number {
     return this._lineSize;
   }
   set lineSize(value: number) {
     this._lineSize = value;
+    console.log(value);
     this.lineSizeUpdated.emit(this.lineSize);
   }
 
