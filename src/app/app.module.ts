@@ -11,6 +11,7 @@ import { GalleryModule } from './gallery/gallery.module';
 import { TopicService } from './services/topic-service.service';
 import { DrawingService } from './services/drawing-service.service';
 
+
 export const firebaseConfig = {
   apiKey: 'AIzaSyBlr3XTiDLBlWGJrjVxeDNkmgxcliow7o4',
   authDomain: 'pythagorasvo21.firebaseapp.com',
