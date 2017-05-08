@@ -8,7 +8,8 @@ import { DrawingModule } from './drawing/drawing.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { GalleryModule } from './gallery/gallery.module';
-
+import { TopicService } from './services/topic-service.service';
+import { DrawingService } from './services/drawing-service.service';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBlr3XTiDLBlWGJrjVxeDNkmgxcliow7o4',
@@ -33,6 +34,7 @@ export const firebaseConfig = {
     GalleryModule,
     AppRoutingModule
   ],
+  providers: [TopicService, DrawingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

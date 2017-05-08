@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -87,14 +87,26 @@ module.exports = require("firebase-functions");
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = __webpack_require__(1);
 const admin = __webpack_require__(0);
-exports.listener = functions.https.onRequest((req, res) => {
-    console.log(req.body);
-    console.log(req.body.username);
-    const username = req.body.username;
-    const uid = req.body.uid;
-    const snapshot = admin.database().ref('users').push({ username: username, uid: uid });
-    console.log(snapshot);
-    res.send("User added");
+exports.onNewDrawing = functions.database.ref("/drawings/{pushid}").onWrite(event => {
+    console.log("event getriggert");
+    // Only edit data when it is first created.
+    if (event.data.previous.exists()) {
+        console.log("no data");
+        return;
+    }
+    // Exit when the data is deleted.
+    if (!event.data.exists()) {
+        console.log("no data");
+        return;
+    }
+    const data = event.data.val();
+    const topicid = data.topic;
+    const drawingid = event.params ? event.params.pushid : null;
+    console.log("drawing id: " + drawingid);
+    console.log("topic id: " + topicid);
+    let path = "topics/" + topicid + '/drawings/' + drawingid;
+    const updates = { ["test"]: "test" };
+    admin.database().ref().update(updates);
 });
 
 
@@ -107,9 +119,27 @@ exports.listener = functions.https.onRequest((req, res) => {
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = __webpack_require__(1);
 const admin = __webpack_require__(0);
-const RegisterUser = __webpack_require__(2);
+exports.listener = functions.https.onRequest((req, res) => {
+    const username = req.body.username;
+    const uid = req.body.uid;
+    const snapshot = admin.database().ref('users').push({ username: username, uid: uid });
+});
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const functions = __webpack_require__(1);
+const admin = __webpack_require__(0);
+const RegisterUser = __webpack_require__(3);
+const Drawing = __webpack_require__(2);
 admin.initializeApp(functions.config().firebase);
 exports.registerUser = RegisterUser.listener;
+exports.onNewDrawing = Drawing.onNewDrawing;
 
 
 /***/ })
