@@ -1,25 +1,33 @@
-
 #sketchpad {
     width: 50vh;
     height: 50vh;
     text-align: center;
-    margin:auto
-    
+    margin: auto
 }
 
 #color-selection {
-    width: 20%
+    width: 20%;
 }
 
-#drawing-wrapper{
+#drawing-wrapper {
     width: 100%;
-
 }
-#wrapper{
+
+#wrapper {
     display: flex;
+    margin: {
+        left: auto;
+        right: auto;
+        bottom: auto;
+        top: 10px;
+    }
+    text-align: center;
+    width: 50vh;
+    height: 30vh;
 }
 
-#sketchpad-brush-preview{
+#sketchpad-brush-preview {
     height: 100px;
     width: 100px;
+    float: right;
 }
