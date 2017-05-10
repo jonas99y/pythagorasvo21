@@ -8,6 +8,11 @@
   "private": true,
   "devDependencies": {
     "ts-loader": "^2.0.3",
+    "webpack": "^2.5.1",
     "webpack-node-externals": "^1.5.4"
+  },
+  "scripts": {
+    "build": "webpack",
+    "deploy": "firebase deploy --only functions"
   }
 }
