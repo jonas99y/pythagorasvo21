@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseObjectObservable } from 'angularfire2/database';
-import { DrawingService } from '../services';
-import {Drawing, User } from '../model';
+import { DrawingService, Drawing, User } from '../shared/';
 
 @Component({
   selector: 'app-profile',

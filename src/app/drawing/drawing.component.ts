@@ -1,10 +1,8 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
 import { FirebaseObjectObservable } from 'angularfire2/database';
-import { DrawingService } from '../services/drawing-service.service';
-import { TopicService } from '../services/topic-service.service';
-import {Topic, Drawing} from '../model';
-// import { AngularFire, FirebaseRef } from 'angularfire2';
+import { DrawingService } from '../shared/services/drawing-service.service';
+import { TopicService, Topic} from '../shared/';
 
 import * as firebase from 'firebase';
 @Component({

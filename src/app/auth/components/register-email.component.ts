@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { AngularFire } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { User } from '../../model/user';
+import { User } from '../../shared/';
 
 @Component({
   selector: 'app-register-email',

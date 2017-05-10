@@ -3,16 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AppComponent } from './app.component';
 import { DrawingModule } from './drawing/drawing.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { GalleryModule } from './gallery/gallery.module';
-import { TopicService } from './services/topic-service.service';
-import { DrawingService } from './services/drawing-service.service';
 import { ProfileComponent } from './profile/profile.component';
+import { SharedModule } from './shared/shared.module';
 
 
 export const firebaseConfig = {
@@ -34,6 +33,7 @@ export const firebaseConfig = {
     FormsModule,
     HttpModule,
     AuthModule,
+    SharedModule,
     DrawingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -41,7 +41,6 @@ export const firebaseConfig = {
     GalleryModule,
     AppRoutingModule
   ],
-  providers: [TopicService, DrawingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { Topic, Drawing, User } from '../model';
+import { Topic, Drawing, User } from '../models';
 import * as firebase from 'firebase';
 @Injectable()
 export class DrawingService {

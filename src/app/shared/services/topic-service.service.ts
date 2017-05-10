@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireModule} from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database'
-import { Topic, Drawing } from '../model';
+import { Topic, Drawing } from '../models';
 
 @Injectable()
 export class TopicService {
