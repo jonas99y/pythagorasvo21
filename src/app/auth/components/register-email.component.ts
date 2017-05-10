@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { AngularFire } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-register-email',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterEmailComponent implements OnInit {
 
   error: any;
+  user: User;
   email: string;
   password: string;
 
