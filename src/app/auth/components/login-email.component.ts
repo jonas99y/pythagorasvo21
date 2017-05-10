@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,27 +13,21 @@ export class LoginEmailComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public af: AngularFire, private router: Router) {
-    this.af.auth.subscribe(auth => {
-      if (auth) {
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
+    this.afAuth.authState.subscribe(authstate => {
+      if (authstate) {
         this.router.navigateByUrl('/drawing');
       }
     });
   }
   onSubmit(formData) {
     if (formData.valid) {
-      console.log(formData.value);
-      this.af.auth.login({
-          email: this.email,
-          password: this.password
-        },
-        {
-          provider: AuthProviders.Password,
-          method: AuthMethods.Password,
-        }).then(
+      this.afAuth.auth.signInWithEmailAndPassword(
+        formData.value.email, formData.value.password
+      ).then(
         (success) => {
           console.log(success);
-          this.router.navigate(['/drawing']);
+          // this.router.navigate(['/drawing']);
         }).catch(
         (err) => {
           console.log(err);

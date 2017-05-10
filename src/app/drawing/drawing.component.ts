@@ -1,7 +1,10 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
-import { AngularFire, FirebaseRef } from 'angularfire2';
+import {AngularFireDatabase} from 'angularfire2/database';
+import {DrawingService} from '../services/drawing-service.service';
+// import { AngularFire, FirebaseRef } from 'angularfire2';
 
+import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-drawing',
   templateUrl: './drawing.component.html',
@@ -15,10 +18,9 @@ export class DrawingComponent implements OnInit {
   private image: string;
   private ref: firebase.storage.Reference;
 
-  constructor(private af: AngularFire, @Inject(FirebaseRef) fb) {
-    console.log(fb);
-    this.ref = fb.storage().ref();
-    console.log(this.ref);
+  constructor(private drawingService:DrawingService) {
+
+    // this.ref = firebase.storage().ref();
 
   }
 
@@ -26,14 +28,8 @@ export class DrawingComponent implements OnInit {
   }
 
   clicked($event) {
-    this.saveCanvasToFirebase(this.sketchpad.canvas, 'images/' + this.imageName, this.ref);
-
+    this.drawingService.uploadImage(this.sketchpad.canvas, 'images/' + this.imageName)
+   
   }
-  saveCanvasToFirebase(canvas: HTMLCanvasElement, path: string, ref: firebase.storage.Reference) {
-    canvas.toBlob(function (blob) {
-      const image = new Image();
-      console.log(canvas);
-      ref.child(path).put(blob);
-    });
-  }
+  
 }
