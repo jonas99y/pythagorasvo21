@@ -6,6 +6,11 @@
 $divSize: 100px;
 #preview-div {
     background: grey;
+    border: {
+        radius: 50px;
+        opacity: 0.5;
+        width: 10px;
+    }
     position: fixed;
     top: calc(50vh - ( #{$divSize} / 2));
     bottom: calc(50vh - ( #{$divSize} / 2));

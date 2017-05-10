@@ -10,7 +10,7 @@ export class SketchpadBrushPreviewComponent implements OnInit {
   private _color: string;
   private _size: number;
   private canvas: HTMLCanvasElement;
-  
+
 
   @ViewChild('brushPreviewCanvas') refCanvas: ElementRef;
 
@@ -26,7 +26,7 @@ export class SketchpadBrushPreviewComponent implements OnInit {
     this.showDiv();
   }
 
-  public divDisplay:string = "none";
+  public divDisplay: string = "none";
 
   constructor() { }
 
@@ -34,13 +34,16 @@ export class SketchpadBrushPreviewComponent implements OnInit {
     this.canvas = this.refCanvas.nativeElement;
     this.drawPreviewBursh();
   }
-
-  showDiv(){
+  private changes: number = 0;
+  showDiv() {
+    this.changes++;
     const that = this;
     this.divDisplay = "block";
-    setTimeout(x=>{
-      that.divDisplay ="none";
-    },500)
+    setTimeout(x => {
+      that.changes--;
+      if (that.changes == 0)
+        that.divDisplay = "none";
+    }, 1000)
   }
 
   drawPreviewBursh() {
@@ -55,9 +58,9 @@ export class SketchpadBrushPreviewComponent implements OnInit {
 
     context.clearRect(0, 0, canvasWidth, canvasHeight);
     context.beginPath();
-    context.moveTo(centerX,centerY);
-    context.lineTo(centerX,centerY);
-    context.lineWidth= this._size;
+    context.moveTo(centerX, centerY);
+    context.lineTo(centerX, centerY);
+    context.lineWidth = this._size;
     context.strokeStyle = this._color;
     context.lineCap = "round";
     context.stroke();
