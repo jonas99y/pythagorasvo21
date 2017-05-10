@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { FirebaseObjectObservable } from 'angularfire2/database';
 import { DrawingService } from '../services/drawing-service.service';
+import { TopicService } from '../services/topic-service.service';
+import {Topic, Drawing} from '../model';
 // import { AngularFire, FirebaseRef } from 'angularfire2';
 
 import * as firebase from 'firebase';
@@ -18,7 +20,7 @@ export class DrawingComponent implements OnInit {
   private image: string;
   private ref: firebase.storage.Reference;
 
-  constructor(private drawingService: DrawingService) {
+  constructor(private drawingService: DrawingService, private topicService: TopicService) {
     //dont remove, will break drawing-service;
     console.log(firebase.storage());
 
@@ -28,7 +30,8 @@ export class DrawingComponent implements OnInit {
   }
 
   clicked($event) {
-    this.drawingService.uploadImage(this.sketchpad.canvas, 'images/' + this.imageName);
+    let topic: FirebaseObjectObservable<Topic> = this.topicService.findTopicAfterKey("mytesttopic")
+    this.drawingService.submitNewDrawing(this.sketchpad.canvas, topic, null);
 
   }
 }

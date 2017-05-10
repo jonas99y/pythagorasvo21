@@ -1,4 +1,4 @@
 export class Drawing {
-    public constructor(public test:string) { };
+    public constructor(public topic: string, public user: string) { };
 
 }

@@ -1,4 +1,6 @@
 <div id="drawing-wrapper">
+
+
     <div id="sketchpad">
         <app-sketchpad #sketchpad>
         </app-sketchpad>
@@ -11,7 +13,6 @@
         </div>
         <app-sketchpad-brush-preview [color]='sketchpad.lineColor' [size]='sketchpad.lineWidth' id="sketchpad-brush-preview">
         </app-sketchpad-brush-preview>
+        <button (click)="clicked($event)">Upload Image</button>
     </div>
-    <button (click)="clicked($event)">Upload Image</button>
-    <input [(ngModel)]="imageName" />
 </div>

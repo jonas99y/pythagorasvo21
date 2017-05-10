@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
- import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Topic, Drawing } from '../model';
 import * as firebase from 'firebase';
 @Injectable()
@@ -7,23 +7,20 @@ export class DrawingService {
 
   private storageRef: firebase.storage.Reference;
   // private drawingRef: firebase.database.Reference;
-  constructor(private afDb:AngularFireDatabase) {
+  constructor(private afDb: AngularFireDatabase) {
     this.storageRef = afDb.app.storage().ref();
   }
 
-  // findDrawingAfterKey(key: string): FirebaseObjectObservable<Drawing> {
-  //   const foundDrawing: FirebaseObjectObservable<Drawing> = <FirebaseObjectObservable<Drawing>>this.db.object(this.drawingRef + '/' + key);
-  //   return foundDrawing;
-  // }
+  findDrawingAfterKey(key: string): FirebaseObjectObservable<Drawing> {
+    const foundDrawing: FirebaseObjectObservable<Drawing> = <FirebaseObjectObservable<Drawing>>this.afDb.object('drawings/' + key);
+    return foundDrawing;
+  }
 
-  // addDrawing(drawing: Drawing): FirebaseObjectObservable<Drawing> {
-  //   const newPushKey: string = this.drawingRef.push().key;
-  //   const updates = {};
-  //   updates["/drawings/" + newPushKey] = drawing;
-
-  //   this.ref.update(updates);
-  //   return this.findDrawingAfterKey(newPushKey);
-  // }
+  submitNewDrawing(canvas: HTMLCanvasElement, topic: FirebaseObjectObservable<Topic>, user: firebase.User) {
+    const key = this.afDb.list("/drawings").push(new Drawing(topic.$ref.key,"someUser")).key;
+    const path = 'user-images/' + key;
+    this.uploadImage(canvas, path);
+  }
 
   uploadImage(canvas: HTMLCanvasElement, path: string) {
     const that = this;
