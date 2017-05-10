@@ -13,9 +13,10 @@ $divSize: 100px;
     }
     position: fixed;
     top: calc(50vh - ( #{$divSize} / 2));
-    bottom: calc(50vh - ( #{$divSize} / 2));
+    // bottom: calc(50vh - ( #{$divSize} / 2));
+    height: $divSize;
+    width: $divSize;
     z-index: 100;
     text-align: center;
     left: calc(50vw - ( #{$divSize} / 2));
-    right: calc(50vw - ( #{$divSize} / 2));
 }
