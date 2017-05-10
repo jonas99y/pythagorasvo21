@@ -17,34 +17,43 @@ export class DrawingService {
   }
 
   findDrawingsFromUser(user: User): Array<FirebaseObjectObservable<Drawing>> {
-    let drawings: Array<FirebaseObjectObservable<Drawing>> = new Array<FirebaseObjectObservable<Drawing>>();
-    let drawingKey;
-    for (drawingKey in user.drawings) {
+    let drawings: Array<FirebaseObjectObservable<Drawing>> = [];
+    for (let drawingKey in user.drawings) {
       drawings.push(this.findDrawingAfterKey(drawingKey));
     }
     return drawings;
   }
 
-  submitNewDrawing(canvas: HTMLCanvasElement, topic: FirebaseObjectObservable<Topic>, user: firebase.User) {
+  uploadImage(canvas: HTMLCanvasElement, path: string): firebase.storage.UploadTask {
+    const that = this;
+    let blob;
+    canvas.toBlob(x => {
+      blob = x;
+    });
+    return that.storageRef.child(path).put(blob);
+  }
+
+  submitNewDrawing(canvas: HTMLCanvasElement, topic: FirebaseObjectObservable<Topic>, user: firebase.User): Promise<string> {
     const key = this.afDb.list("drawings").$ref.ref.push().key;
     const path = 'user-images/' + key;
-    const url = this.uploadImage(canvas, path);
-    console.log(url);
-    let drawing = new Drawing(topic.$ref.key, "someUser", url);
-    let updates = {};
-    updates["/" + key] = drawing;
-    console.log(updates);
-    this.afDb.list("drawings").$ref.ref.update(updates);
-
-
-  }
-
-
-  uploadImage(canvas: HTMLCanvasElement, path: string) {
+    let url: string;
     const that = this;
-    canvas.toBlob(function (blob){
-       that.storageRef.child(path).put(blob);
+    const promise = new Promise((resolve, reject) => {
+      that.uploadImage(canvas, path)
+        .then(x => {
+          url = x.downloadURL;
+          console.log(url);
+          let drawing = new Drawing(topic.$ref.key, "someUser", url);
+          let updates = {};
+          updates["/" + key] = drawing;
+          console.log(updates);
+          this.afDb.list("drawings").$ref.ref.update(updates);
+          resolve("test");
+        }).catch(x => reject(new Error("falsch oder so")));
     });
-    return "";
+    return promise;
   }
+
+
+
 }
