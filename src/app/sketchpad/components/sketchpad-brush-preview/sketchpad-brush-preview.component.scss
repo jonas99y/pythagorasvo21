@@ -1,4 +1,16 @@
-#brush-preview{
+#brush-preview {
     height: 100px;
     width: 100px;
+}
+
+$divSize: 100px;
+#preview-div {
+    background: grey;
+    position: fixed;
+    top: calc(50vh - ( #{$divSize} / 2));
+    bottom: calc(50vh - ( #{$divSize} / 2));
+    z-index: 100;
+    text-align: center;
+    left: calc(50vw - ( #{$divSize} / 2));
+    right: calc(50vw - ( #{$divSize} / 2));
 }

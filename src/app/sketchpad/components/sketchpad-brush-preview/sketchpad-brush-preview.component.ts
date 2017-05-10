@@ -10,26 +10,37 @@ export class SketchpadBrushPreviewComponent implements OnInit {
   private _color: string;
   private _size: number;
   private canvas: HTMLCanvasElement;
-
+  
 
   @ViewChild('brushPreviewCanvas') refCanvas: ElementRef;
 
   @Input('size') set size(size: number) {
     this._size = size;
     this.drawPreviewBursh();
+    this.showDiv();
   }
 
   @Input('color') set color(color: string) {
     this._color = color;
     this.drawPreviewBursh();
+    this.showDiv();
   }
 
+  public divDisplay:string = "none";
 
   constructor() { }
 
   ngOnInit() {
     this.canvas = this.refCanvas.nativeElement;
     this.drawPreviewBursh();
+  }
+
+  showDiv(){
+    const that = this;
+    this.divDisplay = "block";
+    setTimeout(x=>{
+      that.divDisplay ="none";
+    },500)
   }
 
   drawPreviewBursh() {

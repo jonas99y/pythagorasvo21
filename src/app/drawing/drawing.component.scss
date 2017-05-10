@@ -1,6 +1,19 @@
+$maxMobileWidth: 600px;
+@media screen and (max-width:$maxMobileWidth) {
+    #sketchpad {
+        width: calc(100vw - 40px);
+        height: calc(100vw - 40px);
+    }
+}
+
+@media screen and ( min-width:$maxMobileWidth) {
+    #sketchpad {
+        width: $maxMobileWidth;
+        height: $maxMobileWidth;
+    }
+}
+
 #sketchpad {
-    width: 50vh;
-    height: 50vh;
     text-align: center;
     margin: auto
 }
