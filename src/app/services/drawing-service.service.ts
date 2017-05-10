@@ -1,15 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
  import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import { Topic, Drawing } from '../model';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 @Injectable()
 export class DrawingService {
 
   private storageRef: firebase.storage.Reference;
   // private drawingRef: firebase.database.Reference;
   constructor(private afDb:AngularFireDatabase) {
-    let storage = afDb.app.storage();
-    console.log(storage);
+    this.storageRef = afDb.app.storage().ref();
   }
 
   // findDrawingAfterKey(key: string): FirebaseObjectObservable<Drawing> {
