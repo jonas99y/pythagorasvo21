@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { DrawingService } from '../services';
-import {Drawing,User } from '../model';
+import {Drawing, User } from '../model';
 
 @Component({
   selector: 'app-profile',
@@ -10,10 +10,11 @@ import {Drawing,User } from '../model';
 })
 export class ProfileComponent implements OnInit {
 
-  public drawings:Array<FirebaseObjectObservable<Drawing>>;
+  public drawings: Array<FirebaseObjectObservable<Drawing>>;
 
   constructor(private drawingService: DrawingService) {
-    this.drawings = drawingService.findDrawingsFromUser(new User(["-Kjma6bDYFDSwYIwVGg4", "-Kjma6bDYFDSwYIwVGg4"],"jonas"));
+    this.drawings = drawingService.findDrawingsFromUser(new User(['-Kjma6bDYFDSwYIwVGg4', '-Kjma6bDYFDSwYIwVGg4'],
+      'jonas', 'wyss', 'kZ1iMK2mVjP8UaSoP2ZJWxhFCt12'));
     console.log(this.drawings);
    }
 
