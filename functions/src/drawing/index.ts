@@ -17,7 +17,9 @@ export const onNewDrawing = functions.database.ref("/drawings/{pushid}").onWrite
     }
     const data = event.data.val();
     const topicid = data.topic;
+    const userid = data.user;
     const drawingid = event.params ? event.params.pushid : null;
-    const updates = { [drawingid+""]:true};
-    admin.database().ref("topics/"+topicid+'/drawings').update(updates);
+    const updates = { [drawingid + ""]: true };
+    admin.database().ref("topics/" + topicid + '/drawings').update(updates);
+    admin.database().ref("users/" + userid + '/drawings').update(updates);
 });
