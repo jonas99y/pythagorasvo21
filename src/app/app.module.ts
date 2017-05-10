@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { GalleryModule } from './gallery/gallery.module';
 import { TopicService } from './services/topic-service.service';
 import { DrawingService } from './services/drawing-service.service';
+import { ProfileComponent } from './profile/profile.component';
 
 
 export const firebaseConfig = {
@@ -25,7 +26,8 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
