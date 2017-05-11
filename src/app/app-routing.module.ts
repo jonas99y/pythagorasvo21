@@ -10,6 +10,7 @@ export const appRoutes: Routes = [
   { path: 'register-email', component: RegisterEmailComponent },
   { path: 'login-email', component: LoginEmailComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
+  { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
 ];
 @NgModule({
