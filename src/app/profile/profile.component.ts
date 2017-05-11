@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { ImageService,UserService, Image, User } from '../shared/';
-import {Observable} from 'RxJs';
+import {Observable} from 'rxjs';
 
 
 @Component({
