@@ -19,7 +19,7 @@ export class RatingService {
       updates[user.$ref.key] = ratingChar;
       image.subscribe(imageSnapshot => {
         const ratingKey = imageSnapshot.rating ? imageSnapshot.rating : that.initRating(image).$ref.key;
-        this.afDb.object("/ratings/" + imageSnapshot.rating).update(updates);
+        this.afDb.object("/ratings/" + imageSnapshot.rating+"/ratings").update(updates);
       });
     });
     return promise;
