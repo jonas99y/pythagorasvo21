@@ -1,4 +1,4 @@
 export class Topic {
-    public constructor(public drawings: Array<string>, public name:string) { };
+    public constructor(public images: Array<string>, public name: string) { };
 
 }

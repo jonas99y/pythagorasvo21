@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-export const onNewDrawing = functions.database.ref("/drawings/{pushid}").onWrite(event => {
+export const onNewImage = functions.database.ref("/images/{pushid}").onWrite(event => {
     console.log("event getriggert");
     // Only edit data when it is first created.
     if (event.data.previous.exists()) {
@@ -20,6 +20,6 @@ export const onNewDrawing = functions.database.ref("/drawings/{pushid}").onWrite
     const userid = data.user;
     const drawingid = event.params ? event.params.pushid : null;
     const updates = { [drawingid + ""]: true };
-    admin.database().ref("topics/" + topicid + '/drawings').update(updates);
-    admin.database().ref("users/" + userid + '/drawings').update(updates);
+    admin.database().ref("topics/" + topicid + '/images').update(updates);
+    admin.database().ref("users/" + userid + '/images').update(updates);
 });

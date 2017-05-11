@@ -1,3 +1,3 @@
-export * from './drawing';
+export * from './image';
 export * from './topic';
 export * from './user';

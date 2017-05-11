@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {TopicService, DrawingService} from './services/';
+import {TopicService, ImageService} from './services/';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [],
-  providers: [DrawingService, TopicService]
+  providers: [ImageService, TopicService]
 })
 export class SharedModule { }
