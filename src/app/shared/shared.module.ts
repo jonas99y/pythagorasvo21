@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopicService, ImageService, UserService } from './services/';
+import { TopicService, ImageService, UserService, RatingService } from './services/';
 import { TestPipePipe } from './pipes/test-pipe.pipe';
 
 @NgModule({
