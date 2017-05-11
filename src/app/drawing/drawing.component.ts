@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
 import { FirebaseObjectObservable } from 'angularfire2/database';
-import { ImageService } from '../shared';
-import { TopicService, Topic} from '../shared/';
+import { TopicService, UserService, ImageService, Topic } from '../shared/';
 
 import * as firebase from 'firebase';
 @Component({
@@ -18,7 +17,7 @@ export class DrawingComponent implements OnInit {
   private image: string;
   private ref: firebase.storage.Reference;
 
-  constructor(private drawingService: ImageService, private topicService: TopicService) {
+  constructor(private imageService: ImageService, private topicService: TopicService, private userService: UserService) {
     //dont remove, will break drawing-service;
     console.log(firebase.storage());
 
@@ -29,7 +28,10 @@ export class DrawingComponent implements OnInit {
 
   clicked($event) {
     let topic: FirebaseObjectObservable<Topic> = this.topicService.findTopicAfterKey("mytesttopic")
-    this.drawingService.submitNewDrawing(this.sketchpad.canvas, topic, null);
+    this.userService.findCurrentUser().then(user => {
+      this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user);
+
+    })
 
   }
 }

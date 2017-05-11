@@ -1,4 +1,4 @@
-<p>
-    profile works!
-</p>
-<img *ngFor="let drawing of drawings" />
+<h1>Das isch dis Profil</h1>
+<div *ngFor="let image of images|async|testPipe" id="image-div" class="hasShadow">
+    <img src="{{(image |async|testPipe)?.url}}" />
+</div>
