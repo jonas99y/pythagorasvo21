@@ -9,6 +9,6 @@ import { TestPipePipe } from './pipes/test-pipe.pipe';
   ],
   declarations: [TestPipePipe],
   exports: [TestPipePipe],
-  providers: [ImageService, TopicService, UserService]
+  providers: [ImageService, TopicService, UserService,RatingService]
 })
 export class SharedModule { }

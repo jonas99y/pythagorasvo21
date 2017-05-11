@@ -1,0 +1,9 @@
+<div class="image-viewer-div hasShadow">
+  <img src="{{(image |testPipe |async|testPipe)?.url}}" class="image-viewer-image" />
+      <div id="voiting">
+        <div (click)="vote('😍')">😍</div>
+        <div (click)="vote('💩')">💩</div>
+        <div (click)="vote('😐')">😐</div>
+      </div>
+
+</div>

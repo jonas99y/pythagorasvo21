@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../models';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class UserService {
 
-  constructor(private afDb: AngularFireDatabase, private afAuth: AngularFireAuth) { }
+  constructor(private afDb: AngularFireDatabase, private afAuth: AngularFireAuth, private http:Http) { }
 
   findUserAfterKey(key: string): FirebaseObjectObservable<User> {
     const foundUser: FirebaseObjectObservable<User> = <FirebaseObjectObservable<User>>this.afDb.object('users/' + key);
@@ -22,8 +23,18 @@ export class UserService {
       });
     });
 
+
+
     return promise;
 
   }
+
+
+  registerUser(user: User) {
+    console.log("test");
+    this.http.get("https://us-central1-pythagorasvo21.cloudfunctions.net/registerUser",user).subscribe(x=>console.log(x))
+     console.log("test");
+  }
+
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import { AngularFire } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { User } from '../../shared/';
+import { User, UserService } from '../../shared/';
 
 @Component({
   selector: 'app-register-email',
@@ -16,7 +16,7 @@ export class RegisterEmailComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public af: AngularFireAuth, private router: Router) { }
+  constructor(public af: AngularFireAuth, private router: Router, private userService:UserService) { }
 
   onSubmit(formData) {
     console.log(formData);
@@ -25,6 +25,7 @@ export class RegisterEmailComponent implements OnInit {
       this.af.auth.createUserWithEmailAndPassword(formData.value.email, formData.value.password
       ).then(
         (success) => {
+          this.userService.registerUser(new User(null,"test","test","test",this.af.auth.currentUser.uid))
           this.router.navigate(['/drawing']);
         }).catch(
         (err) => {

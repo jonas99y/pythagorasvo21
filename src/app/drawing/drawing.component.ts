@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
 import { FirebaseObjectObservable } from 'angularfire2/database';
-import { TopicService, UserService, ImageService, Topic } from '../shared/';
+import { TopicService, UserService, ImageService, Topic,User } from '../shared/';
 
 import * as firebase from 'firebase';
 @Component({
@@ -20,7 +20,7 @@ export class DrawingComponent implements OnInit {
   constructor(private imageService: ImageService, private topicService: TopicService, private userService: UserService) {
     //dont remove, will break drawing-service;
     console.log(firebase.storage());
-
+    userService.registerUser(new User(null,"rest","test","teset","tesst"))
   }
 
   ngOnInit() {
