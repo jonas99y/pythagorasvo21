@@ -1,9 +1,3 @@
-#lock {
-  width:40%;
-  margin: 1.5em auto 4em auto;
-  display:block;
-}
-
 #facebook {
   background:#4B7598 url('../../../assets/images/facebook.svg') no-repeat 14px 6px;
   background-size: 47px;
@@ -22,32 +16,22 @@
   background-size: 25px;
 }
 
-#email {
-  background: #ECECEC  url('../../../assets/images/email.svg') no-repeat 25px;
-  background-size: 25px;
+.divider-line {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  margin: 8px 0px;
+}
+.divider-line::before,
+.divider-line::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 1px;
+  font-size: 0;
+  line-height: 0;
+  margin: 0 8px;
 }
 
-@media (max-width: 600px) {
-  #page {
-    padding:1em;
-  }
-  #toolbar {
-    width:90%;
-    margin-left: -45%;
-  }
-  #facebook {
-    background-color:#4B7598;
-  }
 
-  #github {
-    background:#24292e;
-  }
-
-  #google {
-    background: #fff;
-  }
-
-  #email {
-    background: #ECECEC;
-  }
-}

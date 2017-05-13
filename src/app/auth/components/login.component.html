@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="container">
   <span class="error" *ngIf="error">{{ error }}</span>
   <form #formData='ngForm' (ngSubmit)="loginEMail(formData)" >
     <div class="field">
@@ -27,10 +27,29 @@
     </div>
     <a routerLink="/register-email" routerLinkActive="active" class="">Mit E-mail <strong>registriere</strong></a>
   </form>
-  <hr>
+  <div class="divider-line has-text-centered">
+    <span>ODER</span>
+  </div>
+  <p class="field has-text-centered is-grouped-centered">
+    <a class="button is-large login-button" (click)="loginGoogle()">
+      <span class="icon">
+        <i class="fa fa-google" aria-hidden="true"></i>
+      </span>
+      <span>Google</span>
+    </a>
 
-  <button (click)="loginGoogle()" id="google">Google Login</button><br/>
-  <button (click)="loginFaceBook()" id="facebook">Facebook Login</button><br/>
-  <button (click)="loginGitHub()" id="github">Nerd Login</button><br/>
+    <a class="button is-large login-button" (click)="loginFaceBook()" >
+    <span class="icon">
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+    </span>
+      <span>Facebook</span>
+    </a>
 
+    <a class="button is-large login-button" (click)="loginGitHub()" >
+      <span class="icon">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </span>
+      <span>GitHub</span>
+    </a>
+  </p>
 </div>
