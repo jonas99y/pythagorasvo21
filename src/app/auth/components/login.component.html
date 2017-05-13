@@ -1,8 +1,36 @@
 <div class="form-container">
   <span class="error" *ngIf="error">{{ error }}</span>
+  <form #formData='ngForm' (ngSubmit)="loginEMail(formData)" >
+    <div class="field">
+      <label class="label" for="email">E-Mail</label>
+      <p class="control has-icons-left has-icons-right">
+        <input type="text" placeholder="rainer.zufall@mail.com" (ngModel)="email" name="email" class="input" required>
+        <span class="icon is-small is-left">
+         <i class="fa fa-user"></i>
+        </span>
+      </p>
+    </div>
+
+    <div class="field">
+      <label class="label" for="password">Passwort</label>
+      <p class="control has-icons-left has-icons-right">
+        <input type="password" placeholder="Password" (ngModel)="password" name="password" class="input" required>
+        <span class="icon is-small is-left">
+         <i class="fa fa-unlock-alt"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button type="submit" [disabled]="!formData.valid" class="button is-primary is-fullwidth">Log in</button>
+      </p>
+    </div>
+    <a routerLink="/register-email" routerLinkActive="active" class="">Mit E-mail <strong>registriere</strong></a>
+  </form>
+  <hr>
+
   <button (click)="loginGoogle()" id="google">Google Login</button><br/>
   <button (click)="loginFaceBook()" id="facebook">Facebook Login</button><br/>
   <button (click)="loginGitHub()" id="github">Nerd Login</button><br/>
-  <button routerLink="/login-email" id="email">Email Login</button><br/>
-  <a routerLink="/register-email" routerLinkActive="active" class="alc">Mit E-mail <strong>registriere</strong></a>
+
 </div>

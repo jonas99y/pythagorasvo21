@@ -13,10 +13,10 @@ export class LoginComponent implements OnInit {
 
   error: any;
   redirectRoute = '/drawing';
+  email: string;
+  password: string;
 
   constructor(public afAuth: AngularFireAuth, private router: Router) {
-
-
     this.afAuth.authState.subscribe(authstate => {
       if (authstate) {
         this.router.navigateByUrl(this.redirectRoute);
@@ -52,6 +52,22 @@ export class LoginComponent implements OnInit {
       (err) => {
         this.error = err;
       });
+  }
+
+  loginEMail(formData) {
+    if (formData.valid) {
+      this.afAuth.auth.signInWithEmailAndPassword(
+        formData.value.email, formData.value.password
+      ).then(
+        (success) => {
+          console.log(success);
+          this.router.navigate(['/drawing']);
+        }).catch(
+        (err) => {
+          console.log(err);
+          this.error = err;
+        });
+    }
   }
 
   ngOnInit() {

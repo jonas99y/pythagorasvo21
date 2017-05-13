@@ -20,21 +20,7 @@ export class LoginEmailComponent implements OnInit {
       }
     });
   }
-  onSubmit(formData) {
-    if (formData.valid) {
-      this.afAuth.auth.signInWithEmailAndPassword(
-        formData.value.email, formData.value.password
-      ).then(
-        (success) => {
-          console.log(success);
-          // this.router.navigate(['/drawing']);
-        }).catch(
-        (err) => {
-          console.log(err);
-          this.error = err;
-        });
-    }
-  }
+
 
   ngOnInit() {
   }
