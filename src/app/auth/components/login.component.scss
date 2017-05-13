@@ -2,8 +2,6 @@
   .icon {
     color: black;
   }
-}:not(:last-of-type){
-   margin-right: 2.5rem
 }
 
 #facebook {
@@ -51,6 +49,13 @@
   font-size: 0;
   line-height: 0;
   margin: 0 8px;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
 }
 
 
