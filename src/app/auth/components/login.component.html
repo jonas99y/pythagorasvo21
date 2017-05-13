@@ -1,5 +1,9 @@
 <div class="container">
-  <span class="error" *ngIf="error">{{ error }}</span>
+  <div *ngIf="error" class="message is-danger">
+    <div class="message-body">
+      {{ error }}
+    </div>
+  </div>
   <form #formData='ngForm' (ngSubmit)="loginEMail(formData)" >
     <div class="field">
       <label class="label" for="email">E-Mail</label>
