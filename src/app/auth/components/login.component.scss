@@ -1,19 +1,38 @@
+.login-button {
+  .icon {
+    color: black;
+  }
+}:not(:last-of-type){
+   margin-right: 2.5rem
+}
+
 #facebook {
-  background:#4B7598 url('../../../assets/images/facebook.svg') no-repeat 14px 6px;
-  background-size: 47px;
-  color:#fff;
+  background-color: #3B5998;
+  color: white;
+  .icon {
+    color: white;
+  }
 }
 
 #github {
-  background: #24292e url('../../../assets/images/github.svg') no-repeat 15px;
-  background-size: 45px;
-  color:rgba(255,255,255,0.75);
+  background-color: #24292e;
+  color: white;
+  .icon{
+    color: white;
+  }
 }
 
 #google {
-  border: 1px solid #95989A;
-  background: #fff  url('../../../assets/images/google.svg') no-repeat 25px;
-  background-size: 25px;
+  .icon{
+    color: #4885ed;
+  }
+  img{
+    height: 1.2em;
+    width: auto;
+  }
+  .image{
+    padding-top: 0.33em;
+  }
 }
 
 .divider-line {
@@ -21,7 +40,7 @@
   flex-basis: 100%;
   align-items: center;
   color: rgba(0, 0, 0, 0.35);
-  margin: 8px 0px;
+  margin: 8px 0;
 }
 .divider-line::before,
 .divider-line::after {
