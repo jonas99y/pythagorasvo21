@@ -2,5 +2,6 @@
 <div class="columns is-multiline">
     <div *ngFor="let image of images|async">
         <app-image-viewer [Image]="image" class="column"></app-image-viewer>
+        <app-comment></app-comment>
     </div>
 </div>

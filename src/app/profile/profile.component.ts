@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit {
   constructor(private drawingService: ImageService, private userService:UserService) {
     userService.findCurrentUser().then(user=>{
       this.images = drawingService.findImagesFromUser(user);
-      console.log(this.images);
     });
    }
 
