@@ -31,8 +31,44 @@ export class UserService {
   registerUser(user: User) {
     console.log('user Details:');
     console.log(user);
-    this.http.post('https://us-central1-pythagorasvo21.cloudfunctions.net/registerUser', JSON.stringify(user)).subscribe(x => console.log(x));
+    const url = 'https://us-central1-pythagorasvo21.cloudfunctions.net/registerUser';
+    this.xdr( url, 'POST', JSON.stringify(user), ( ) => {console.log('cors request sent'); } , ( err ) => {console.log(err); } );
     console.log('test');
+  }
+
+
+  /**
+   * Make a X-Domain request to url and callback.
+   *
+   * @param url {String}
+   * @param method {String} HTTP verb ('GET', 'POST', 'DELETE', etc.)
+   * @param data {String} request body
+   * @param callback {Function} to callback on completion
+   * @param errback {Function} to callback on error
+   */
+  xdr(url, method, data, callback, errback) {
+    var req;
+
+    if(XMLHttpRequest) {
+      req = new XMLHttpRequest();
+
+      if ('withCredentials' in req) {
+        req.open(method, url, true);
+        req.onerror = errback;
+        req.onreadystatechange = function() {
+          if (req.readyState === 4) {
+            if (req.status >= 200 && req.status < 400) {
+              callback(req.responseText);
+            } else {
+              errback(new Error('Response returned with non-OK status'));
+            }
+          }
+        };
+        req.send(data);
+      }
+    }  else {
+      errback(new Error('CORS not supported'));
+    }
   }
 
 
