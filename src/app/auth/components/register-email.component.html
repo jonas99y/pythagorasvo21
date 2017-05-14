@@ -1,8 +1,11 @@
-<div class="form-container">
+<div class="container">
   <h1 class="title">Mit E-Mail registrierä</h1>
-  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-    <span class="error" *ngIf="error" >{{ error }}</span>
-
+  <form  (ngSubmit)="onSubmit(registerForm)" #registerForm='ngForm'>
+    <div *ngIf="error" class="message is-danger">
+      <div class="message-body">
+        {{ error }}
+      </div>
+    </div>
     <div class="field">
       <label class="label">Vorname</label>
       <p class="control has-icons-left">
@@ -22,7 +25,7 @@
       </p>
     </div>
     <div class="field">
-      <label class="label">Email</label>
+      <label class="label">Email*</label>
       <p class="control has-icons-left has-icons-right">
         <input type="email" placeholder="rainer.zufall@mail.com" (ngModel)="email" name="email" class="input" required>
         <span class="icon is-small is-left">
@@ -31,15 +34,16 @@
       </p>
     </div>
     <div class="field">
-      <label class="label">Passwort</label>
+      <label class="label">Passwort*</label>
       <p class="control has-icons-left has-icons-right">
-        <input type="password" (ngModel)="password" name="password" class="input" required>
+        <input type="password" name="password" class="input" [class.is-danger]="!passwordInput.valid && passwordInput.dirty" minlength="6" [(ngModel)]="password" #passwordInput="ngModel" required >
         <span class="icon is-small is-left">
          <i class="fa fa-key" aria-hidden="true"></i>
         </span>
       </p>
+      <p *ngIf="!passwordInput.valid && !passwordInput.pristine" class="help is-danger">S Passwort mues mindestend 6 Zeiche lang sii.</p>
     </div>
 
-    <button type="submit" [disabled]="!formData.valid" class="button is-primary">Account erstelle</button>
+    <button type="submit" [disabled]="!registerForm.valid" class="button is-primary">Account erstelle</button>
   </form>
 </div>

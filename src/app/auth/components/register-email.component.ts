@@ -16,7 +16,7 @@ export class RegisterEmailComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public af: AngularFireAuth, private router: Router, private userService:UserService) { }
+  constructor(public af: AngularFireAuth, private router: Router, private userService: UserService) {}
 
   onSubmit(formData) {
     console.log(formData);
@@ -25,7 +25,7 @@ export class RegisterEmailComponent implements OnInit {
       this.af.auth.createUserWithEmailAndPassword(formData.value.email, formData.value.password
       ).then(
         (success) => {
-          this.userService.registerUser(new User(null,"test","test","test",this.af.auth.currentUser.uid))
+          this.userService.registerUser(new User(null, 'test', 'test', 'test', this.af.auth.currentUser.uid));
           this.router.navigate(['/drawing']);
         }).catch(
         (err) => {
