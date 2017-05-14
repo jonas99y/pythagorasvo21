@@ -9,9 +9,10 @@ export const listener = functions.https.onRequest((req, res) => {
     res.send('options requested');
     return;
   } else {
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const uid = req.body.uid;
+    const bodyData = JSON.parse(req.body);
+    const firstname = bodyData.firstname;
+    const lastname = bodyData.lastname;
+    const uid = bodyData.uid;
     const snapshot = admin.database().ref('users').push({
       firstname: firstname,
       lastname: lastname,
@@ -21,6 +22,6 @@ export const listener = functions.https.onRequest((req, res) => {
     const updates = {};
     updates[uid] = key;
     admin.database().ref('userUIDs').update(updates);
-    res.send('wheeee it works!');
+    res.send('Wheeee it works! User adjusted');
   }
 });
