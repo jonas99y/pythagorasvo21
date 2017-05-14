@@ -29,7 +29,7 @@
         <button type="submit" [disabled]="!formData.valid" class="button is-primary is-fullwidth">Log in</button>
       </p>
     </div>
-    <a routerLink="/register-email" routerLinkActive="active" class="">Mit E-mail <strong>registriere</strong></a>
+    <a [routerLink]="['/register-email']"  class="">Mit E-mail <strong>registriere</strong></a>
   </form>
   <div class="divider-line has-text-centered">
     <span>ODER</span>
