@@ -13,19 +13,27 @@ export class RatingService {
 
   addRatingToImage(image: FirebaseObjectObservable<Image>, user: FirebaseObjectObservable<User>, ratingChar: string)
     : Promise<FirebaseObjectObservable<Rating>> {
-    const that = this;
     const promise = new Promise<FirebaseObjectObservable<Rating>>((resolve, reject) => {
-      const updates = {};
-      updates[user.$ref.key] = ratingChar;
       image.subscribe(imageSnapshot => {
-        const ratingKey = imageSnapshot.rating ? imageSnapshot.rating : that.initRating(image).$ref.key;
-        this.afDb.object("/ratings/" + imageSnapshot.rating+"/ratings").update(updates);
+        const ratingKey = imageSnapshot.rating ? imageSnapshot.rating : null;
+        this.addRating(user, ratingChar, ratingChar).then(x => resolve(x)).catch(error => reject(error));
       });
     });
     return promise;
   }
 
-  initRating(image: FirebaseObjectObservable<Image>): FirebaseObjectObservable<Rating> {
+  addRating(user: FirebaseObjectObservable<User>, ratingChar: string, ratingKey: string): Promise<FirebaseObjectObservable<Rating>> {
+    const that = this;
+    ratingKey = ratingKey ? ratingKey : that.initRating().$ref.key;
+    const promise = new Promise<FirebaseObjectObservable<Rating>>((resolve, reject) => {
+      const updates = {};
+      updates[user.$ref.key] = ratingChar;
+
+    });
+    return promise;
+  }
+
+  initRating(): FirebaseObjectObservable<Rating> {
     return this.findRatingAfterKey(this.afDb.list("/ratings/").push(new Rating(0, {}, {})).key);
   }
 }

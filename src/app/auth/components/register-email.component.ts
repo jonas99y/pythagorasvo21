@@ -25,7 +25,7 @@ export class RegisterEmailComponent implements OnInit {
       this.af.auth.createUserWithEmailAndPassword(formData.value.email, formData.value.password
       ).then(
         (success) => {
-          this.userService.registerUser(new User(null, 'test', 'test', 'test', this.af.auth.currentUser.uid));
+          this.userService.registerUser(new User(null, 'test', 'test', this.af.auth.currentUser.uid)); //TODO
           this.router.navigate(['/drawing']);
         }).catch(
         (err) => {

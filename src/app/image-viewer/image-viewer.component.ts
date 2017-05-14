@@ -15,10 +15,6 @@ export class ImageViewerComponent implements OnInit {
   ngOnInit() {
     console.log(this.image);
   }
-  vote(char: string) {
-    this.UserService.findCurrentUser().then(user => {
-      this.ratingService.addRatingToImage(this.image, user, char);
-    });
-  }
+ 
 
 }
