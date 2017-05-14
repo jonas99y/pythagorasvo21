@@ -20,18 +20,22 @@ export class DrawingComponent implements OnInit {
   constructor(private imageService: ImageService, private topicService: TopicService, private userService: UserService) {
     //dont remove, will break drawing-service;
     console.log(firebase.storage());
+
     // userService.registerUser(new User(null,"rest","test","teset","tesst"))
+
+    userService.registerUser(new User(null,"Fabio","Zuber","TRtODRQVUvMJuBTGgzfjYRjBxYk1"))
+
   }
 
   ngOnInit() {
   }
 
   clicked($event) {
-    let topic: FirebaseObjectObservable<Topic> = this.topicService.findTopicAfterKey("mytesttopic")
+    let topic: FirebaseObjectObservable<Topic> = this.topicService.findTopicAfterKey('mytesttopic');
     this.userService.findCurrentUser().then(user => {
       this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user);
 
-    })
+    });
 
   }
 }
