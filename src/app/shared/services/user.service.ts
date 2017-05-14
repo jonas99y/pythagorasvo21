@@ -24,16 +24,14 @@ export class UserService {
     });
 
     return promise;
-
   }
 
 
   registerUser(user: User) {
-    console.log('user Details:');
-    console.log(JSON.stringify(user));
     const url = 'https://us-central1-pythagorasvo21.cloudfunctions.net/registerUser';
-    this.xdr( url, 'POST', JSON.stringify(user), ( ) => {console.log('cors request sent'); } , ( err ) => {console.log(err); } );
-    console.log('test');
+    this.xdr( url, 'POST', JSON.stringify(user),
+      ( ) => {console.log('User updated in DB'); },
+      ( err ) => {console.log(err); } );
   }
 
   /**
@@ -46,9 +44,9 @@ export class UserService {
    * @param errback {Function} to callback on error
    */
   xdr(url, method, data, callback, errback) {
-    var req;
+    let req;
 
-    if(XMLHttpRequest) {
+    if (XMLHttpRequest) {
       req = new XMLHttpRequest();
 
       if ('withCredentials' in req) {
@@ -69,6 +67,4 @@ export class UserService {
       errback(new Error('CORS not supported'));
     }
   }
-
-
 }

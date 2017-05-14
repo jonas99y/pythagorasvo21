@@ -20,7 +20,7 @@ export class DrawingComponent implements OnInit {
   constructor(private imageService: ImageService, private topicService: TopicService, private userService: UserService) {
     //dont remove, will break drawing-service;
     console.log(firebase.storage());
-    userService.registerUser(new User(null,"Fabio","Zuber","TRtODRQVUvMJuBTGgzfjYRjBxYk1"))
+    //userService.registerUser(new User(null,"Fabio","Zuber","TRtODRQVUvMJuBTGgzfjYRjBxYk1"))
   }
 
   ngOnInit() {
