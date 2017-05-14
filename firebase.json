@@ -11,7 +11,7 @@
       }
     ],
     "headers": [{
-      "source" : "*bundle.js",
+      "source" : "**",
       "headers" : [{
         "key" : "Access-Control-Allow-Origin",
         "value" : "*"

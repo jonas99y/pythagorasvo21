@@ -30,12 +30,11 @@ export class UserService {
 
   registerUser(user: User) {
     console.log('user Details:');
-    console.log(user);
+    console.log(JSON.stringify(user));
     const url = 'https://us-central1-pythagorasvo21.cloudfunctions.net/registerUser';
     this.xdr( url, 'POST', JSON.stringify(user), ( ) => {console.log('cors request sent'); } , ( err ) => {console.log(err); } );
     console.log('test');
   }
-
 
   /**
    * Make a X-Domain request to url and callback.
