@@ -1,4 +1,4 @@
 export class Comment {
-    public constructor(public user: string, public timestamp: Date, public message: string) { };
+    public constructor(public user: string, public timestamp: number, public message: string) { };
 
 }

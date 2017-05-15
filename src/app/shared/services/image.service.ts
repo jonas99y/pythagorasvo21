@@ -55,7 +55,7 @@ export class ImageService {
     const promise = new Promise((resolve, reject) => {
       that.uploadImage(canvas, path)
         .then(url => {
-          const drawing = new Image(topic.$ref.key, user.$ref.key, url, null);
+          const drawing = new Image(topic.$ref.key, user.$ref.key, url, null,null);
           const updates = {};
           updates["/" + key] = drawing;
           this.afDb.list("images").$ref.ref.update(updates);

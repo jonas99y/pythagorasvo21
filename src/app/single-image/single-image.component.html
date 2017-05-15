@@ -1,0 +1,8 @@
+<div class="columns is-multiline">
+    <h1 class="column is-12">Title</h1>
+    <app-image-viewer [Image]="image" id="image-viewer" class="column is-6"></app-image-viewer>
+    <div class="column columns is-4 is-multiline">
+        <app-rating [ratingKey]="(image|async)?.rating" id="rating" class="column is-12"></app-rating>
+        <app-comment [commentKey]="(image|async)?.comment" id=" comment " class="column is-12 "></app-comment>
+    </div>
+</div>

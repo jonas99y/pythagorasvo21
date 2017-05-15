@@ -1,6 +1,11 @@
-#image-div {
-    background: white;
-    height: 100px;
-    width: 100px;
-    margin: 10px;
+.profile-images {
+    height: 300px;
+    width: 300px;
+}
+
+#show-more {
+    margin: {
+        left: 15px;
+        bottom: 15px;
+    }
 }

@@ -8,10 +8,13 @@ import { UserService, RatingService } from '../shared'
 })
 export class RatingComponent implements OnInit {
 
+
+  public chars: Array<string>;
   @Input('ratingKey') ratingKey: string;
   constructor(private userService: UserService, private ratingService: RatingService) { }
 
   ngOnInit() {
+    this.chars = this.ratingService.ratingChars;
   }
 
   vote(char: string) {

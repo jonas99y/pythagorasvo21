@@ -1,5 +1,11 @@
 <div id="comments">
-  <div *ngFor="let comment of comments|async">
-    {{comment | async}}
-  </div>
+    <h2>S Bild kommentiere:</h2>
+    <div *ngFor="let comment of comments|async">
+        <p>{{(comment|async)?.message}}</p>
+
+    </div>
+    <form (ngSubmit)="onComment(commentForm)">
+        <textarea [(ngModel)]="commentText" name="commentText"></textarea>
+        <button type="submit"></button>
+    </form>
 </div>

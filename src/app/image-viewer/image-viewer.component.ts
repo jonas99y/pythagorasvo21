@@ -13,7 +13,6 @@ export class ImageViewerComponent implements OnInit {
   constructor(private ratingService: RatingService, private UserService: UserService) { }
 
   ngOnInit() {
-    console.log(this.image);
   }
  
 

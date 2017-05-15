@@ -4,11 +4,13 @@ import { Rating, Image, User } from '../models/';
 @Injectable()
 export class RatingService {
 
+  public ratingChars: Array<string> = ['👍', '👎', '😐', '😍', '💩'];
   constructor(private afDb: AngularFireDatabase) { }
 
 
+
   findRatingAfterKey(key: string): FirebaseObjectObservable<Rating> {
-    return this.afDb.object("/ratings/" + key);
+    return this.afDb.object('/ratings/' + key);
   }
 
   addRatingToImage(image: FirebaseObjectObservable<Image>, user: FirebaseObjectObservable<User>, ratingChar: string)
@@ -28,12 +30,15 @@ export class RatingService {
     const promise = new Promise<FirebaseObjectObservable<Rating>>((resolve, reject) => {
       const updates = {};
       updates[user.$ref.key] = ratingChar;
-
+      this.afDb.object('ratings/' + ratingKey + '/ratings').update(updates);
     });
     return promise;
   }
 
   initRating(): FirebaseObjectObservable<Rating> {
-    return this.findRatingAfterKey(this.afDb.list("/ratings/").push(new Rating(0, {}, {})).key);
+    return this.findRatingAfterKey(this.afDb.list('/ratings/').push(new Rating(0, {}, {})).key);
   }
+
+
+
 }

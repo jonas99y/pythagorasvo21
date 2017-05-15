@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FirebaseListObservable,FirebaseObjectObservable } from 'angularfire2/database';
-import {Comment } from '../shared';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { Comment, CommentService, UserService } from '../shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-comment',
@@ -8,11 +9,27 @@ import {Comment } from '../shared';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input('commentKey') commentKey: string;
+  private commentKey: string;
+  @Input('commentKey') set CommentKey(key: string) {
+    if (key != null) {
 
-  public comments:Array<FirebaseObjectObservable<Comment>>;
-  constructor() { }
+      this.comments = this.commentService.findAllCommentsInList(key);
+      this.commentKey = key;
+
+    }
+  };
+
+  public commentText:string;
+  public comments: Observable<Array<FirebaseObjectObservable<Comment>>>;
+  constructor(public commentService: CommentService, private userService:UserService) { }
   ngOnInit() {
+
+  }
+  onComment(commentForm){
+    this.userService.findCurrentUser().then(user=>{
+      this.commentService.addComment(this.commentText, user,this.commentKey);
+
+    })
   }
 
 }

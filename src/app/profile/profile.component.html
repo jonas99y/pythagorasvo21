@@ -1,7 +1,7 @@
 <h1>Das isch dis Profil</h1>
 <div class="columns is-multiline">
     <div *ngFor="let image of images|async">
-        <app-image-viewer [Image]="image" class="column"></app-image-viewer>
-        <app-comment></app-comment>
+        <app-image-viewer [Image]="image" class="column profile-images"></app-image-viewer>
+        <a id="show-more">mehr anzeigen...</a>
     </div>
 </div>

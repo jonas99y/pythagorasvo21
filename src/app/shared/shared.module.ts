@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopicService, ImageService, UserService, RatingService } from './services/';
+import { TopicService, ImageService, UserService, RatingService, CommentService } from './services/';
 import { TestPipePipe } from './pipes/test-pipe.pipe';
 
 @NgModule({
@@ -9,6 +9,6 @@ import { TestPipePipe } from './pipes/test-pipe.pipe';
   ],
   declarations: [TestPipePipe],
   exports: [TestPipePipe],
-  providers: [ImageService, TopicService, UserService,RatingService]
+  providers: [ImageService, TopicService, UserService,RatingService, CommentService]
 })
 export class SharedModule { }

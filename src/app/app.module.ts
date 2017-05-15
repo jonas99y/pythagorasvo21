@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { CommentComponent } from './comment/comment.component';
 import { RatingComponent } from './rating/rating.component';
+import { SingleImageComponent } from './single-image/single-image.component';
 
 
 export const firebaseConfig = {
@@ -32,7 +33,8 @@ export const firebaseConfig = {
     ProfileComponent,
     ImageViewerComponent,
     CommentComponent,
-    RatingComponent
+    RatingComponent,
+    SingleImageComponent
   ],
   imports: [
     BrowserModule,

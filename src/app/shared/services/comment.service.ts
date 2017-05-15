@@ -15,21 +15,24 @@ export class CommentService {
 
   findAllCommentsInList(listKey: string): Observable<Array<FirebaseObjectObservable<Comment>>> {
     let comments: Array<FirebaseObjectObservable<Comment>> = [];
+
     return Observable.create(observer => {
-      comments.splice(0, comments.length);
-      let commetnList = this.afDb.list("commentLists/" + listKey).subscribe(comments => {
-        for (let commentKey in comments) {
-          console.log(commentKey);
+      let commentList = this.afDb.object("commentLists/" + listKey);
+      commentList.subscribe(x => {
+        comments.splice(0, comments.length);
+        for (let commentKey in x) {
           comments.push(this.findCommentAfterKey(commentKey));
-          observer.next(comments);
         }
-      });
-
-
+      })
+      observer.next(comments);
     });
+
   }
   addComment(message: string, user: FirebaseObjectObservable<User>, commentListKey: string) {
-    this.afDb.list("commentLists/" + commentListKey)
-    .push(this.afDb.list("comments").push(new Comment(user.$ref.key, new Date(), message)).key);
+    const comment = new Comment(user.$ref.key, Date.now(), message);
+
+    const updates = {};
+    updates[this.afDb.list("comments").push(comment).key] = true;
+    this.afDb.object("commentLists/" + commentListKey).update(updates);
   }
 }

@@ -1,5 +1,6 @@
-<div id="voiting">
-  <div (click)="vote('😍')">😍</div>
-  <div (click)="vote('💩')">💩</div>
-  <div (click)="vote('😐')">😐</div>
+<div id="rating">
+    <h2>S Bild bewerte:</h2>
+    <div id="rating-options">
+        <div *ngFor="let char of chars" (click)='vote(char)' class="rating-option">{{char}}</div>
+    </div>
 </div>

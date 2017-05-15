@@ -1,0 +1,15 @@
+@import '../app.component';
+#rating {
+    border: solid $primary-color;
+    border-radius: 5px;
+    background: white;
+    padding: 10px;
+}
+
+.rating-option {
+    margin: 5px;
+}
+
+#rating-options {
+    display: flex;
+}
