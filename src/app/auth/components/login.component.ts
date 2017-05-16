@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthProvider, AngularFireAuthModule } from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { User, UserService } from '../../shared/';
+
 
 import * as firebase from 'firebase/app';
 
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, private router: Router, private userService: UserService) {
     this.afAuth.authState.subscribe(authstate => {
       if (authstate) {
         this.router.navigateByUrl(this.redirectRoute);

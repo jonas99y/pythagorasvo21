@@ -11,8 +11,10 @@ export const appRoutes: Routes = [
   { path: 'register-email', component: RegisterEmailComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'image/:imageKey', component: SingleImageComponent }
+  { path: 'image/:imageKey', component: SingleImageComponent },
+  { path: 'user/:userKey', component: ProfileComponent }
+
+
 ];
 @NgModule({
   imports: [
