@@ -8,13 +8,23 @@ $primary: $primary-color; // let bulma know which primary color we like to use
 // html {
 //     min-height: 100%;
 // }
-// body {
-//     min-height: 100%;
-// }
+body {
+    bottom: 0;
+    top: 0;
+}
+
 #content {
     background: $primary-color;
-    height: 100vh;
+    padding: {
+        top: $topNavHeight;
+        bottom: $margin-bottom;
+        left: 10px;
+        right: 10px;
+    }
+    min-height: 100vh;
     bottom: 0;
+    top: 0;
+    margin: 0;
 }
 
 #sehr-fruedlichi-willkommensnachricht {
@@ -24,15 +34,9 @@ $primary: $primary-color; // let bulma know which primary color we like to use
 }
 
 #inner-content {
-    padding-top: $topNavHeight;
-    padding-bottom: $bottomNavHeigth;
     background: $background-color;
-    margin: {
-        left: 10px;
-        right: 10px;
-    }
-    top:$topNavHeight;
-    height: calc(100% - 10px);
+    min-height: calc(100vh - #{$margin-bottom} - #{$topNavHeight});
+    padding-bottom: $bottomNavHeigth;
 }
 
 .nav-Menu-Item {
