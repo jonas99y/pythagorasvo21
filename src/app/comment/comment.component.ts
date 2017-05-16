@@ -29,7 +29,7 @@ export class CommentComponent implements OnInit {
     this.userService.findCurrentUser().then(user => {
       this.commentService.addComment(this.commentText, user, this.commentKey);
       this.commentText = "";
-    })
+    });
   }
 
 }
