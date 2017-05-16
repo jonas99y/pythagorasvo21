@@ -11,7 +11,7 @@ import { FirebaseObjectObservable } from 'angularfire2/database';
 export class SingleImageComponent implements OnInit, OnDestroy {
 
   private sub: any;
-  private image: FirebaseObjectObservable<Image>;
+  public image: FirebaseObjectObservable<Image>;
   constructor(private route: ActivatedRoute, private imageService: ImageService) { }
 
   ngOnInit() {

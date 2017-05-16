@@ -19,16 +19,16 @@ export class CommentComponent implements OnInit {
     }
   };
 
-  public commentText:string;
+  public commentText: string;
   public comments: Observable<Array<FirebaseObjectObservable<Comment>>>;
-  constructor(public commentService: CommentService, private userService:UserService) { }
+  constructor(public commentService: CommentService, private userService: UserService) { }
   ngOnInit() {
 
   }
-  onComment(commentForm){
-    this.userService.findCurrentUser().then(user=>{
-      this.commentService.addComment(this.commentText, user,this.commentKey);
-
+  onComment() {
+    this.userService.findCurrentUser().then(user => {
+      this.commentService.addComment(this.commentText, user, this.commentKey);
+      this.commentText = "";
     })
   }
 

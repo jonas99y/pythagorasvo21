@@ -4,7 +4,7 @@
         <p>{{(comment|async)?.message}}</p>
 
     </div>
-    <form (ngSubmit)="onComment(commentForm)">
+    <form (ngSubmit)="onComment()">
         <textarea [(ngModel)]="commentText" name="commentText"></textarea>
         <button type="submit"></button>
     </form>
