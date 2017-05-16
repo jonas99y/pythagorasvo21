@@ -4,6 +4,7 @@
     border-radius: 5px;
     background: white;
     padding: 10px;
+    height: 100%;
 }
 
 .single-comment {
@@ -14,4 +15,15 @@
 .comment-time {
     color: gray;
     font-size: 10px;
+}
+
+#comment-textarea {
+    width: 100%;
+    height: 20%;
+}
+
+#all-comments {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 40%;
 }

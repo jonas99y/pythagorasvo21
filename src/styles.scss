@@ -3,20 +3,17 @@
 // 1. Import the initial variables
 @import '../node_modules/bulma/sass/utilities/initial-variables';
 @import './variables';
-
 $primary: $primary-color; // let bulma know which primary color we like to use
 @import "../node_modules/bulma/bulma";
-
-html {
-  height: 100%;
-}
-body {
-  height: 100%;
-}
-
+// html {
+//     min-height: 100%;
+// }
+// body {
+//     min-height: 100%;
+// }
 #content {
     background: $primary-color;
-    height: 100%;
+    height: 100vh;
     bottom: 0;
 }
 
@@ -30,7 +27,11 @@ body {
     padding-top: $topNavHeight;
     padding-bottom: $bottomNavHeigth;
     background: $background-color;
-    margin: 10px;
+    margin: {
+        left: 10px;
+        right: 10px;
+    }
+    top:$topNavHeight;
     height: calc(100% - 10px);
 }
 

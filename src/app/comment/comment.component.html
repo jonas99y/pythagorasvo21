@@ -2,14 +2,15 @@
     <h2>S Bild kommentiere:</h2>
 
     <!-- Is it possible to make this better performance wise, with less asnyc pipes? TODO-->
-
-    <div *ngFor="let comment of comments|async" class="single-comment">
-        <a href="/user/{{(comment |async)?.user}}">{{((comment|async)?.user|findUser|async)?.firstname}}</a>
-        <span class="comment-time"> - {{(comment|async)?.timestamp|date:'short'}}</span>
-        <p>{{(comment|async)?.message}}</p>
+    <div id="all-comments">
+        <div *ngFor="let comment of comments|async" class="single-comment">
+            <a href="/user/{{(comment |async)?.user}}">{{((comment|async)?.user|findUser|async)?.firstname}}</a>
+            <span class="comment-time"> - {{(comment|async)?.timestamp|date:'short'}}</span>
+            <p>{{(comment|async)?.message}}</p>
+        </div>
     </div>
     <form (ngSubmit)="onComment()">
-        <textarea [(ngModel)]="commentText" name="commentText"></textarea>
-        <button type="submit"></button>
+        <textarea [(ngModel)]="commentText" name="commentText" id="comment-textarea" class="textarea"></textarea>
+        <button type="submit" id="submit-comment" class="button">Kommentiere</button>
     </form>
 </div>
