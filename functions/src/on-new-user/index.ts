@@ -8,7 +8,8 @@ export const onNewUser = functions.auth.user().onCreate(event => {
     const snapshot = admin.database().ref('users').push({
         firstname: firstname,
         lastname: lastname,
-        uid: uid
+        uid: uid,
+        images: admin.database().ref().push().key
     });
     const key = snapshot.key;
     const updates = {};

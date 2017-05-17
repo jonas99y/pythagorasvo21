@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopicService, ImageService, UserService, RatingService, CommentService } from './services/';
+import { TopicService, ImageService, UserService, RatingService, CommentService, KeyListService } from './services/';
 import { TestPipePipe, FindUserPipe } from './pipes/';
 
 
@@ -10,6 +10,6 @@ import { TestPipePipe, FindUserPipe } from './pipes/';
   ],
   declarations: [TestPipePipe, FindUserPipe],
   exports: [TestPipePipe, FindUserPipe],
-  providers: [ImageService, TopicService, UserService, RatingService, CommentService]
+  providers: [ImageService, TopicService, UserService, RatingService, CommentService, KeyListService]
 })
 export class SharedModule { }

@@ -2,12 +2,13 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Topic, Image, User } from '../models';
 import { Observable } from 'rxjs';
+import { KeyListService } from './key-list.service';
 import * as firebase from 'firebase';
 @Injectable()
 export class ImageService {
 
   private storageRef: firebase.storage.Reference;
-  constructor(private afDb: AngularFireDatabase) {
+  constructor(private afDb: AngularFireDatabase, private keyListService: KeyListService) {
     this.storageRef = afDb.app.storage().ref();
   }
 
@@ -18,16 +19,15 @@ export class ImageService {
 
   findImagesFromUser(user: FirebaseObjectObservable<User>): Observable<Array<FirebaseObjectObservable<Image>>> {
     let images: Array<FirebaseObjectObservable<Image>> = [];
-
     return Observable.create(observer => {
       user.subscribe(User => {
-        images.splice(0, images.length);
-        console.log(images.length);
-        for (let imageKey in User.images) {
-          images.push(this.findImageAfterKey(imageKey));
-        }
+        this.keyListService.findKeyList(User.images).subscribe(keys => {
+          images.splice(0, images.length);
+          keys.forEach(key => {
+            images.push(this.findImageAfterKey(key.$key));
+          });
+        });
         observer.next(images);
-
       });
     });
   }
@@ -57,11 +57,17 @@ export class ImageService {
         .then(url => {
           const ratingKey = this.afDb.list("ratings").$ref.ref.push().key;
           const commentListKey = this.afDb.list("commentLists").$ref.ref.push().key;
-          const drawing = new Image(topic.$ref.key, user.$ref.key, url, ratingKey,commentListKey);
+          const drawing = new Image(topic.$ref.key, user.$ref.key, url, ratingKey, commentListKey);
           const updates = {};
           updates["/" + key] = drawing;
           this.afDb.list("images").$ref.ref.update(updates);
-          resolve("test");
+          user.subscribe(User => {
+            this.keyListService.addKeyToList(User.images, key);
+          });
+          topic.subscribe(Topic => {
+            this.keyListService.addKeyToList(Topic.images, key);
+          });
+          resolve("test"); // TODO
         }).catch(x => reject(x));
     });
     return promise;

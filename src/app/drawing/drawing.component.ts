@@ -24,6 +24,9 @@ export class DrawingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.findCurrentUser().then(user => this.topicService.findTopicToDraw(user).then(topic=>{
+      console.log(topic);
+    }));
   }
 
   clicked($event) {

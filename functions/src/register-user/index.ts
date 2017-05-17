@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
 export const listener = functions.https.onRequest((req, res) => {
-    res.set('Access-Control-Allow-Origin', '*')
+  res.set('Access-Control-Allow-Origin', '*')
     .set('Access-Control-Allow-Methods', 'GET, POST')
     .status(200);
   if (req.method === `OPTIONS`) {
@@ -16,11 +16,13 @@ export const listener = functions.https.onRequest((req, res) => {
     const snapshot = admin.database().ref('users').push({
       firstname: firstname,
       lastname: lastname,
-      uid: uid
+      uid: uid,
+      images: admin.database().ref().push().key
     });
     const key = snapshot.key;
     const updates = {};
     updates[uid] = key;
+
     admin.database().ref('userUIDs').update(updates);
     res.send('Wheeee it works! User adjusted');
   }
