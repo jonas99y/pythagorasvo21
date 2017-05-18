@@ -1,5 +1,7 @@
 <h1>Galerie</h1>
-
-<div *ngFor="let image of latestImages|async">
-    <app-image-viewer [Image]="image"></app-image-viewer>
+<h2>Die neuste Bilder:</h2>
+<div id="latestImages" class="imageListing">
+    <div *ngFor="let image of latestImages|async" class="single-image-viewer">
+        <app-image-viewer [Image]="image"></app-image-viewer>
+    </div>
 </div>
