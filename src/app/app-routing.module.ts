@@ -14,11 +14,11 @@ export const appRoutes: Routes = [
   { path: 'register-email', component: RegisterEmailComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
-  { path: 'image/:imageKey', component: SingleImageComponent },
-  { path: 'user/:userKey', component: UserViewComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'gallery', component: MainGalleryComponent },
-  {path: 'profile', component:ProfileComponent}
+  { path: 'image/:imageKey', component: SingleImageComponent, canActivate: [AuthGuard] },
+  { path: 'user/:userKey', component: UserViewComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'gallery', component: MainGalleryComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
 
 
 ];
