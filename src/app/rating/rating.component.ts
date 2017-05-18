@@ -11,12 +11,17 @@ export class RatingComponent implements OnInit {
 
   public chars: Array<string>;
   public rating: FirebaseObjectObservable<Rating>;
-  @Input('ratingKey') ratingKey: string;
+  private ratingKey: string;
+  @Input('ratingKey') set RatingKey(key: string) {
+    this.ratingKey = key;
+    this.rating = this.ratingService.findRatingAfterKey(this.ratingKey);
+    console.log(key);
+  } 
   constructor(private userService: UserService, private ratingService: RatingService) { }
 
   ngOnInit() {
     this.chars = this.ratingService.ratingChars;
-    this.rating = this.ratingService.findRatingAfterKey(this.ratingKey);
+
   }
 
   vote(char: string) {

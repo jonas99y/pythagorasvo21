@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
 import { FirebaseObjectObservable } from 'angularfire2/database';
-import { TopicService, UserService, ImageService, Topic,User } from '../shared/';
+import { TopicService, UserService, ImageService, Topic, User } from '../shared/';
 
 import * as firebase from 'firebase';
 @Component({
@@ -24,7 +24,7 @@ export class DrawingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.findCurrentUser().then(user => this.topicService.findTopicToDraw(user).then(topic=>{
+    this.userService.findCurrentUser().then(user => this.topicService.findTopicToDraw(user).then(topic => {
       console.log(topic);
     }));
   }
