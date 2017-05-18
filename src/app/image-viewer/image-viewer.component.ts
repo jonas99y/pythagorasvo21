@@ -8,12 +8,23 @@ import { Image, RatingService, UserService } from '../shared';
 })
 export class ImageViewerComponent implements OnInit {
 
-  @Input("Image") public image: FirebaseObjectObservable<Image>;
+  public Image: Image;
+
+
+  @Input("Image") image: any;
 
   constructor(private ratingService: RatingService, private UserService: UserService) { }
 
   ngOnInit() {
+    if (typeof this.image.subscribe === 'function') {
+      this.image.subscribe(img=>{
+        this.Image =img;
+      })
+    }
+    else{
+      this.Image = this.image;
+    }
   }
- 
+
 
 }

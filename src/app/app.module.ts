@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { DrawingModule } from './drawing/drawing.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { GalleryModule } from './gallery/gallery.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
@@ -17,7 +16,7 @@ import { CommentComponent } from './comment/comment.component';
 import { RatingComponent } from './rating/rating.component';
 import { SingleImageComponent } from './single-image/single-image.component';
 import { SettingsComponent } from './settings/settings.component';
-
+import { MainGalleryComponent } from './main-gallery/main-gallery.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBlr3XTiDLBlWGJrjVxeDNkmgxcliow7o4',
@@ -36,7 +35,8 @@ export const firebaseConfig = {
     CommentComponent,
     RatingComponent,
     SingleImageComponent,
-    SettingsComponent
+    SettingsComponent,
+    MainGalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +48,9 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    GalleryModule,
     AppRoutingModule
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

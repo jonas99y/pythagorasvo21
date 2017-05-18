@@ -32,6 +32,15 @@ export class ImageService {
     });
   }
 
+  findLatestImages(count: number): FirebaseListObservable<Image[]> {
+    return this.afDb.list("images", {
+      query: {
+        orderByKey: true,
+        limitToLast: count
+      }
+    });
+  }
+
   uploadImage(canvas: HTMLCanvasElement, path: string): Promise<string> {
     const that = this;
     let promise = new Promise<string>((resolve, reject) => {
@@ -42,6 +51,8 @@ export class ImageService {
     return promise;
 
   }
+
+
 
   submitNewDrawing(
     canvas: HTMLCanvasElement,
