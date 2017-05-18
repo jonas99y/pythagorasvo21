@@ -1,0 +1,10 @@
+<h1>{{(user|async)?.firstname}}</h1>
+<br>
+<br>
+<br>
+<div class="columns is-multiline">
+    <div *ngFor="let image of images|async">
+        <app-image-viewer [Image]="image" class="column profile-images"></app-image-viewer>
+        <a id="show-more" [routerLink]="['/image',image.$ref.key]">mehr anzeigen...</a>
+    </div>
+</div>

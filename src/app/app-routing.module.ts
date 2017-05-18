@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SingleImageComponent } from './single-image/single-image.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MainGalleryComponent } from './main-gallery/main-gallery.component';
+import {UserViewComponent} from './user-view/user-view.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,9 +15,10 @@ export const appRoutes: Routes = [
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: 'image/:imageKey', component: SingleImageComponent },
-  { path: 'user/:userKey', component: ProfileComponent },
+  { path: 'user/:userKey', component: UserViewComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: 'gallery', component: MainGalleryComponent }
+  { path: 'gallery', component: MainGalleryComponent },
+  {path: 'profile', component:ProfileComponent}
 
 
 ];

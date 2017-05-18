@@ -15,6 +15,6 @@ export class MainGalleryComponent implements OnInit {
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {
-    this.latestImages = this.imageService.findLatestImages(5);
+    this.latestImages = this.imageService.findLatestImages(4);
   }
 }

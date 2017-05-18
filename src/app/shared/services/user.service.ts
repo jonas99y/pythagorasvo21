@@ -15,6 +15,7 @@ export class UserService {
   }
 
   findCurrentUser(): Promise<FirebaseObjectObservable<User>> {
+    console.log(this.afAuth.auth.currentUser);
     const uid = this.afAuth.auth.currentUser.uid;
     const promise = new Promise<FirebaseObjectObservable<User>>((resolve, reject) => {
       this.afDb.object('/userUIDs/' + uid).subscribe(x => {

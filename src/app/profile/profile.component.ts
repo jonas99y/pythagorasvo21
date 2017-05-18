@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { ImageService, UserService, Image, User } from '../shared/';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 
 @Component({
@@ -17,16 +17,21 @@ export class ProfileComponent implements OnInit {
 
   private sub: any;
 
-  constructor(private drawingService: ImageService, private userService: UserService, private route: ActivatedRoute) {
+  constructor(private drawingService: ImageService, private userService: UserService, private route: ActivatedRoute, private router:Router) {
 
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.user = this.userService.findUserAfterKey(params.userKey);
-      this.images = this.drawingService.findImagesFromUser(this.user);
+    this.userService.findCurrentUser().then(currentUser=>{
 
-    });
+      this.router.navigate(['/user/'+currentUser.$ref.key])
+
+    })
+    // this.sub = this.route.params.subscribe(params => {
+    //   this.user = this.userService.findUserAfterKey(params.userKey);
+    //   this.images = this.drawingService.findImagesFromUser(this.user);
+
+    // });
 
   }
 

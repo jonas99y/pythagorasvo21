@@ -1,7 +1,38 @@
+@import '../app.component';
 #latestImages {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .single-image-viewer {
-    margin: 10px;
+    min-height: 300px;
+    min-width: 300px;
+    max-height: 300px;
+    max-width: 300px;
+    margin: 5px;
+    flex-shrink: 0;
+}
+
+.show-more {
+    margin: {
+        top: 10px;
+    }
+}
+
+.image-listing-wrapper {
+    border: solid 3px $primary-color;
+    background: white;
+    border-radius: 5px;
+    padding-bottom: 10px;
+}
+
+.image-listing-title {
+    margin: {
+        left: 30px;
+        top: 10px;
+    }
+    font: {
+        size: 30px;
+    }
 }

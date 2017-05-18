@@ -1,7 +1,10 @@
-<h1>Galerie</h1>
-<h2>Die neuste Bilder:</h2>
-<div id="latestImages" class="imageListing">
-    <div *ngFor="let image of latestImages|async" class="single-image-viewer">
-        <app-image-viewer [Image]="image"></app-image-viewer>
+<br>
+<div class="image-listing-wrapper">
+    <h2 class="image-listing-title">Die neuste Bilder:</h2>
+    <div id="latestImages" class="imageListing  is-multiline">
+        <div *ngFor="let image of latestImages|async" class="column single-image-viewer">
+            <app-image-viewer [Image]="image" class=""></app-image-viewer>
+            <a [routerLink]="['/image',image.$key]" class="show-more">mehr anzeigen...</a>
+        </div>
     </div>
 </div>
