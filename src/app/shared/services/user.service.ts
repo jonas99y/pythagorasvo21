@@ -25,12 +25,15 @@ export class UserService {
     return promise;
   }
 
+  signOut(): firebase.Promise<any> {
+    return this.afAuth.auth.signOut();
+  }
 
   registerUser(user: User) {
     const url = 'https://us-central1-pythagorasvo21.cloudfunctions.net/registerUser';
-    this.xdr( url, 'POST', JSON.stringify(user),
-      ( ) => {console.log('User updated in DB'); },
-      ( err ) => {console.log(err); } );
+    this.xdr(url, 'POST', JSON.stringify(user),
+      () => { console.log('User updated in DB'); },
+      (err) => { console.log(err); });
   }
 
   /**
@@ -51,7 +54,7 @@ export class UserService {
       if ('withCredentials' in req) {
         req.open(method, url, true);
         req.onerror = errback;
-        req.onreadystatechange = function() {
+        req.onreadystatechange = function () {
           if (req.readyState === 4) {
             if (req.status >= 200 && req.status < 400) {
               callback(req.responseText);
@@ -62,7 +65,7 @@ export class UserService {
         };
         req.send(data);
       }
-    }  else {
+    } else {
       errback(new Error('CORS not supported'));
     }
   }

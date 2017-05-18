@@ -6,9 +6,6 @@ import { ImageService } from './image.service';
 
 @Injectable()
 export class TopicService {
-
-  // private ref: firebase.database.Reference;
-  // private topicRef: firebase.database.Reference;
   constructor(private afDb: AngularFireDatabase, private imageService: ImageService) {
 
   }
@@ -28,9 +25,8 @@ export class TopicService {
         let alltopics = this.afDb.object("topics");
         console.log(alltopics);
         resolve(alltopics.first((x, idx, obs) => { console.log("test"); return true }))
-      })
-    })
-
+      });
+    });
 
     return promise;
   }
@@ -49,17 +45,6 @@ export class TopicService {
         });
         resolve(topics);
       });
-
-
-      // user.subscribe(sUser => {
-      //   console.log(sUser);
-      //   sUser.images.forEach(image => {
-      //     this.imageService.findImageAfterKey(image).subscribe(relImage => {
-      //       topics.push(this.findTopicAfterKey(relImage.topic));
-      //     });
-      //   });
-      //   resolve(topics);
-      // });
     });
     return promise;
   }
@@ -73,15 +58,4 @@ export class TopicService {
       name: topicName, images: this.afDb.object("").$ref.push().key
     });
   }
-
-  // addTopic(topic: Topic): FirebaseObjectObservable<Topic> {
-  //   const newPushKey: string = this.topicRef.push().key;
-  //   const updates = {};
-  //   updates["/topics/" + newPushKey] = topic;
-
-  //   this.ref.update(updates);
-  //   return this.findTopicAfterKey(newPushKey);
-  // }
-
-
 }

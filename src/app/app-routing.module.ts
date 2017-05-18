@@ -4,6 +4,7 @@ import { RegisterEmailComponent, LoginComponent, AuthGuard } from './auth/';
 import { DrawingComponent } from './drawing/drawing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SingleImageComponent } from './single-image/single-image.component';
+import { SettingsComponent } from './settings/settings.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -12,7 +13,8 @@ export const appRoutes: Routes = [
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: 'image/:imageKey', component: SingleImageComponent },
-  { path: 'user/:userKey', component: ProfileComponent }
+  { path: 'user/:userKey', component: ProfileComponent },
+  { path: 'settings', component: SettingsComponent }
 
 
 ];

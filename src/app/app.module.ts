@@ -16,6 +16,7 @@ import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 import { CommentComponent } from './comment/comment.component';
 import { RatingComponent } from './rating/rating.component';
 import { SingleImageComponent } from './single-image/single-image.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 export const firebaseConfig = {
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     ImageViewerComponent,
     CommentComponent,
     RatingComponent,
-    SingleImageComponent
+    SingleImageComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
