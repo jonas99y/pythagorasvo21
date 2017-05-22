@@ -23,8 +23,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.userService.findCurrentUser().then(currentUser=>{
-
-      this.router.navigate(['/user/'+currentUser.$ref.key])
+      this.user= currentUser;
+      // this.router.navigate(['/user/'+currentUser.$ref.key])
 
     })
     // this.sub = this.route.params.subscribe(params => {

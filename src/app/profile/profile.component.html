@@ -1,4 +1,4 @@
-<h1>{{(user|async)?.firstname}}</h1>
+<!--<h1>{{(user|async)?.firstname}}</h1>
 <br>
 <br>
 <br>
@@ -7,4 +7,7 @@
         <app-image-viewer [Image]="image" class="column profile-images"></app-image-viewer>
         <a id="show-more" [routerLink]="['/image',image.$ref.key]">mehr anzeigen...</a>
     </div>
-</div>
+</div>-->
+<app-user-view [userKey]="user|async">
+
+</app-user-view>
