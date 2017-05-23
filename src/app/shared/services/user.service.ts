@@ -10,12 +10,12 @@ export class UserService {
   constructor(private afDb: AngularFireDatabase, private afAuth: AngularFireAuth, private http: Http) { }
 
   findUserAfterKey(key: string): FirebaseObjectObservable<User> {
+    if (key === undefined) { return undefined }
     const foundUser: FirebaseObjectObservable<User> = <FirebaseObjectObservable<User>>this.afDb.object('users/' + key);
     return foundUser;
   }
 
   findCurrentUser(): Promise<FirebaseObjectObservable<User>> {
-    console.log(this.afAuth.auth.currentUser);
     const uid = this.afAuth.auth.currentUser.uid;
     const promise = new Promise<FirebaseObjectObservable<User>>((resolve, reject) => {
       this.afDb.object('/userUIDs/' + uid).subscribe(x => {

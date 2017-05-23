@@ -9,7 +9,7 @@ import { Image, RatingService, UserService } from '../shared';
 export class ImageViewerComponent implements OnInit {
 
   public Image: Image;
-
+  public Link: string = "";
 
   @Input("Image") image: any;
 
@@ -17,14 +17,16 @@ export class ImageViewerComponent implements OnInit {
 
   ngOnInit() {
     if (typeof this.image.subscribe === 'function') {
-      this.image.subscribe(img=>{
-        this.Image =img;
+      this.image.subscribe(img => {
+        this.Image = img;
+        this.Link = '/image/' + this.image.$ref.key;
       })
     }
-    else{
+    else {
       this.Image = this.image;
+      this.Link = '/image/' + this.image.$key;
     }
-  }
 
+  }
 
 }

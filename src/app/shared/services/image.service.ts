@@ -18,6 +18,9 @@ export class ImageService {
   }
 
   findImagesFromUser(user: FirebaseObjectObservable<User>): Observable<Array<FirebaseObjectObservable<Image>>> {
+    if (user === undefined) {
+      return undefined;
+    }
     let images: Array<FirebaseObjectObservable<Image>> = [];
     return Observable.create(observer => {
       user.subscribe(User => {
@@ -33,7 +36,7 @@ export class ImageService {
   }
 
   findLatestImages(count: number): FirebaseListObservable<Image[]> {
-    return this.afDb.list("images", {
+    return this.afDb.list('images', {
       query: {
         orderByKey: true,
         limitToLast: count
@@ -60,25 +63,27 @@ export class ImageService {
     user: FirebaseObjectObservable<User>
   ): Promise<string> {
 
-    const key = this.afDb.list("images").$ref.ref.push().key;
+    const key = this.afDb.list('images').$ref.ref.push().key;
     const path = 'user-images/' + key;
     const that = this;
     const promise = new Promise((resolve, reject) => {
       that.uploadImage(canvas, path)
         .then(url => {
-          const ratingKey = this.afDb.list("ratings").$ref.ref.push().key;
-          const commentListKey = this.afDb.list("commentLists").$ref.ref.push().key;
+          const ratingKey = this.afDb.list('ratings').$ref.ref.push().key;
+          const commentListKey = this.afDb.list('commentLists').$ref.ref.push().key;
           const drawing = new Image(topic.$ref.key, user.$ref.key, url, ratingKey, commentListKey);
           const updates = {};
-          updates["/" + key] = drawing;
-          this.afDb.list("images").$ref.ref.update(updates);
+          updates['/' + key] = drawing;
+          this.afDb.list('images').$ref.ref.update(updates);
           user.subscribe(User => {
             this.keyListService.addKeyToList(User.images, key);
           });
           topic.subscribe(Topic => {
-            this.keyListService.addKeyToList(Topic.images, key);
+            if (Topic.images !== undefined) {
+              this.keyListService.addKeyToList(Topic.images, key);
+            }
           });
-          resolve("test"); // TODO
+          resolve('test'); // TODO
         }).catch(x => reject(x));
     });
     return promise;
