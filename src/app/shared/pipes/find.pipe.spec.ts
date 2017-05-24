@@ -1,8 +1,8 @@
-import { FindUserPipe } from './find-user.pipe';
+import { FindPipe } from './find.pipe';
 
-describe('FindUserPipe', () => {
+describe('FindPipe', () => {
   it('create an instance', () => {
-    const pipe = new FindUserPipe();
+    const pipe = new FindPipe();
     expect(pipe).toBeTruthy();
   });
 });
