@@ -11,7 +11,7 @@ export class RatingService {
 
 
   findRatingAfterKey(key: string): FirebaseObjectObservable<Rating> {
-    return this.dbHelperService.findInNodeAfterKey("raitings",key);
+    return this.dbHelperService.findInNodeAfterKey("ratings",key);
   }
 
   addRatingToImage(image: FirebaseObjectObservable<Image>, user: FirebaseObjectObservable<User>, ratingChar: string)

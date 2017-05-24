@@ -1,2 +1,2 @@
 export * from './test-pipe.pipe';
-export * from './find-user.pipe';
+export * from './find.pipe';

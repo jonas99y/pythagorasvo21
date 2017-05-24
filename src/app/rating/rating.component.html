@@ -3,7 +3,7 @@
     <div id="rating-options">
         <div *ngFor="let char of chars" (click)='vote(char)' class="rating-option">
             <a>{{char}}</a>
-            <span>{{(rating|async)?.scores[char]}}</span>
+            <span>{{((rating|async)?.scores|| [] )[char]}}</span>
         </div>
     </div>
 </div>
