@@ -2,19 +2,18 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Topic, Image, User } from '../models';
 import { Observable } from 'rxjs';
-import { KeyListService } from './key-list.service';
+import { DBHelperService } from './db-helper.service';
 import * as firebase from 'firebase';
 @Injectable()
 export class ImageService {
 
   private storageRef: firebase.storage.Reference;
-  constructor(private afDb: AngularFireDatabase, private keyListService: KeyListService) {
+  constructor(private afDb: AngularFireDatabase, private dbHelperService: DBHelperService) {
     this.storageRef = afDb.app.storage().ref();
   }
 
   findImageAfterKey(key: string): FirebaseObjectObservable<Image> {
-    const foundImage: FirebaseObjectObservable<Image> = <FirebaseObjectObservable<Image>>this.afDb.object('images/' + key);
-    return foundImage;
+    return this.dbHelperService.findInNodeAfterKey("images", key);
   }
 
   findImagesFromUser(user: FirebaseObjectObservable<User>): Observable<Array<FirebaseObjectObservable<Image>>> {
@@ -24,7 +23,7 @@ export class ImageService {
     let images: Array<FirebaseObjectObservable<Image>> = [];
     return Observable.create(observer => {
       user.subscribe(User => {
-        this.keyListService.findKeyList(User.images).subscribe(keys => {
+        this.dbHelperService.findKeyList(User.images).subscribe(keys => {
           images.splice(0, images.length);
           keys.forEach(key => {
             images.push(this.findImageAfterKey(key.$key));
@@ -76,11 +75,11 @@ export class ImageService {
           updates['/' + key] = drawing;
           this.afDb.list('images').$ref.ref.update(updates);
           user.subscribe(User => {
-            this.keyListService.addKeyToList(User.images, key);
+            this.dbHelperService.addKeyToList(User.images, key);
           });
           topic.subscribe(Topic => {
             if (Topic.images !== undefined) {
-              this.keyListService.addKeyToList(Topic.images, key);
+              this.dbHelperService.addKeyToList(Topic.images, key);
             }
           });
           resolve('test'); // TODO

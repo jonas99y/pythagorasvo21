@@ -3,4 +3,4 @@ export * from './image.service';
 export * from './user.service';
 export * from './rating.service'
 export * from './comment.service';
-export * from './key-list.service';
+export * from './db-helper.service';

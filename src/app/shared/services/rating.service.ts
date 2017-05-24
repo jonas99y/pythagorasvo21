@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Rating, Image, User } from '../models/';
+import { DBHelperService } from './db-helper.service';
 @Injectable()
 export class RatingService {
 
   public ratingChars: Array<string> = ['👍', '👎', '😐', '😍', '💩'];
-  constructor(private afDb: AngularFireDatabase) { }
+  constructor(private afDb: AngularFireDatabase, private dbHelperService: DBHelperService) { }
 
 
 
   findRatingAfterKey(key: string): FirebaseObjectObservable<Rating> {
-    return this.afDb.object('/ratings/' + key);
+    return this.dbHelperService.findInNodeAfterKey("raitings",key);
   }
 
   addRatingToImage(image: FirebaseObjectObservable<Image>, user: FirebaseObjectObservable<User>, ratingChar: string)

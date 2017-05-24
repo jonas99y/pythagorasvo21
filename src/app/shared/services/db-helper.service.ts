@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FirebaseListObservable, AngularFireDatabase } from 'angularfire2/database';
+import { FirebaseListObservable, AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 @Injectable()
-export class KeyListService {
+export class DBHelperService {
 
   constructor(private afDb: AngularFireDatabase) { }
 
@@ -15,6 +15,16 @@ export class KeyListService {
   }
   removeKeyFormList(listKey: string, key: string) {
     this.afDb.list("keyList/" + listKey).remove(key);
+  }
+  findInNodeAfterKey<T>(node: string, key: string): FirebaseObjectObservable<T> {
+    if (key == undefined) {
+      return undefined;
+    }
+    if (!node.startsWith('/')) {
+      node = '/' + node
+    }
+
+    return this.afDb.object(node + "/" + key);
   }
 
 }

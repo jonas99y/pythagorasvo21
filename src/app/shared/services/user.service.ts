@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../models';
+import {DBHelperService} from './db-helper.service';
 import { Http } from '@angular/http';
 
 @Injectable()
 export class UserService {
 
-  constructor(private afDb: AngularFireDatabase, private afAuth: AngularFireAuth, private http: Http) { }
+  constructor(private afDb: AngularFireDatabase, private afAuth: AngularFireAuth, private http: Http, private dbHelperService:DBHelperService) { }
 
   findUserAfterKey(key: string): FirebaseObjectObservable<User> {
-    if (key === undefined) { return undefined }
-    const foundUser: FirebaseObjectObservable<User> = <FirebaseObjectObservable<User>>this.afDb.object('users/' + key);
-    return foundUser;
+    return this.dbHelperService.findInNodeAfterKey("users",key)
   }
 
   findCurrentUser(): Promise<FirebaseObjectObservable<User>> {

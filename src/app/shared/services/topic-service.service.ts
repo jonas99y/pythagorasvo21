@@ -3,16 +3,16 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database'
 import { Topic, Image, User } from '../models';
 import { ImageService } from './image.service';
+import { DBHelperService } from './db-helper.service';
 
 @Injectable()
 export class TopicService {
-  constructor(private afDb: AngularFireDatabase, private imageService: ImageService) {
+  constructor(private afDb: AngularFireDatabase, private imageService: ImageService, private dbHelperService: DBHelperService) {
 
   }
 
   findTopicAfterKey(key: string): FirebaseObjectObservable<Topic> {
-    const foundTopic: FirebaseObjectObservable<Topic> = <FirebaseObjectObservable<Topic>>this.afDb.object('topics/' + key);
-    return foundTopic;
+    return this.dbHelperService.findInNodeAfterKey("topic", key);
   }
   findOrCreateTopicAfterName(name: string): Promise<FirebaseObjectObservable<Topic>> {
     console.log(name);

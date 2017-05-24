@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Image, ImageService } from '../shared';
+import { Image, ImageService, Topic, User, UserService, TopicService } from '../shared';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 
 @Component({
@@ -12,6 +12,9 @@ export class SingleImageComponent implements OnInit, OnDestroy {
 
   private sub: any;
   public image: FirebaseObjectObservable<Image>;
+  public topic: FirebaseObjectObservable<Topic>;
+  public user: FirebaseObjectObservable<User>;
+
   constructor(private route: ActivatedRoute, private imageService: ImageService) { }
 
   ngOnInit() {
