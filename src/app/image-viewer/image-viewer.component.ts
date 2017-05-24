@@ -20,9 +20,8 @@ export class ImageViewerComponent implements OnInit {
       this.image.subscribe(img => {
         this.Image = img;
         this.Link = '/image/' + this.image.$ref.key;
-      })
-    }
-    else {
+      });
+    } else {
       this.Image = this.image;
       this.Link = '/image/' + this.image.$key;
     }

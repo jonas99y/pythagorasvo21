@@ -14,6 +14,27 @@ export class TopicService {
     const foundTopic: FirebaseObjectObservable<Topic> = <FirebaseObjectObservable<Topic>>this.afDb.object('topics/' + key);
     return foundTopic;
   }
+  findOrCreateTopicAfterName(name: string): Promise<FirebaseObjectObservable<Topic>> {
+    console.log(name);
+    const promise = new Promise((resolve, reject) => {
+      this.afDb.list("/topics", {
+        query: {
+          orderByChild: 'name',
+          equalTo: name
+        }
+      }).subscribe(topics => {
+        if (topics.length > 0) {
+          console.log(topics[0].$key);
+          resolve(this.findTopicAfterKey(topics[0].$key));
+        } else {
+          resolve(this.addTopic(name));
+        }
+      });
+    });
+    return promise;
+
+
+  }
 
   findTopicToDraw(user: FirebaseObjectObservable<User>): Promise<FirebaseObjectObservable<Topic>> {
     const promise = new Promise((resolve, reject) => {
@@ -53,9 +74,11 @@ export class TopicService {
     return array.indexOf(value) > -1;
   }
 
-  addTopic(topicName: string) {
-    this.afDb.list("topics").push({
-      name: topicName, images: this.afDb.object("").$ref.push().key
+  addTopic(topicName: string): FirebaseObjectObservable<Topic> {
+    let key = this.afDb.database.ref().push().key;
+    this.afDb.list("/topics").push({
+      name: topicName, images: key
     });
+    return this.findTopicAfterKey(key);
   }
 }

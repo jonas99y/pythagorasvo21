@@ -14,6 +14,8 @@ export class DrawingComponent implements OnInit {
   @ViewChild('sketchpad') sketchpad: SketchpadComponent;
 
   public imageName: string;
+  public Topic: Topic;
+  public NewTopicName: string;
   private image: string;
   private ref: firebase.storage.Reference;
 
@@ -24,15 +26,15 @@ export class DrawingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.findCurrentUser().then(user => this.topicService.findTopicToDraw(user).then(topic => {
-      console.log(topic);
-    }));
+
   }
 
   clicked($event) {
-    let topic: FirebaseObjectObservable<Topic> = this.topicService.findTopicAfterKey('mytesttopic');
-    this.userService.findCurrentUser().then(user => {
-      this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user);
+    this.topicService.findOrCreateTopicAfterName(this.NewTopicName).then(topic => {
+      this.userService.findCurrentUser().then(user => {
+        this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user);
+      });
+
 
     });
 
