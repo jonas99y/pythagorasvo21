@@ -15,12 +15,16 @@ export class SingleImageComponent implements OnInit, OnDestroy {
   public topic: FirebaseObjectObservable<Topic>;
   public user: FirebaseObjectObservable<User>;
 
-  constructor(private route: ActivatedRoute, private imageService: ImageService) { }
+  constructor(private route: ActivatedRoute,
+              private imageService: ImageService,
+              private userService: UserService,
+              private topicService: TopicService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.image = this.imageService.findImageAfterKey(params['imageKey']);
-      
+      this.image.subscribe( (img: Image) => (this.user = this.userService.findUserAfterKey(img.user) ));
+      this.image.subscribe( (img: Image) => (this.topic = this.topicService.findTopicAfterKey(img.topic) ));
     });
   }
 
