@@ -13,6 +13,12 @@ $maxMobileWidth: 600px;
     }
 }
 
+
+#controls{
+    width: 100%;
+
+}
+
 #sketchpad {
     text-align: center;
     margin: auto
@@ -45,4 +51,8 @@ $maxMobileWidth: 600px;
 
 #word-to-draw {
     font-style: italic;
+}
+
+#set-drawing-topic-div{
+    width: 100%;
 }

@@ -10,20 +10,25 @@
         <app-sketchpad #sketchpad>
         </app-sketchpad>
 
-        <div id="wrapper">
-            <div id="controls">
+        <div id="columns">
+            <div id="controls column is-half is-offset-one-quater is-multiline">
                 <app-sketchpad-colorselection id="color-selection" (lineColorUpdated)="sketchpad.SetLineColor($event)"></app-sketchpad-colorselection>
                 <app-sketchpad-controls (lineSizeUpdated)="sketchpad.SetLineSize($event)" (unDo)="sketchpad.UnDo()" (clear)="sketchpad.Clear()">
                 </app-sketchpad-controls>
+                
             </div>
-            <app-sketchpad-brush-preview [color]='sketchpad.lineColor' [size]='sketchpad.lineWidth' id="sketchpad-brush-preview">
+           
+           
+            <div class="column is-12">
+                <div *ngIf="Topic == null || Topic.name == null || Topic.name == ''"  >
+                    <span>Gib dinere Zeiching en name</span>
+                    <input type="text" placeholder="pythagoras vo 21" [(ngModel)]="NewTopicName" />
+                </div>
+                <button (click)="clicked($event)" class="button">Upload Image</button>
+            </div>
+             <app-sketchpad-brush-preview [color]='sketchpad.lineColor' [size]='sketchpad.lineWidth' id="sketchpad-brush-preview">
             </app-sketchpad-brush-preview>
-
-            <div *ngIf="Topic == null || Topic.name == null || Topic.name == ''">
-                <span>Gib dinere Zeiching en name</span>
-                <input type="text" placeholder="pythagoras vo 21" [(ngModel)]="NewTopicName" />
-            </div>
-            <button (click)="clicked($event)" class="button">Upload Image</button>
+            
         </div>
     </div>
 </div>
