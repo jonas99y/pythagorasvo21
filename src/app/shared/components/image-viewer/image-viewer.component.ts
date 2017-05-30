@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
-import { Image, RatingService, UserService } from '../shared';
+import { RatingService, UserService } from '../../services';
+import { Image } from '../../models';
 @Component({
   selector: 'app-image-viewer',
   templateUrl: './image-viewer.component.html',
