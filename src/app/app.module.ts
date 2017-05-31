@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
-import { CommentComponent } from './comment/comment.component';
 import { RatingComponent } from './rating/rating.component';
 import { SingleImageComponent } from './single-image/single-image.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -31,8 +30,6 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     ProfileComponent,
-
-    CommentComponent,
     RatingComponent,
     SingleImageComponent,
     SettingsComponent,

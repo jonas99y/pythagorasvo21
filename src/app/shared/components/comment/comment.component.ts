@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { Comment, CommentService, UserService } from '../shared';
+import { CommentService, UserService } from '../../services';
+import { Comment } from '../../models';
 import { Observable } from 'rxjs';
 
 @Component({
