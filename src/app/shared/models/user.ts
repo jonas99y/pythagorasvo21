@@ -3,5 +3,6 @@ export class User {
         public firstname: string,
         public lastname: string,
         public uid: string,
+        public topics:string,
         public groups) { };
 }

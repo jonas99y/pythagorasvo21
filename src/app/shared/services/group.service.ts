@@ -22,6 +22,19 @@ export class GroupService {
     return promise;
   }
 
+  createNewGroup(groupName: string, groupAdmin: FirebaseObjectObservable<User>): Promise<FirebaseObjectObservable<Group>> {
+    const promise = new Promise((resolve, reject) => {
+      const usersKey = this.dbHelperService.addKeyToList(null, groupAdmin.$ref.key);
+      resolve(this.findGroupAfterKey(this.afDb.list("/groups")
+      .push({ name: groupName, users: usersKey, topics: this.dbHelperService.getNewPushKey() }).key));
+
+    });
+
+
+    return promise;
+
+  }
+
   addUserToGroup(group: FirebaseObjectObservable<Group>, user: FirebaseObjectObservable<User>): Promise<any> {
     const promise = new Promise((resolve, reject) => {
       group.subscribe(groupSnapshot => {

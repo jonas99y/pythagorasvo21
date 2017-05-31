@@ -9,12 +9,16 @@ export class DBHelperService {
     return this.afDb.list('keyLists/' + key);
   }
 
+  getNewPushKey(): string {
+    return this.afDb.database.ref().push().key;
+  }
+
   /** Uses and returns a new listKey if the provided one is null, empty or undefined */
   addKeyToList(listKey: string, key: string): string {
     const updates = {};
     updates[key] = true;
     if (listKey == null || listKey === '' || listKey === undefined) {
-      listKey = this.afDb.database.ref().push().key;
+      listKey = this.getNewPushKey();
     }
     this.afDb.object('keyLists/' + listKey).update(updates);
     return listKey;

@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database'
-import { Topic, Image, User } from '../models';
+import { Topic, Image, User, Group } from '../models';
 import { ImageService } from './image.service';
 import { DBHelperService } from './db-helper.service';
 
@@ -15,7 +15,6 @@ export class TopicService {
     return this.dbHelperService.findInNodeAfterKey("topic", key);
   }
   findOrCreateTopicAfterName(name: string): Promise<FirebaseObjectObservable<Topic>> {
-    console.log(name);
     const promise = new Promise((resolve, reject) => {
       this.afDb.list("/topics", {
         query: {
@@ -24,7 +23,6 @@ export class TopicService {
         }
       }).subscribe(topics => {
         if (topics.length > 0) {
-          console.log(topics[0].$key);
           resolve(this.findTopicAfterKey(topics[0].$key));
         } else {
           resolve(this.addTopic(name));
@@ -72,6 +70,43 @@ export class TopicService {
 
   private isInArray(value, array): boolean {
     return array.indexOf(value) > -1;
+  }
+
+  assignTopicToGroup(topic: FirebaseObjectObservable<Topic>, group: FirebaseObjectObservable<Group>) {
+    group.subscribe(groupSnapshot => {
+      this.dbHelperService.addKeyToList(groupSnapshot.topics, topic.$ref.key);
+
+    });
+  }
+
+  assignNewTopicToGroup(topicName: string, group: FirebaseObjectObservable<Group>): Promise<FirebaseObjectObservable<Topic>> {
+    const promise = new Promise((resolve, reject) => {
+      this.findOrCreateTopicAfterName(topicName).then(topic => {
+        this.assignTopicToGroup(topic, group);
+        resolve(topic);
+      });
+    });
+
+    return promise;
+  }
+
+  assignTopicToUser(topic: FirebaseObjectObservable<Topic>, user: FirebaseObjectObservable<User>) {
+    user.subscribe(userSnapshot => {
+      this.dbHelperService.addKeyToList(userSnapshot.topics, topic.$ref.key);
+
+    });
+  }
+
+
+  assignNewTopicToUser(topicName: string, user: FirebaseObjectObservable<User>): Promise<FirebaseObjectObservable<Topic>> {
+    const promise = new Promise((resolve, reject) => {
+      this.findOrCreateTopicAfterName(topicName).then(topic => {
+        this.assignTopicToUser(topic, user);
+        resolve(topic);
+      });
+    });
+
+    return promise;
   }
 
   addTopic(topicName: string): FirebaseObjectObservable<Topic> {
