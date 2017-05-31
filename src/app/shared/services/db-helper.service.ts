@@ -6,25 +6,31 @@ export class DBHelperService {
   constructor(private afDb: AngularFireDatabase) { }
 
   findKeyList(key: string): FirebaseListObservable<any[]> {
-    return this.afDb.list("keyLists/" + key);
+    return this.afDb.list('keyLists/' + key);
   }
-  addKeyToList(listKey: string, key: string) {
+
+  /** Uses and returns a new listKey if the provided one is null, empty or undefined */
+  addKeyToList(listKey: string, key: string): string {
     const updates = {};
     updates[key] = true;
-    this.afDb.object("keyLists/" + listKey).update(updates);
+    if (listKey == null || listKey === '' || listKey === undefined) {
+      listKey = this.afDb.database.ref().push().key;
+    }
+    this.afDb.object('keyLists/' + listKey).update(updates);
+    return listKey;
   }
   removeKeyFormList(listKey: string, key: string) {
-    this.afDb.list("keyList/" + listKey).remove(key);
+    this.afDb.list('keyList/' + listKey).remove(key);
   }
   findInNodeAfterKey<T>(node: string, key: string): FirebaseObjectObservable<T> {
-    if (key == undefined) {
+    if (key === undefined) {
       return undefined;
     }
     if (!node.startsWith('/')) {
-      node = '/' + node
+      node = '/' + node;
     }
 
-    return this.afDb.object(node + "/" + key);
+    return this.afDb.object(node + '/' + key);
   }
 
 }

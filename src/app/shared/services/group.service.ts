@@ -6,7 +6,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 @Injectable()
 export class GroupService {
 
-  constructor(private dbHelperService: DBHelperService) { }
+  constructor(private dbHelperService: DBHelperService, private afDb: AngularFireDatabase) { }
 
 
   findGroupAfterKey(key: string): FirebaseObjectObservable<Group> {
@@ -22,11 +22,16 @@ export class GroupService {
     return promise;
   }
 
-  addUserToGroup(group: FirebaseObjectObservable<Group>, user: FirebaseObjectObservable<Group>): Promise<any> {
+  addUserToGroup(group: FirebaseObjectObservable<Group>, user: FirebaseObjectObservable<User>): Promise<any> {
     const promise = new Promise((resolve, reject) => {
       group.subscribe(groupSnapshot => {
         this.dbHelperService.addKeyToList(groupSnapshot.users, user.$ref.key);
-        resolve();
+        user.subscribe(userSnapshot => {
+          // not sure if this works!
+          userSnapshot.groups = this.dbHelperService.addKeyToList(userSnapshot.groups, group.$ref.key);
+          user.set(userSnapshot);
+          resolve();
+        });
       });
     });
     return promise;
