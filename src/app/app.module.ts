@@ -16,6 +16,7 @@ import { SingleImageComponent } from './single-image/single-image.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MainGalleryComponent } from './main-gallery/main-gallery.component';
 import { UserViewComponent } from './user-view/user-view.component';
+import { AboutComponent } from './about/about.component';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyBlr3XTiDLBlWGJrjVxeDNkmgxcliow7o4',
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     SingleImageComponent,
     SettingsComponent,
     MainGalleryComponent,
-    UserViewComponent
+    UserViewComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
