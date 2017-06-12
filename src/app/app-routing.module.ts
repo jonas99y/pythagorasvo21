@@ -6,7 +6,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SingleImageComponent } from './single-image/single-image.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MainGalleryComponent } from './main-gallery/main-gallery.component';
-import {UserViewComponent} from './user-view/user-view.component';
+import { UserViewComponent } from './user-view/user-view.component';
+import { FeedComponent } from './feed';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,7 +19,8 @@ export const appRoutes: Routes = [
   { path: 'user/:userKey', component: UserViewComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: MainGalleryComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'feed', component: FeedComponent }
 
 
 ];
