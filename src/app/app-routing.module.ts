@@ -21,7 +21,7 @@ export const appRoutes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: MainGalleryComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'feed', component: FeedComponent },
+  { path: 'feed', component: FeedComponent , canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent }
 
 
