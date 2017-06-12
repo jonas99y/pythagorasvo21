@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register-email', component: RegisterEmailComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
@@ -21,7 +22,6 @@ export const appRoutes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: MainGalleryComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'feed', component: FeedComponent , canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent }
 
 
