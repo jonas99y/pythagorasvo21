@@ -7,11 +7,12 @@ import { FeedComponent } from './components/feed/feed.component';
 import { ImageFeedItemComponent } from './components/image-feed-item/image-feed-item.component';
 import { PostFeedItemComponent } from './components/post-feed-item/post-feed-item.component';
 import { FeedItemComponent } from './components/feed-item/feed-item.component';
+import { SharedModule } from '../shared';
 
 
 @NgModule({
     imports: [
-        CommonModule, FormsModule, RouterModule
+        CommonModule, FormsModule, RouterModule, SharedModule
     ],
     declarations: [
         FeedComponent,

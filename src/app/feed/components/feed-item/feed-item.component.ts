@@ -8,7 +8,7 @@ import {
   Injector
 } from '@angular/core';
 
-import { User, FactoryComponent } from '../../../shared';
+import { User} from '../../../shared';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { ImageFeedItemComponent } from '../image-feed-item/image-feed-item.component';
 
@@ -57,15 +57,4 @@ export class FeedItemComponent {
   }
 
   constructor(private resolver: ComponentFactoryResolver) { }
-
-
-
-
-  // public username:string;
-  // @Input() user: FirebaseObjectObservable<User>;
-
-  // constructor(injector: Injector, resolver: ComponentFactoryResolver) {
-  //   super(resolver);
-  //   this.componentData;
-  // }
 }
