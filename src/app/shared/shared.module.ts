@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TopicService, ImageService, UserService, RatingService, CommentService, DBHelperService, GroupService } from './services/';
 import { TestPipePipe, FindPipe } from './pipes/';
-import { ImageViewerComponent, GalleryViewerComponent, CommentComponent } from './components';
+import { ImageViewerComponent, GalleryViewerComponent, CommentComponent,RatingComponent } from './components';
 
 
 
@@ -13,8 +13,8 @@ import { ImageViewerComponent, GalleryViewerComponent, CommentComponent } from '
   imports: [
     CommonModule, RouterModule, FormsModule
   ],
-  declarations: [TestPipePipe, FindPipe, ImageViewerComponent, GalleryViewerComponent, CommentComponent],
-  exports: [TestPipePipe, FindPipe, ImageViewerComponent, GalleryViewerComponent, CommentComponent],
+  declarations: [TestPipePipe, FindPipe, ImageViewerComponent, GalleryViewerComponent, CommentComponent,RatingComponent],
+  exports: [TestPipePipe, FindPipe, ImageViewerComponent, GalleryViewerComponent, CommentComponent,RatingComponent],
   providers: [ImageService, TopicService, UserService, RatingService, CommentService, DBHelperService, GroupService]
 })
 export class SharedModule { }

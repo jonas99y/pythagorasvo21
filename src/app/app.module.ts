@@ -12,7 +12,6 @@ import { AuthModule } from './auth/auth.module';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { FeedModule} from './feed/feed.module';
-import { RatingComponent } from './rating/rating.component';
 import { SingleImageComponent } from './single-image/single-image.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MainGalleryComponent } from './main-gallery/main-gallery.component';
@@ -34,7 +33,6 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     ProfileComponent,
-    RatingComponent,
     SingleImageComponent,
     SettingsComponent,
     MainGalleryComponent,

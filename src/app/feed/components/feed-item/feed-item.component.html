@@ -1,5 +1,9 @@
 <div class="feed-item-wrapper hasShadow">
     <a>{{username}}</a>
     <div #dynamicComponentContainer></div>
-    <div class="add-feed-item-comment">Kommentiere</div>
+
+    <button class="button"> <i (click)="showComment()" class="fa fa-comments-o" aria-hidden="true"></i></button>
+    <button class="button"><i (click)="showRating()" class="fa fa-star-half-o" aria-hidden="true"></i></button>
+    <app-comment *ngIf="isCommentVisible"></app-comment>
+    <app-rating *ngIf="isRatingVisible"></app-rating>
 </div>

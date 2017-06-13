@@ -8,7 +8,7 @@ import {
   Injector
 } from '@angular/core';
 
-import { User} from '../../../shared';
+import { User } from '../../../shared';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { ImageFeedItemComponent } from '../image-feed-item/image-feed-item.component';
 
@@ -23,7 +23,8 @@ import { ImageFeedItemComponent } from '../image-feed-item/image-feed-item.compo
 
 export class FeedItemComponent {
   public username: string;
-
+  public isCommentVisible: boolean = false;
+  public isRatingVisible: boolean = false;
 
   currentComponent = null;
 
@@ -57,4 +58,13 @@ export class FeedItemComponent {
   }
 
   constructor(private resolver: ComponentFactoryResolver) { }
+
+
+  public showComment() {
+    this.isCommentVisible = !this.isCommentVisible;
+  }
+
+  public showRating() {
+    this.isRatingVisible = !this.isRatingVisible;
+  }
 }
