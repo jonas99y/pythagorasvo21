@@ -4,8 +4,12 @@ import {
   ViewContainerRef,
   ViewChild,
   ReflectiveInjector,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  Injector
 } from '@angular/core';
+
+import { User, FactoryComponent } from '../../../shared';
+import { FirebaseObjectObservable } from 'angularfire2/database';
 import { ImageFeedItemComponent } from '../image-feed-item/image-feed-item.component';
 
 @Component({
@@ -14,7 +18,12 @@ import { ImageFeedItemComponent } from '../image-feed-item/image-feed-item.compo
   styleUrls: ['./feed-item.component.scss'],
   entryComponents: [ImageFeedItemComponent]
 })
+
+
+
 export class FeedItemComponent {
+  public username: string;
+
 
   currentComponent = null;
 
@@ -24,10 +33,9 @@ export class FeedItemComponent {
     if (!data) {
       return;
     };
-
     let inputProviders = Object.keys(data.inputs).map((inputName) => { return { provide: inputName, useValue: data.inputs[inputName] }; });
     let resolvedInputs = ReflectiveInjector.resolve(inputProviders);
-
+    // debugger;
     let injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.dynamicComponentContainer.parentInjector);
 
     let factory = this.resolver.resolveComponentFactory(data.component);
@@ -41,7 +49,23 @@ export class FeedItemComponent {
     }
 
     this.currentComponent = component;
+    const user: FirebaseObjectObservable<User> = data.inputs['user'];
+    user.subscribe(userSnap => {
+      this.username = userSnap.firstname;
+    });
+
   }
 
   constructor(private resolver: ComponentFactoryResolver) { }
+
+
+
+
+  // public username:string;
+  // @Input() user: FirebaseObjectObservable<User>;
+
+  // constructor(injector: Injector, resolver: ComponentFactoryResolver) {
+  //   super(resolver);
+  //   this.componentData;
+  // }
 }
