@@ -26,7 +26,10 @@ export class GroupService {
     const promise = new Promise((resolve, reject) => {
       const usersKey = this.dbHelperService.addKeyToList(null, groupAdmin.$ref.key);
       resolve(this.findGroupAfterKey(this.afDb.list("/groups")
-      .push({ name: groupName, users: usersKey, topics: this.dbHelperService.getNewPushKey() }).key));
+        .push({
+          name: groupName, users: usersKey, topics: this.dbHelperService.getNewPushKey(), feed: this.dbHelperService
+            .getNewPushKey()
+        }).key));
 
     });
 

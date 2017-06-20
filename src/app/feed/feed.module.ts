@@ -8,6 +8,8 @@ import { ImageFeedItemComponent } from './components/image-feed-item/image-feed-
 import { PostFeedItemComponent } from './components/post-feed-item/post-feed-item.component';
 import { FeedItemComponent } from './components/feed-item/feed-item.component';
 import { SharedModule } from '../shared';
+import { UserFeedComponent } from './components/user-feed/user-feed.component';
+import { GroupFeedComponent } from './components/group-feed/group-feed.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SharedModule } from '../shared';
         FeedComponent,
         FeedItemComponent,
         ImageFeedItemComponent,
-        PostFeedItemComponent
+        PostFeedItemComponent,
+        UserFeedComponent,
+        GroupFeedComponent
     ],
     exports: [
         FeedComponent, FeedItemComponent

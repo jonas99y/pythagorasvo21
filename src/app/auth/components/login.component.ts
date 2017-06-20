@@ -14,7 +14,7 @@ import * as firebase from 'firebase/app';
 export class LoginComponent implements OnInit {
 
   error: any;
-  redirectRoute = '/drawing';
+  redirectRoute = '/feed';
   email: string;
   password: string;
 
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       ).then(
         (success) => {
           console.log(success);
-          this.router.navigate(['/drawing']);
+          this.router.navigate([this.redirectRoute]);
         }).catch(
         (err) => {
           console.log(err);

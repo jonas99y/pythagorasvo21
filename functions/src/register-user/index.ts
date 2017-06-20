@@ -1,6 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import * as shared from '../shared';
 
+/* HTTP Function to register a user */
 export const listener = functions.https.onRequest((req, res) => {
   res.set('Access-Control-Allow-Origin', '*')
     .set('Access-Control-Allow-Methods', 'GET, POST')
@@ -13,17 +15,9 @@ export const listener = functions.https.onRequest((req, res) => {
     const firstname = bodyData.firstname;
     const lastname = bodyData.lastname;
     const uid = bodyData.uid;
-    const snapshot = admin.database().ref('users').push({
-      firstname: firstname,
-      lastname: lastname,
-      uid: uid,
-      images: admin.database().ref().push().key
-    });
-    const key = snapshot.key;
-    const updates = {};
-    updates[uid] = key;
 
-    admin.database().ref('userUIDs').update(updates);
+    shared.registerNewUser(uid, firstname, lastname);
+
     res.send('Wheeee it works! User adjusted');
   }
 });

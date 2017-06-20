@@ -4,5 +4,6 @@ export class User {
         public lastname: string,
         public uid: string,
         public topics:string,
+        public feed:string,
         public groups) { };
 }

@@ -7,12 +7,13 @@ import { SingleImageComponent } from './single-image/single-image.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MainGalleryComponent } from './main-gallery/main-gallery.component';
 import { UserViewComponent } from './user-view/user-view.component';
-import { FeedComponent } from './feed';
+import { UserFeedComponent, GroupFeedComponent } from './feed';
 import { AboutComponent } from './about/about.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'feed', component: FeedComponent, canActivate: [AuthGuard] },
+  { path: 'feed', component: UserFeedComponent, canActivate: [AuthGuard] },
+  { path: 'group-feed', component: GroupFeedComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register-email', component: RegisterEmailComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
@@ -23,8 +24,6 @@ export const appRoutes: Routes = [
   { path: 'gallery', component: MainGalleryComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent }
-
-
 ];
 @NgModule({
   imports: [
