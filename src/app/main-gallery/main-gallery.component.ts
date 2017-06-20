@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService, Image } from '../shared';
-import { FirebaseListObservable } from 'angularfire2/database';
-
+import { Observable } from 'rxjs';
+import { FirebaseListObservable} from 'angularfire2/database';
 
 @Component({
   selector: 'app-main-gallery',

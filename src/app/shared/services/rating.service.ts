@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase,  FirebaseObjectObservable } from 'angularfire2/database';
 import { Rating, Image, User } from '../models/';
 import { DBHelperService } from './db-helper.service';
 @Injectable()

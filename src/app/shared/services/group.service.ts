@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DBHelperService } from './db-helper.service';
 import { Group, User } from '../models';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase,  FirebaseObjectObservable } from 'angularfire2/database';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class GroupService {
@@ -13,7 +14,7 @@ export class GroupService {
     return this.dbHelperService.findInNodeAfterKey("groups", key);
   }
 
-  findAllUsersInGroup(group: FirebaseObjectObservable<Group>): Promise<FirebaseListObservable<User>> {
+  findAllUsersInGroup(group: FirebaseObjectObservable<Group>): Promise<Observable<User>> {
     const promise = new Promise((resolve, reject) => {
       group.subscribe(groupSnapshot => {
         resolve(this.dbHelperService.findKeyList(groupSnapshot.users));

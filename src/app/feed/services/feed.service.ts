@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DBHelperService, FeedItem, User, Group } from '../../shared';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
+import { Observable} from 'rxjs';
+
 
 @Injectable()
 export class FeedService {
@@ -8,19 +10,23 @@ export class FeedService {
     constructor(private dbHelperService: DBHelperService, private afDb: AngularFireDatabase) { }
 
 
+    createNewFeedItem(feedItem: FeedItem): FirebaseObjectObservable<FeedItem> {
+        return this.dbHelperService.push('/feedItems', feedItem);
+    }
+
     findFeedItemAfterKey(key: string): FirebaseObjectObservable<FeedItem> {
         return this.dbHelperService.findInNodeAfterKey('feedItems', key);
     }
 
-    findAllFeedItemsInFeed(feedKey: string): FirebaseListObservable<FeedItem[]> {
-        return this.dbHelperService.findKeyList(feedKey);
+    findAllFeedItemsInFeed(feedKey: string): Observable<Array<FirebaseObjectObservable<FeedItem>>> {
+        return this.dbHelperService.findAllObjectsFromKeyList(feedKey,"/feedItems");
     }
 
     addFeedItemToFeed(feedItem: FirebaseObjectObservable<FeedItem>, feedKey: string) {
         this.dbHelperService.addKeyToList(feedKey, feedItem.$ref.key);
     }
 
-    addFeedItemToUser(feedItem: FirebaseObjectObservable<FeedItem>, user: FirebaseListObservable<User>) {
+    addFeedItemToUser(feedItem: FirebaseObjectObservable<FeedItem>, user: FirebaseObjectObservable<User>) {
         user.subscribe(userSnapshot => {
             this.addFeedItemToFeed(feedItem, userSnapshot.feed);
         });

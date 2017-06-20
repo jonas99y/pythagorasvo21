@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database'
+import { AngularFireDatabase,  FirebaseObjectObservable } from 'angularfire2/database'
 import { Topic, Image, User, Group } from '../models';
 import { ImageService } from './image.service';
 import { DBHelperService } from './db-helper.service';
