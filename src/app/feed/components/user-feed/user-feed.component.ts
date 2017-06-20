@@ -20,18 +20,12 @@ export class UserFeedComponent implements OnInit {
       user.subscribe(userSnapshot => {
 
         this.feedItems = feedService.findAllFeedItemsInFeed(userSnapshot.feed);
+        console.log(this.feedItems);
       });
     });
   }
 
   ngOnInit() {
-    this.userService.findCurrentUser().then(user => {
-      this.feedService.addFeedItemToUser(
-        this.feedService.createNewFeedItem(
-          new FeedItem(null, null, null, null, null, 'hallo ich bin ein FeedItem'))
-        , user);
-    });
-
   }
 
 }
