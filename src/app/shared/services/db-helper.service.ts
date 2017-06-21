@@ -15,8 +15,8 @@ export class DBHelperService {
   }
 
   findAllObjectsFromKeyList(key: string, path: string): Observable<Array<FirebaseObjectObservable<any>>> {
-    const array = new Array<FirebaseObjectObservable<any>>();
     return Observable.create(observer => {
+      const array = new Array<FirebaseObjectObservable<any>>();      
       const keylist = this.findKeyList(key);
       keylist.subscribe(keyListSnapshot => {
         keyListSnapshot.forEach(item => {

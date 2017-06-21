@@ -13,7 +13,11 @@ export class ImageService {
   }
 
   findImageAfterKey(key: string): FirebaseObjectObservable<Image> {
-    return this.dbHelperService.findInNodeAfterKey("images", key);
+    return this.dbHelperService.findInNodeAfterKey('images', key);
+  }
+
+  findImagesAfterTopic(topic: Topic): Observable<Array<FirebaseObjectObservable<Image>>> {
+    return this.dbHelperService.findAllObjectsFromKeyList(topic.images, '/images');
   }
 
   findImagesFromUser(user: FirebaseObjectObservable<User>): Observable<Array<FirebaseObjectObservable<Image>>> {

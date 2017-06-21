@@ -1,5 +1,8 @@
-<p>
-    Bitte zeichned doch
-    <a [routerLink]="['/draw/topic',Topic?.$key]">{{Topic?.name}}</a>
+<p>wed das du <a [routerLink]="['/draw/topic',Topic?.$key]">{{Topic?.name}}</a> zeichnisch.</p>
 
-</p>
+<div *ngIf="(Images|async)?.length >0">
+    <p>Do es paar Bispiil:</p>
+    <div class="columns is-multiline">
+        <app-image-viewer *ngFor="let image of Images|async" [Image]="image" class="column is-2"></app-image-viewer>
+    </div>
+</div>
