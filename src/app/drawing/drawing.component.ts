@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SketchpadComponent } from '../sketchpad/components/sketchpad/sketchpad.component';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 import { TopicService, UserService, ImageService, Topic, User, GroupService } from '../shared/';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import * as firebase from 'firebase';
 @Component({
@@ -19,22 +20,25 @@ export class DrawingComponent implements OnInit {
   private image: string;
   private ref: firebase.storage.Reference;
 
-  constructor(private imageService: ImageService, private topicService: TopicService, private userService: UserService, private groupService: GroupService) {
+  constructor(private imageService: ImageService,
+    private topicService: TopicService,
+    private userService: UserService,
+    private groupService: GroupService,
+    private route: ActivatedRoute) {
     //dont remove, will break drawing-service;
     console.log(firebase.storage());
     //userService.registerUser(new User(null,"Fabio","Zuber","TRtODRQVUvMJuBTGgzfjYRjBxYk1"))
   }
 
   ngOnInit() {
-    //old testing code
-
-    // this.userService.findCurrentUser().then(currentuser => {
-    //   this.groupService.createNewGroup("swegas", currentuser).then(ngroup => {
-    //     this.groupService.addUserToGroup(ngroup, this.userService.findUserAfterKey("-Kkbui8oopzw-Zy31so1"));
-    //     this.topicService.assignNewTopicToGroup("de pythagoras vo 21",ngroup);
-    //   });
-    // }
-    // );
+    this.route.params.subscribe(paramsSnapshot => {
+      if (paramsSnapshot.topicKey !== undefined) {
+        this.topicService.findTopicAfterKey(paramsSnapshot.topicKey).subscribe(topicSnapshot => {
+          this.Topic = topicSnapshot;
+          console.log(topicSnapshot);
+        });
+      }
+    });
   }
 
   clicked($event) {

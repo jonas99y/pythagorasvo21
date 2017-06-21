@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase,  FirebaseObjectObservable } from 'angularfire2/database'
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database'
 import { Topic, Image, User, Group } from '../models';
 import { ImageService } from './image.service';
 import { DBHelperService } from './db-helper.service';
@@ -12,11 +12,11 @@ export class TopicService {
   }
 
   findTopicAfterKey(key: string): FirebaseObjectObservable<Topic> {
-    return this.dbHelperService.findInNodeAfterKey("topic", key);
+    return this.dbHelperService.findInNodeAfterKey('topics', key);
   }
   findOrCreateTopicAfterName(name: string): Promise<FirebaseObjectObservable<Topic>> {
     const promise = new Promise((resolve, reject) => {
-      this.afDb.list("/topics", {
+      this.afDb.list('/topics', {
         query: {
           orderByChild: 'name',
           equalTo: name
@@ -41,9 +41,9 @@ export class TopicService {
         topics.forEach(topic => {
           topicKeys.push(topic.$ref.key);
         });
-        let alltopics = this.afDb.object("topics");
+        let alltopics = this.afDb.object('topics');
         console.log(alltopics);
-        resolve(alltopics.first((x, idx, obs) => { console.log("test"); return true }))
+        resolve(alltopics.first((x, idx, obs) => { console.log('test'); return true; }));
       });
     });
 
@@ -111,7 +111,7 @@ export class TopicService {
 
   addTopic(topicName: string): FirebaseObjectObservable<Topic> {
     let key = this.afDb.database.ref().push().key;
-    this.afDb.list("/topics").push({
+    this.afDb.list('/topics').push({
       name: topicName, images: key
     });
     return this.findTopicAfterKey(key);

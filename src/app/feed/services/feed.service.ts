@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {  FeedItem, User, Group,Topic  } from '../../shared';
-import { DBHelperService } from '../../shared/services/db-helper.service'; 
+import { FeedItem, User, Group, Topic } from '../../shared';
+import { DBHelperService } from '../../shared/services/db-helper.service';
 import { ImageService } from '../../shared/services/image.service';
 
 import { TopicService } from '../../shared/services/topic-service.service';
-import { UserService} from '../../shared/services/user.service';
+import { UserService } from '../../shared/services/user.service';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { FeedFactoryService } from './feed-factory.service';
@@ -40,7 +40,7 @@ export class FeedService {
     }
 
     addFeedItemToFeed(feedItem: FirebaseObjectObservable<FeedItem>, feedKey: string) {
- 
+
         this.dbHelperService.addKeyToList(feedKey, feedItem.$ref.key);
     }
 
@@ -72,9 +72,7 @@ export class FeedService {
                     } else
                         if (feedItemSnapshot.message !== undefined) {
                             // handle every component with message and no image here
-                            let temp = this.ffservice.setPostFeedItemComponent(user, feedItemSnapshot.message);
-                            console.log(temp);
-                            resolve(temp);
+                            resolve(this.ffservice.setPostFeedItemComponent(user, feedItemSnapshot.message));
                         }
 
             });

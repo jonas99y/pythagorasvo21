@@ -17,6 +17,7 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register-email', component: RegisterEmailComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
+  { path: 'draw/topic/:topicKey', component: DrawingComponent, canActivate:[AuthGuard]},
   { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: 'image/:imageKey', component: SingleImageComponent, canActivate: [AuthGuard] },
   { path: 'user/:userKey', component: UserViewComponent, canActivate: [AuthGuard] },
