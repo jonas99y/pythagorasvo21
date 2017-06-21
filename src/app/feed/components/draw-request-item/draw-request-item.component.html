@@ -1,4 +1,5 @@
 <p>
-    Bitte zeichned doch {{topic.name}}
-    <a [routerLink]="['/draw/topic/-Kkt8XXqz2nH7WjGWHRl']">Topic</a>
+    Bitte zeichned doch
+    <a [routerLink]="['/draw/topic',Topic?.$key]">{{Topic?.name}}</a>
+
 </p>
