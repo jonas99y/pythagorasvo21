@@ -23,6 +23,10 @@ export class FeedService {
     )
     { }
 
+    createNewTopicRequestFeedItem(topicKey, authorKey): FirebaseObjectObservable<FeedItem> {
+        const feedItem: FeedItem = { author: authorKey, topic: topicKey } as FeedItem;
+        return this.createNewFeedItem(feedItem);
+    }
 
     createNewFeedItem(feedItem: FeedItem): FirebaseObjectObservable<FeedItem> {
 
