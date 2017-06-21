@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FeedFactoryService, FeedService } from '../../services';
+import { FeedService } from '../../services/feed.service';
 import { FeedItemComponent } from '../feed-item/feed-item.component';
 import { UserService, ImageService, FeedItem } from '../../../shared';
 import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
@@ -28,7 +28,6 @@ export class FeedComponent {
   };
 
   constructor(
-    public ffService: FeedFactoryService,
     public userService: UserService,
     public imageService: ImageService,
     public feedService: FeedService) {

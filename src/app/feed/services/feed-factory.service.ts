@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ImageFeedItemComponent } from '../components/image-feed-item/image-feed-item.component';
-import { PostFeedItemComponent } from '../components/post-feed-item/post-feed-item.component';
-import { User, Image, FeedItem } from '../../shared';
+import { DrawRequestItemComponent, PostFeedItemComponent, ImageFeedItemComponent } from '../components';
+import { User, Image, FeedItem, Topic } from '../../shared';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 @Injectable()
 export class FeedFactoryService {
 
+    constructor(){}
 
+    setTopicRequestItemComponent(user: FirebaseObjectObservable<User>, topic: FirebaseObjectObservable<Topic>): any {
+        return {
+            component: DrawRequestItemComponent,
+            inputs: {
+                topic: topic,
+                user: user
+            }
+        };
+
+    }
 
     setImageFeedItemComponent(user: FirebaseObjectObservable<User>, image: FirebaseObjectObservable<Image>): any {
         return {

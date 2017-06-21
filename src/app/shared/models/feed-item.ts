@@ -5,6 +5,7 @@ export class FeedItem {
         public rating: string,
         public timestamp: string,
         public image: string,
-        public message: string
+        public message: string,
+        public topic: string
     ) { }
 }
