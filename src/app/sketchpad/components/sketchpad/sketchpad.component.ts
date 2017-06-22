@@ -11,12 +11,15 @@ export class SketchpadComponent implements OnInit {
 
   @ViewChild('mainCanvas') public mainCanvasRef: ElementRef;
   @ViewChild('topCanvas') public topCanvasRef: ElementRef;
+  @ViewChild('backgroundCanvas') public backgroudCanvasRef: ElementRef;
 
   private mainCanvas: HTMLCanvasElement;
   private topCanvas: HTMLCanvasElement;
+  private backgroundCanvas: HTMLCanvasElement;
 
   private mainCanvasContext: CanvasRenderingContext2D;
   private topCanvasContext: CanvasRenderingContext2D;
+  private backgroundCanvasContext: CanvasRenderingContext2D;
 
   private pathsRelative: Array<Path> = new Array<Path>();
   private pathsAbsolute: Array<Path> = new Array<Path>();
@@ -130,9 +133,11 @@ export class SketchpadComponent implements OnInit {
     });
     this.topCanvas = this.topCanvasRef.nativeElement;
     this.mainCanvas = this.mainCanvasRef.nativeElement;
+    this.backgroundCanvas = this.backgroudCanvasRef.nativeElement;
 
     this.mainCanvasContext = this.mainCanvas.getContext('2d');
     this.topCanvasContext = this.topCanvas.getContext('2d');
+    this.backgroundCanvasContext = this.backgroundCanvas.getContext('2d');
 
     this.SetCanvasSize();
 
@@ -286,5 +291,17 @@ export class SketchpadComponent implements OnInit {
     const newCoord: Coord = new Coord(newX, newY);
     const newStroke: Stroke = new Stroke(newCoord);
     return newStroke;
+  }
+
+
+
+  @Input() set backgroudImage(image) {
+    if (this.backgroundCanvasContext == undefined) {
+      return;
+    }
+    console.log(image);
+    // this.canvasHeight = image.height;
+    // this.canvasWidth= image.width;
+    this.backgroundCanvasContext.drawImage(image, 0, 0);
   }
 }

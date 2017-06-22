@@ -9,12 +9,15 @@ $sideLength: 100%;
 
 #main-canvas {
     z-index: 5;
-    background: white;
-
+    // background: white;
 }
 
 #top-canvas {
     z-index: 6;
+}
+
+#background-canvas {
+    z-index: 4;
 }
 
 #canvas-wrapper {
