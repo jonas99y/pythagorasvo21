@@ -1,4 +1,4 @@
-<p>wed das du <a [routerLink]="['/draw/topic',Topic?.$key]">{{Topic?.name}}</a> zeichnisch.</p>
+<p>wed das du <a [routerLink]="['/draw/topic',(Topic?.$key)|| '']">{{Topic?.name}}</a> zeichnisch.</p>
 
 <div *ngIf="(Images|async)?.length >0">
     <p>Do es paar Bispiil:</p>
