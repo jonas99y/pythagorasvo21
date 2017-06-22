@@ -15,12 +15,11 @@ export class SketchpadControlsComponent implements OnInit {
   // Fields
   private _lineSize: number;
   // Properties
-  public PensSizes:Array<number> = [1,2,3,5,8,13,21,34,55,89];
+  public PensSizes: Array<number> = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 
 
-  public SetPenSizeIndex(size:Event)
-  {
-    this.lineSize=this.PensSizes[(<any>size.srcElement).value];
+  public SetPenSizeIndex(size: Event) {
+    this.lineSize = this.PensSizes[(<any>size.srcElement).value];
   }
 
   get lineSize(): number {
@@ -38,10 +37,11 @@ export class SketchpadControlsComponent implements OnInit {
   }
 
   clearClicked() {
-    var start = new Date().getTime();
-    var result = confirm("Wetsch das würkli lösche?");
-    if (result == true || new Date().getTime() < start + 200)
+    let start = new Date().getTime();
+    let result = confirm('Wetsch das würkli lösche?');
+    if (result === true || new Date().getTime() < start + 200) {
       this.clear.emit();
+    }
 
   }
 
@@ -50,17 +50,19 @@ export class SketchpadControlsComponent implements OnInit {
 
   decreasePenSize() {
     this.lineSize -= 2;
-    if (this.lineSize < 2)
+    if (this.lineSize < 2) {
       this.lineSize = 2;
+    }
   }
   increasePenSize() {
     this.lineSize += 2;
-    if (this.lineSize > 100)
+    if (this.lineSize > 100) {
       this.lineSize = 100;
+    }
   }
   ngOnInit() {
 
-    //set default;
+    // set default;
     this.lineSize = 5;
 
   }

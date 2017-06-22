@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService, RatingService } from '../../services';
-import { Rating} from '../../models';
+import { Rating } from '../../models';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 @Component({
   selector: 'app-rating',
@@ -16,8 +16,7 @@ export class RatingComponent implements OnInit {
   @Input('ratingKey') set RatingKey(key: string) {
     this.ratingKey = key;
     this.rating = this.ratingService.findRatingAfterKey(this.ratingKey);
-    
-  } 
+  };
   constructor(private userService: UserService, private ratingService: RatingService) { }
 
   ngOnInit() {
