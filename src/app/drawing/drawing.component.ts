@@ -24,7 +24,8 @@ export class DrawingComponent implements OnInit {
     private topicService: TopicService,
     private userService: UserService,
     private groupService: GroupService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     //dont remove, will break drawing-service;
     console.log(firebase.storage());
     //userService.registerUser(new User(null,"Fabio","Zuber","TRtODRQVUvMJuBTGgzfjYRjBxYk1"))
@@ -44,7 +45,9 @@ export class DrawingComponent implements OnInit {
   clicked($event) {
     this.topicService.findOrCreateTopicAfterName(this.NewTopicName).then(topic => {
       this.userService.findCurrentUser().then(user => {
-        this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user);
+        this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user).then(message => {
+            this.router.navigate(['/feed']);
+        });
       });
 
 
