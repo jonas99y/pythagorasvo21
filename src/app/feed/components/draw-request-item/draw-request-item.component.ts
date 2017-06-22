@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class DrawRequestItemComponent implements OnInit {
 
-  @Input() topic: FirebaseObjectObservable<any>;
+  @Input() topic: FirebaseObjectObservable<Topic>;
 
-  public Topic: Topic;
+  public Topic: any;
   public Images: Observable<Array<FirebaseObjectObservable<Image>>>;
 
   constructor(public injector: Injector, private imageService: ImageService) {
