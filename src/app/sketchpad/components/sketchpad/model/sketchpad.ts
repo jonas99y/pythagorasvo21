@@ -1,6 +1,6 @@
 export class Sketchpad {
 
-    
+
     public canvas: HTMLCanvasElement;
     private context;
     private strokes;
@@ -38,30 +38,13 @@ export class Sketchpad {
         this.canvas.style.width = this.opts.width + 'px';
         this.canvas.style.height = this.opts.height + 'px';
         el.appendChild(this.canvas);
-        
         this.context = this.canvas.getContext('2d');
 
-
-
-
-        // Event Listeners
-        // this.canvas.addEventListener('mousedown', this.startLine);
-        // this.canvas.addEventListener('mousemove', this.drawLine);
-        // this.canvas.addEventListener('mouseup', this.endLine);
-        // this.canvas.addEventListener('mouseleave', this.endLine);
         this.canvas.onmousedown = this.startLine;
         this.canvas.onmousemove = this.drawLine;
         this.canvas.onmouseup = this.endLine;
         this.canvas.onmouseleave = this.endLine;
-        // Public variables
-        // this.canvas = canvas;
-        // this.strokes = strokes;
-        // this.undos = undos;
-        // this.opts = opts;
 
-        // Public functions
-        // this.redraw = redraw;
-        // console.log(this);
     }
 
 
@@ -103,21 +86,14 @@ export class Sketchpad {
         }
     }
 
-    private testMethod(canvas)
-    {
-        // console.log(this);
-        // console.log(canvas);
-    }
 
-    // On mouse down, create a new stroke with a start location
+
     public startLine(e) {
-        
-        // console.log("StartLine");
+
         e.preventDefault();
-        this.testMethod(this);
-        
-        var width = this.canvas.width;
-        var height = this.canvas.height;
+
+        let width = this.canvas.width;
+        let height = this.canvas.height;
 
         this.strokes = this.strokes;
         this.sketching = true;
@@ -132,7 +108,7 @@ export class Sketchpad {
             lineMiterLimit: this.opts.lineMiterLimit
         });
 
-        var cursor = this.getCursor(e);
+        let cursor = this.getCursor(e);
         this.strokes[this.strokes.length - 1].stroke.push({
             x: cursor.x / width,
             y: cursor.y / height
@@ -140,15 +116,15 @@ export class Sketchpad {
     }
 
     public drawLine(e) {
-        // console.log("drawLine");
+
         if (!this.sketching) {
-            return
+            return;
         }
 
-        var width = this.canvas.width;
-        var height = this.canvas.height;
+        let width = this.canvas.width;
+        let height = this.canvas.height;
 
-        var cursor = this.getCursor(e);
+        let cursor = this.getCursor(e);
         this.strokes[this.strokes.length - 1].stroke.push({
             x: cursor.x / width,
             y: cursor.y / height
@@ -157,13 +133,13 @@ export class Sketchpad {
         this.redraw();
     }
 
-        public setLineColor = function (color) {
-            this.opts.lineColor = color;
-        }
+    public setLineColor = function (color) {
+        this.opts.lineColor = color;
+    }
 
     public endLine(e) {
-        // console.log("endLine");
-        
+
+
         if (!this.sketching) {
             return
         }

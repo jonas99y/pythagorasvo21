@@ -28,12 +28,12 @@ export class SketchpadControlsComponent implements OnInit {
   }
   set lineSize(value: number) {
     this._lineSize = value;
-    //console.log(value);
+
     this.lineSizeUpdated.emit(this.lineSize);
   }
 
   unDoClicked() {
-    // console.log("undo clicked");
+
     this.unDo.emit();
   }
 

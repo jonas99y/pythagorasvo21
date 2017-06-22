@@ -27,7 +27,7 @@ export class DrawingComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) {
     //dont remove, will break drawing-service;
-    console.log(firebase.storage());
+    firebase.storage();
     //userService.registerUser(new User(null,"Fabio","Zuber","TRtODRQVUvMJuBTGgzfjYRjBxYk1"))
   }
 
@@ -36,7 +36,6 @@ export class DrawingComponent implements OnInit {
       if (paramsSnapshot.topicKey !== undefined) {
         this.topicService.findTopicAfterKey(paramsSnapshot.topicKey).subscribe(topicSnapshot => {
           this.Topic = topicSnapshot;
-          console.log(topicSnapshot);
         });
       }
     });

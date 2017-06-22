@@ -16,7 +16,7 @@ export class RatingComponent implements OnInit {
   @Input('ratingKey') set RatingKey(key: string) {
     this.ratingKey = key;
     this.rating = this.ratingService.findRatingAfterKey(this.ratingKey);
-    console.log(key);
+    
   } 
   constructor(private userService: UserService, private ratingService: RatingService) { }
 

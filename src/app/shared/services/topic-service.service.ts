@@ -42,7 +42,7 @@ export class TopicService {
           topicKeys.push(topic.$ref.key);
         });
         let alltopics = this.afDb.object('topics');
-        console.log(alltopics);
+        
         resolve(alltopics.first((x, idx, obs) => { console.log('test'); return true; }));
       });
     });
