@@ -43,6 +43,7 @@ export class DrawingComponent implements OnInit {
 
   clicked($event) {
     this.topicService.findOrCreateTopicAfterName(this.NewTopicName).then(topic => {
+      
       this.userService.findCurrentUser().then(user => {
         this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user).then(message => {
             this.router.navigate(['/feed']);

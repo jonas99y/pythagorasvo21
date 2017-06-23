@@ -111,9 +111,10 @@ export class TopicService {
 
   addTopic(topicName: string): FirebaseObjectObservable<Topic> {
     let key = this.afDb.database.ref().push().key;
-    this.afDb.list('/topics').push({
+    let topicKey =this.afDb.list('/topics').push({
       name: topicName, images: key
-    });
-    return this.findTopicAfterKey(key);
+    }).key;
+    console.log(topicKey);
+    return this.findTopicAfterKey(topicKey);
   }
 }
