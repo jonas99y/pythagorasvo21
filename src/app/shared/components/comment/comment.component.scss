@@ -1,12 +1,4 @@
 @import '../../../app.component';
-#comments {
-    border: solid $primary-color;
-    border-radius: 5px;
-    background: white;
-    padding: 10px;
-    height: 100%;
-}
-
 .single-comment {
     background: $background-color;
     margin-bottom: 10px;

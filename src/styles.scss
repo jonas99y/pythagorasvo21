@@ -64,3 +64,10 @@ body {
 .hasShadow {
     box-shadow: $defaultBoxShadow;
 }
+
+.isBlockElement {
+    background: white;
+    padding: 10px;
+    border: solid $primary-color 3px;
+    border-radius: 5px;
+}

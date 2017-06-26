@@ -4,9 +4,6 @@ import { User, Image, FeedItem, Topic } from '../../shared';
 import { FirebaseObjectObservable } from 'angularfire2/database';
 @Injectable()
 export class FeedFactoryService {
-
-    constructor(){}
-
     setTopicRequestItemComponent(user: FirebaseObjectObservable<User>, topic: FirebaseObjectObservable<Topic>): any {
         return {
             component: DrawRequestItemComponent,

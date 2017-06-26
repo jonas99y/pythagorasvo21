@@ -11,6 +11,7 @@ import { FirebaseObjectObservable } from 'angularfire2/database';
 export class RequestTopicComponent implements OnInit {
 
   @Input() user: FirebaseObjectObservable<User>;
+  @Input() requester: FirebaseObjectObservable<User>;
   public RequestTopicName: string;
 
   constructor(private topicService: TopicService) { }
@@ -19,7 +20,8 @@ export class RequestTopicComponent implements OnInit {
   }
 
   submitRequest() {
-    this.topicService.assignNewTopicToUser(this.RequestTopicName, this.user);
+    this.topicService.requestTopicFromUser(this.user, this.RequestTopicName, this.requester).then(x => alert('Erfolgreich'));
+
   }
 
 }

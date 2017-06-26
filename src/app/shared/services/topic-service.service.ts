@@ -1,13 +1,18 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database'
-import { Topic, Image, User, Group } from '../models';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { Topic, Image, User, Group, FeedItem } from '../models';
 import { ImageService } from './image.service';
 import { DBHelperService } from './db-helper.service';
+import { FeedService } from './../../feed/services/feed.service';
 
 @Injectable()
 export class TopicService {
-  constructor(private afDb: AngularFireDatabase, private imageService: ImageService, private dbHelperService: DBHelperService) {
+  constructor(
+    private afDb: AngularFireDatabase,
+    private imageService: ImageService,
+    private dbHelperService: DBHelperService,
+    private feedService: FeedService) {
 
   }
 
@@ -111,10 +116,24 @@ export class TopicService {
 
   addTopic(topicName: string): FirebaseObjectObservable<Topic> {
     let key = this.afDb.database.ref().push().key;
-    let topicKey =this.afDb.list('/topics').push({
+    let topicKey = this.afDb.list('/topics').push({
       name: topicName, images: key
     }).key;
     console.log(topicKey);
     return this.findTopicAfterKey(topicKey);
+  }
+
+
+  requestTopicFromUser(user: FirebaseObjectObservable<User>, topic: string, requester: FirebaseObjectObservable<User>): Promise<any> {
+    const promise: Promise<any> = new Promise((resolve, reject) => {
+      this.findOrCreateTopicAfterName(topic).then(nTopic => {
+        const feedItem = this.feedService.createNewTopicRequestFeedItem(nTopic.$ref.key, user.$ref.key);
+        this.feedService.addFeedItemToUser(feedItem, requester).then(x=>{
+          resolve(x);
+        });
+      });
+    });
+
+    return promise;
   }
 }

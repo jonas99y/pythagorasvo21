@@ -13,7 +13,7 @@ export class UserViewComponent implements OnInit, OnChanges {
 
   public images: Observable<Array<FirebaseObjectObservable<Image>>>;
   public user: FirebaseObjectObservable<User>;
-
+  public currentUser: FirebaseObjectObservable<User>;
   @Input("userKey") userKey: string;
 
   ngOnChanges(changes: SimpleChanges) {
@@ -38,6 +38,9 @@ export class UserViewComponent implements OnInit, OnChanges {
 
       });
     }
+    this.userService.findCurrentUser().then(user => {
+      this.currentUser = user;
+    });
   }
 
 }
