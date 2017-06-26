@@ -3,3 +3,4 @@ export * from './gallery-viewer/gallery-viewer.component';
 export * from './comment/comment.component';
 export * from './rating/rating.component';
 export * from './request-topic/request-topic.component';
+export * from './add-post/add-post.component';

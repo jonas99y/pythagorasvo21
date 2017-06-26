@@ -4,8 +4,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TopicService, ImageService, UserService, RatingService, CommentService, DBHelperService, GroupService } from './services/';
 import { TestPipePipe, FindPipe } from './pipes/';
-import { ImageViewerComponent, GalleryViewerComponent, CommentComponent, RatingComponent } from './components';
-import { RequestTopicComponent } from './components/request-topic/request-topic.component';
+import {
+  ImageViewerComponent,
+  GalleryViewerComponent,
+  CommentComponent,
+  RatingComponent,
+  AddPostComponent,
+  RequestTopicComponent
+} from './components';
+
+
 
 
 
@@ -21,7 +29,8 @@ import { RequestTopicComponent } from './components/request-topic/request-topic.
     GalleryViewerComponent,
     CommentComponent,
     RatingComponent,
-    RequestTopicComponent],
+    RequestTopicComponent,
+    AddPostComponent],
   exports: [
     TestPipePipe,
     FindPipe,
@@ -29,7 +38,8 @@ import { RequestTopicComponent } from './components/request-topic/request-topic.
     GalleryViewerComponent,
     CommentComponent,
     RatingComponent,
-    RequestTopicComponent],
+    AddPostComponent,
+    RequestTopicComponent,],
   providers: [
     ImageService,
     TopicService,

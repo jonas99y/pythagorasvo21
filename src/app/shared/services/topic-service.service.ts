@@ -147,8 +147,6 @@ export class TopicService {
         });
       });
     });
-
-    // this.feedService.removeFeedItemFromUser(, user);
   }
 
 }
