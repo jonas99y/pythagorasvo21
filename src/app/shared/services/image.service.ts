@@ -3,12 +3,17 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import { Topic, Image, User } from '../models';
 import { Observable } from 'rxjs';
 import { DBHelperService } from './db-helper.service';
+import { TopicService } from './topic-service.service';
 import * as firebase from 'firebase';
 @Injectable()
 export class ImageService {
 
   private storageRef: firebase.storage.Reference;
-  constructor(private afDb: AngularFireDatabase, private dbHelperService: DBHelperService) {
+  constructor(
+    private afDb: AngularFireDatabase,
+    private dbHelperService: DBHelperService,
+    private topicService: TopicService
+  ) {
     this.storageRef = afDb.app.storage().ref();
   }
 
@@ -60,6 +65,7 @@ export class ImageService {
 
 
 
+
   submitNewDrawing(
     canvas: HTMLCanvasElement,
     topic: FirebaseObjectObservable<Topic>,
@@ -81,11 +87,15 @@ export class ImageService {
           user.subscribe(User => {
             this.dbHelperService.addKeyToList(User.images, key);
           });
-          topic.subscribe(Topic => {
-            if (Topic.images !== undefined) {
-              this.dbHelperService.addKeyToList(Topic.images, key);
+          topic.subscribe(topicSnapshot => {
+            if (topicSnapshot.images !== undefined) {
+              this.dbHelperService.addKeyToList(topicSnapshot.images, key);
+              
             }
+            console.log(topicSnapshot);
           });
+          this.topicService.removeRequestedTopicFormUser(user,topic);
+          
           resolve('test'); // TODO
         }).catch(x => reject(x));
     });

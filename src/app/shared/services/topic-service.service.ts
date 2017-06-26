@@ -2,7 +2,6 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Topic, Image, User, Group, FeedItem } from '../models';
-import { ImageService } from './image.service';
 import { DBHelperService } from './db-helper.service';
 import { FeedService } from './../../feed/services/feed.service';
 
@@ -10,7 +9,7 @@ import { FeedService } from './../../feed/services/feed.service';
 export class TopicService {
   constructor(
     private afDb: AngularFireDatabase,
-    private imageService: ImageService,
+
     private dbHelperService: DBHelperService,
     private feedService: FeedService) {
 
@@ -39,39 +38,39 @@ export class TopicService {
 
   }
 
-  findTopicToDraw(user: FirebaseObjectObservable<User>): Promise<FirebaseObjectObservable<Topic>> {
-    const promise = new Promise((resolve, reject) => {
-      this.findAllDrawnTopicsOfUser(user).then(topics => {
-        let topicKeys: Array<string> = [];
-        topics.forEach(topic => {
-          topicKeys.push(topic.$ref.key);
-        });
-        let alltopics = this.afDb.object('topics');
+  // findTopicToDraw(user: FirebaseObjectObservable<User>): Promise<FirebaseObjectObservable<Topic>> {
+  //   const promise = new Promise((resolve, reject) => {
+  //     this.findAllDrawnTopicsOfUser(user).then(topics => {
+  //       let topicKeys: Array<string> = [];
+  //       topics.forEach(topic => {
+  //         topicKeys.push(topic.$ref.key);
+  //       });
+  //       let alltopics = this.afDb.object('topics');
 
-        resolve(alltopics.first((x, idx, obs) => { console.log('test'); return true; }));
-      });
-    });
+  //       resolve(alltopics.first((x, idx, obs) => { console.log('test'); return true; }));
+  //     });
+  //   });
 
-    return promise;
-  }
+  //   return promise;
+  // }
 
-  findAllDrawnTopicsOfUser(user: FirebaseObjectObservable<User>): Promise<Array<FirebaseObjectObservable<Topic>>> {
-    const topics: Array<FirebaseObjectObservable<Topic>> = [];
+  // findAllDrawnTopicsOfUser(user: FirebaseObjectObservable<User>): Promise<Array<FirebaseObjectObservable<Topic>>> {
+  //   const topics: Array<FirebaseObjectObservable<Topic>> = [];
 
 
-    const promise = new Promise((resolve, reject) => {
-      this.afDb.list('users/' + user.$ref.key + '/images').subscribe(imgs => {
+  //   const promise = new Promise((resolve, reject) => {
+  //     this.afDb.list('users/' + user.$ref.key + '/images').subscribe(imgs => {
 
-        imgs.forEach(img => {
-          this.imageService.findImageAfterKey(img.$key).subscribe(relImage => {
-            topics.push(this.findTopicAfterKey(relImage.topic));
-          });
-        });
-        resolve(topics);
-      });
-    });
-    return promise;
-  }
+  //       imgs.forEach(img => {
+  //         this.imageService.findImageAfterKey(img.$key).subscribe(relImage => {
+  //           topics.push(this.findTopicAfterKey(relImage.topic));
+  //         });
+  //       });
+  //       resolve(topics);
+  //     });
+  //   });
+  //   return promise;
+  // }
 
   private isInArray(value, array): boolean {
     return array.indexOf(value) > -1;
@@ -119,7 +118,6 @@ export class TopicService {
     let topicKey = this.afDb.list('/topics').push({
       name: topicName, images: key
     }).key;
-    console.log(topicKey);
     return this.findTopicAfterKey(topicKey);
   }
 
@@ -128,7 +126,7 @@ export class TopicService {
     const promise: Promise<any> = new Promise((resolve, reject) => {
       this.findOrCreateTopicAfterName(topic).then(nTopic => {
         const feedItem = this.feedService.createNewTopicRequestFeedItem(nTopic.$ref.key, user.$ref.key);
-        this.feedService.addFeedItemToUser(feedItem, requester).then(x=>{
+        this.feedService.addFeedItemToUser(feedItem, requester).then(x => {
           resolve(x);
         });
       });
@@ -136,4 +134,21 @@ export class TopicService {
 
     return promise;
   }
+
+  removeRequestedTopicFormUser(user: FirebaseObjectObservable<User>, topic: FirebaseObjectObservable<Topic>) {
+    this.feedService.findAllFeedItemsOfUser(user).then(userFeedItems => {
+      userFeedItems.subscribe(userFeedItemsSnapshot => {
+        userFeedItemsSnapshot.forEach(x => {
+          x.subscribe(feedItemSnapshot => {
+            if (feedItemSnapshot.topic === topic.$ref.key) {
+              this.feedService.removeFeedItemFromUser(x, user);
+            }
+          });
+        });
+      });
+    });
+
+    // this.feedService.removeFeedItemFromUser(, user);
+  }
+
 }

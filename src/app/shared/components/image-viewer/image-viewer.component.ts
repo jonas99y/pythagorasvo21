@@ -12,7 +12,7 @@ export class ImageViewerComponent implements OnInit {
   public set Image(img: Image) {
     this.img = img;
     this.Topic = this.topicService.findTopicAfterKey(img.topic);
-    this.Topic.subscribe(x=> console.log(x))
+ 
   };
 
   public get Image(): Image {

@@ -34,6 +34,19 @@ export class FeedService {
         return this.dbHelperService.findAllObjectsFromKeyList(feedKey, '/feedItems');
     }
 
+    findFeedItemAfterQuery(query: any): Promise<FirebaseObjectObservable<FeedItem>> {
+        return this.dbHelperService.findFirstInNodeAfterQuery('feed', null); // TODO
+    }
+
+    findAllFeedItemsOfUser(user: FirebaseObjectObservable<User>): Promise<Observable<Array<FirebaseObjectObservable<FeedItem>>>> {
+        const promise = new Promise((resolve, reject) => {
+            user.subscribe(userSnapshot => {
+                resolve(this.dbHelperService.findAllObjectsFromKeyList(userSnapshot.feed, '/feedItems'));
+            });
+        });
+        return promise;
+    }
+
     addFeedItemToFeed(feedItem: FirebaseObjectObservable<FeedItem>, feedKey: string) {
 
         this.dbHelperService.addKeyToList(feedKey, feedItem.$ref.key);
@@ -52,6 +65,24 @@ export class FeedService {
     addFeedItemToGroup(feedItem: FirebaseObjectObservable<FeedItem>, group: FirebaseObjectObservable<Group>) {
         group.subscribe(groupSnapshot => {
             this.addFeedItemToFeed(feedItem, groupSnapshot.feed);
+        });
+    }
+
+    removeFeedItemFromFeed(feedItem: FirebaseObjectObservable<FeedItem>, feedKey: string) {
+        this.dbHelperService.removeKeyFormList(feedKey, feedItem.$ref.key);
+        console.log(feedKey, feedItem.$ref.key);
+    }
+
+    removeFeedItemFromUser(feedItem: FirebaseObjectObservable<FeedItem>, user: FirebaseObjectObservable<User>) {
+        user.subscribe(userSnapshot => {
+            this.removeFeedItemFromFeed(feedItem, userSnapshot.feed);
+            
+        });
+    }
+
+    removeFeedItemFromGroup(feedItem: FirebaseObjectObservable<FeedItem>, group: FirebaseObjectObservable<Group>) {
+        group.subscribe(groupSnapshot => {
+            this.removeFeedItemFromFeed(feedItem, groupSnapshot.feed);
         });
     }
 

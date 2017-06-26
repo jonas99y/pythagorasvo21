@@ -16,7 +16,7 @@ export class DBHelperService {
 
   findAllObjectsFromKeyList(key: string, path: string): Observable<Array<FirebaseObjectObservable<any>>> {
     return Observable.create(observer => {
-      const array = new Array<FirebaseObjectObservable<any>>();      
+      const array = new Array<FirebaseObjectObservable<any>>();
       const keylist = this.findKeyList(key);
       keylist.subscribe(keyListSnapshot => {
         keyListSnapshot.forEach(item => {
@@ -42,17 +42,45 @@ export class DBHelperService {
     return listKey;
   }
   removeKeyFormList(listKey: string, key: string) {
-    this.afDb.list('keyList/' + listKey).remove(key);
+    this.afDb.list('keyLists/' + listKey).remove(key);
   }
   findInNodeAfterKey<T>(node: string, key: string): FirebaseObjectObservable<T> {
     if (key === undefined) {
       return undefined;
     }
-    if (!node.startsWith('/')) {
-      node = '/' + node;
-    }
+    node = this.sanitizeNodeString(node);
 
     return this.afDb.object(node + '/' + key);
+  }
+
+  findFirstInNodeAfterQuery<T>(node: string, query: object): Promise<FirebaseObjectObservable<T>> {
+    const promise = new Promise((resolve, reject) => {
+      let items: any = this.findAllObjectsAfterQuery(node, query);
+      items.subscribe(itemsSnapshot => {
+        if (itemsSnapshot.length === 0) {
+          resolve(undefined);
+        } else {
+          resolve(this.findInNodeAfterKey(node, itemsSnapshot[0].$key));
+        }
+
+      });
+    });
+    return promise;
+  }
+
+  findAllObjectsAfterQuery<T>(node: string, query: object): FirebaseListObservable<T[]> {
+    node = this.sanitizeNodeString(node);
+    return this.afDb.list(node, query);
+
+  }
+
+
+  private sanitizeNodeString(node: string): string {
+    let newNode = "";
+    if (!node.startsWith('/')) {
+      newNode = '/';
+    }
+    return newNode + node;
   }
 
 }

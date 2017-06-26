@@ -14,8 +14,9 @@ export class DrawingComponent implements OnInit {
 
   @ViewChild('sketchpad') sketchpad: SketchpadComponent;
 
+  public IsTopicGiven:boolean;
   public imageName: string;
-  public Topic: Topic;
+  public Topic: FirebaseObjectObservable<Topic>;
   public NewTopicName: string;
   private image: string;
   private ref: firebase.storage.Reference;
@@ -34,19 +35,29 @@ export class DrawingComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(paramsSnapshot => {
       if (paramsSnapshot.topicKey !== undefined) {
-        this.topicService.findTopicAfterKey(paramsSnapshot.topicKey).subscribe(topicSnapshot => {
-          this.Topic = topicSnapshot;
-        });
+        this.Topic = this.topicService.findTopicAfterKey(paramsSnapshot.topicKey);
+        this.IsTopicGiven = true;
       }
     });
   }
 
+  private getTopic(): Promise<FirebaseObjectObservable<Topic>> {
+    const promise = new Promise((resolve, reject) => {
+      if (this.Topic === undefined) {
+        this.topicService.findOrCreateTopicAfterName(this.NewTopicName).then(topic => { resolve(topic); });
+      } else {
+        resolve(this.Topic);
+      }
+    });
+    return promise;
+
+  }
   clicked($event) {
-    this.topicService.findOrCreateTopicAfterName(this.NewTopicName).then(topic => {
-      
+    this.getTopic().then(topic => {
+      console.log(topic.$ref.key);
       this.userService.findCurrentUser().then(user => {
         this.imageService.submitNewDrawing(this.sketchpad.canvas, topic, user).then(message => {
-            this.router.navigate(['/feed']);
+          this.router.navigate(['/feed']);
         });
       });
 
