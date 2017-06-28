@@ -19,6 +19,7 @@ export class DBHelperService {
       const array = new Array<FirebaseObjectObservable<any>>();
       const keylist = this.findKeyList(key);
       keylist.subscribe(keyListSnapshot => {
+        array.splice(0, array.length);
         keyListSnapshot.forEach(item => {
           array.push(this.findInNodeAfterKey(path, item.$key));
         });

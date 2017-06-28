@@ -11,15 +11,19 @@ import { Observable } from 'rxjs';
 })
 export class FeedComponent {
 
-  @Input() fields: any;
+  @Input() fields: Array<any> = new Array<any>();
   @Input() set feedItems(feedItems: Observable<Array<FirebaseObjectObservable<FeedItem>>>) {
-    this.fields = [];
     if (feedItems !== undefined) {
+      console.log("sub");
       feedItems.subscribe(feedItemsSnapshot => {
+        this.fields.splice(0, this.fields.length );
+        console.log(this.fields.length);
+        console.log(feedItemsSnapshot.length);
         feedItemsSnapshot.forEach(
           feedItem => {
             this.feedItemResolverService.setFeedItem(feedItem).then(item => {
               this.fields.push(item);
+              console.log(item);
             });
           }
         );
