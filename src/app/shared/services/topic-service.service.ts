@@ -125,8 +125,8 @@ export class TopicService {
   requestTopicFromUser(user: FirebaseObjectObservable<User>, topic: string, requester: FirebaseObjectObservable<User>): Promise<any> {
     const promise: Promise<any> = new Promise((resolve, reject) => {
       this.findOrCreateTopicAfterName(topic).then(nTopic => {
-        const feedItem = this.feedService.createNewTopicRequestFeedItem(nTopic.$ref.key, user.$ref.key);
-        this.feedService.addFeedItemToUser(feedItem, requester).then(x => {
+        const feedItem = this.feedService.createNewTopicRequestFeedItem(nTopic.$ref.key, requester.$ref.key);
+        this.feedService.addFeedItemToUser(feedItem, user).then(x => {
           resolve(x);
         });
       });
