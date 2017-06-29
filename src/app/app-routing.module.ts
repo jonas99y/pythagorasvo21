@@ -9,6 +9,7 @@ import { MainGalleryComponent } from './main-gallery/main-gallery.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { UserFeedComponent, GroupFeedComponent } from './feed';
 import { AboutComponent } from './about/about.component';
+import { HistoryOfPythagorasComponent } from './history-of-pythagoras/history-of-pythagoras.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,7 +25,8 @@ export const appRoutes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'gallery', component: MainGalleryComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'about', component: AboutComponent }
+  { path: 'about', component: AboutComponent },
+  { path: 'history-of-pythagoras', component: HistoryOfPythagorasComponent }
 ];
 @NgModule({
   imports: [

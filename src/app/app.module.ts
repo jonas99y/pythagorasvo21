@@ -17,6 +17,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { MainGalleryComponent } from './main-gallery/main-gallery.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { AboutComponent } from './about/about.component';
+import { HistoryOfPythagorasComponent } from './history-of-pythagoras/history-of-pythagoras.component';
 
 // import { FeedComponent} from './feed/components/feed/feed.component';
 
@@ -37,7 +38,8 @@ export const firebaseConfig = {
     SettingsComponent,
     MainGalleryComponent,
     UserViewComponent,
-    AboutComponent
+    AboutComponent,
+    HistoryOfPythagorasComponent
   ],
   imports: [
     BrowserModule,
