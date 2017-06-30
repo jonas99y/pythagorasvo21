@@ -18,6 +18,7 @@ import { MainGalleryComponent } from './main-gallery/main-gallery.component';
 import { UserViewComponent } from './user-view/user-view.component';
 import { AboutComponent } from './about/about.component';
 import { HistoryOfPythagorasComponent } from './history-of-pythagoras/history-of-pythagoras.component';
+import { BeforeAfterSliderComponent } from './before-after-slider/before-after-slider.component';
 
 // import { FeedComponent} from './feed/components/feed/feed.component';
 
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     MainGalleryComponent,
     UserViewComponent,
     AboutComponent,
-    HistoryOfPythagorasComponent
+    HistoryOfPythagorasComponent,
+    BeforeAfterSliderComponent
   ],
   imports: [
     BrowserModule,
