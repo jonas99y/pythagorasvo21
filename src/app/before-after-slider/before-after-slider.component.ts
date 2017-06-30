@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class BeforeAfterSliderComponent implements OnInit {
 
-  public Width;
+  public Width =0;
 
   @Input() public Img1URL: string;
   @Input() public Img2URL: string;
