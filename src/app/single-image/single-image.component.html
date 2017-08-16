@@ -1,5 +1,9 @@
 <div class="columns is-multiline" id="single-image-div">
-    <h1 class="column is-12">Zeichnet vo<a [routerLink]="['/user/',user.$ref.key]"> {{(user|async)?.firstname}} {{(user|async)?.lastname}}</a> mit em titel<a [routerLink]="['/draw/topic/',topic.$ref.key]"> {{(topic|async)?.name}}</a></h1>
+    <h1 class="column is-12">Zeichnet vo
+        <a [routerLink]="['/user/',user?.$ref.key||'']"> {{(user|async)?.firstname}} {{(user|async)?.lastname}}</a>
+        <span>mit em titel</span>
+        <a [routerLink]="['/draw/topic/',topic?.$ref.key||'']"> {{(topic|async)?.name}}</a>
+    </h1>
     <app-image-viewer [Image]="image" id="image-viewer" class="column is-6"></app-image-viewer>
     <div class="column columns is-4 is-multiline" id="commentsAndRating">
         <app-rating [ratingKey]="(image|async)?.rating" id="rating-app" class="column is-12"></app-rating>
