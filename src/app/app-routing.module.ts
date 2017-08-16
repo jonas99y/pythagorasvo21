@@ -10,6 +10,7 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { UserFeedComponent, GroupFeedComponent } from './feed';
 import { AboutComponent } from './about/about.component';
 import { HistoryOfPythagorasComponent } from './history-of-pythagoras/history-of-pythagoras.component';
+import { TopicOverviewComponent } from './topic-overview/topic-overview.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -18,7 +19,7 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register-email', component: RegisterEmailComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
-  { path: 'draw/topic/:topicKey', component: DrawingComponent, canActivate:[AuthGuard]},
+  { path: 'draw/topic/:topicKey', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: 'image/:imageKey', component: SingleImageComponent, canActivate: [AuthGuard] },
   { path: 'user/:userKey', component: UserViewComponent, canActivate: [AuthGuard] },
@@ -26,7 +27,8 @@ export const appRoutes: Routes = [
   { path: 'gallery', component: MainGalleryComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
-  { path: 'history-of-pythagoras', component: HistoryOfPythagorasComponent }
+  { path: 'history-of-pythagoras', component: HistoryOfPythagorasComponent },
+  { path: 'topic/:topicKey', component: TopicOverviewComponent }
 ];
 @NgModule({
   imports: [

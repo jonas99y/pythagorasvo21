@@ -1,0 +1,10 @@
+<h1>Thema: {{(topic|async)?.name||'loading..'}}</h1>
+
+<div class="columns is-multiline" *ngIf="hasImages">
+  <p class="column is-12">So hends anderi zeichnet:</p>
+  <app-image-viewer *ngFor="let image of images|async" [Image]="image" class="column is-2"></app-image-viewer>
+</div>
+<div *ngIf="!hasImages">
+  <p>Bis jetzt hed no niemert {{(topic|async)?.name}} zeichnet.</p>    
+</div>
+<a [routerLink]="['/draw/topic/',topic?.$ref.key||'']">Selber zeichne</a>
