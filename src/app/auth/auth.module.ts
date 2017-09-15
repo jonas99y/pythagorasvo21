@@ -5,6 +5,8 @@ import {RouterModule} from '@angular/router';
 import {LoginComponent} from './components/login.component';
 import {RegisterEmailComponent} from './components/register-email.component';
 import {AuthGuard} from './services';
+import { LoginPhoneComponent } from './components/login-phone.component';
+import {WindowService} from './services/window.service';
 
 @NgModule({
   imports: [
@@ -12,12 +14,13 @@ import {AuthGuard} from './services';
   ],
   declarations: [
     LoginComponent,
-    RegisterEmailComponent
+    RegisterEmailComponent,
+    LoginPhoneComponent
   ],
   exports: [
     LoginComponent,
     RegisterEmailComponent
   ],
-  providers: [AuthGuard]
+  providers: [AuthGuard,WindowService]
 })
 export class AuthModule { }

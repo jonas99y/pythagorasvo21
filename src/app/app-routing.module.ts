@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterEmailComponent, LoginComponent, AuthGuard } from './auth/';
+import { RegisterEmailComponent, LoginComponent, AuthGuard,LoginPhoneComponent } from './auth/';
 import { DrawingComponent } from './drawing/drawing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SingleImageComponent } from './single-image/single-image.component';
@@ -18,6 +18,7 @@ export const appRoutes: Routes = [
   { path: 'group-feed', component: GroupFeedComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register-email', component: RegisterEmailComponent },
+  { path: 'login-phone', component: LoginPhoneComponent },
   { path: 'drawing', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: 'draw/topic/:topicKey', component: DrawingComponent, canActivate: [AuthGuard] },
   { path: '✍️', component: DrawingComponent, canActivate: [AuthGuard] },
